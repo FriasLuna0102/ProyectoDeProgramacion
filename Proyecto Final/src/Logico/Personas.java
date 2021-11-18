@@ -1,6 +1,6 @@
 package Logico;
 
-public class Participantes {
+public class Personas {
 	
 	private String nombre;
 	private String direccion;
