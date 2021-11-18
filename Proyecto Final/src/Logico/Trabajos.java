@@ -5,12 +5,14 @@ public class Trabajos {
 	private String codigo;
 	private String nombre;
 	private String tema;
+	
 	public Trabajos(String codigo, String nombre, String tema) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.tema = tema;
 	}
+	
 	public String getCodigo() {
 		return codigo;
 	}

@@ -19,6 +19,7 @@ public class Participantes extends Personas {
 		
 	}
 
+	
 	public String getMatricula() {
 		return matricula;
 	}
