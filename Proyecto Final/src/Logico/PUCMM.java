@@ -3,28 +3,28 @@ package Logico;
 import java.util.ArrayList;
 
 public class PUCMM {
-	 private ArrayList<Personas> misPersonas;
-	 private ArrayList<Trabajos> misTrabajos;
-	 private ArrayList<Recursos> misRecursos;
-	 private ArrayList<Eventos> misEventos;
-	 private ArrayList<Comisiones> misComisiones;
-	 public static PUCMM alma = null;
-	 
-	 private PUCMM() {
-		 super();
-		 misPersonas = new ArrayList<>();
-		 misTrabajos = new ArrayList<>();
-		 misRecursos = new ArrayList<>();
-		 misEventos = new ArrayList<>();
-		 misComisiones = new ArrayList<>();
-		 
-	 }
-	 public static PUCMM getInstance() {
-		 if(alma == null) {
-			 alma = new PUCMM();
-		 }
-		 return alma;
-	 }
+	private ArrayList<Personas> misPersonas;
+	private ArrayList<Trabajos> misTrabajos;
+	private ArrayList<Recursos> misRecursos;
+	private ArrayList<Eventos> misEventos;
+	private ArrayList<Comisiones> misComisiones;
+	public static PUCMM alma = null;
+
+	private PUCMM() {
+		super();
+		misPersonas = new ArrayList<>();
+		misTrabajos = new ArrayList<>();
+		misRecursos = new ArrayList<>();
+		misEventos = new ArrayList<>();
+		misComisiones = new ArrayList<>();
+
+	}
+	public static PUCMM getInstance() {
+		if(alma == null) {
+			alma = new PUCMM();
+		}
+		return alma;
+	}
 	public ArrayList<Personas> getMisPersonas() {
 		return misPersonas;
 	}
@@ -55,5 +55,25 @@ public class PUCMM {
 	public void setMisComisiones(ArrayList<Comisiones> misComisiones) {
 		this.misComisiones = misComisiones;
 	}
-	
+
+	public void addPersona(Personas person) {
+		misPersonas.add(person);
+
+	}
+
+	public int [] cantTipoDePersonas() {
+		int [] cantByTipo = new int [2];
+		for (Personas aux : misPersonas) {
+			if(aux instanceof Participantes) {
+				cantByTipo[0]+=1;
+			}	
+			if(aux instanceof Jurado) {
+				cantByTipo[1]+=1;
+				if(cantByTipo[1] > 3) {
+					System.out.print("Solo pueden ser 3 Jurados");
+				}
+			}
+		}
+		return cantByTipo;
+	}	
 }

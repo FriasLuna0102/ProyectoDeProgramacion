@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class Eventos {
 	
+	private int limiteDeParticipantes;
 	private String tituloDeEvento;
 	private ArrayList<Participantes> misParticipantes;
 	private ArrayList<Trabajos> misTrabajos;
@@ -18,7 +19,7 @@ public class Eventos {
 	private int horaDeEvento;
 	private String correoDeEvento;
 	public Eventos(String tituloDeEvento, Comisiones comision, Recursos recursoUtilizados, String codigoDeEvento,
-			String lugarDeEvento, int horaDeEvento, String correoDeEvento) {
+			String lugarDeEvento, int horaDeEvento, String correoDeEvento, int limiteDeParticipantes) {
 		super();
 		this.tituloDeEvento = tituloDeEvento;
 		this.comision = comision;
@@ -27,6 +28,7 @@ public class Eventos {
 		this.lugarDeEvento = lugarDeEvento;
 		this.horaDeEvento = horaDeEvento;
 		this.correoDeEvento = correoDeEvento;
+		this.limiteDeParticipantes = limiteDeParticipantes;
 		misParticipantes = new ArrayList<>();
 		misTrabajos = new ArrayList<>();
 		this.fechaDeCierre = new Date();
@@ -105,5 +107,11 @@ public class Eventos {
 	}
 	public void setCorreoDeEvento(String correoDeEvento) {
 		this.correoDeEvento = correoDeEvento;
+	}
+	public int getLimiteDeParticipantes() {
+		return limiteDeParticipantes;
+	}
+	public void setLimiteDeParticipantes(int limiteDeParticipantes) {
+		this.limiteDeParticipantes = limiteDeParticipantes;
 	}
 }

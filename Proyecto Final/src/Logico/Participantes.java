@@ -17,7 +17,6 @@ public class Participantes extends Personas {
 		this.institucionProveniente = institucionesProvenientes;
 		misTrabajos = new ArrayList<>();
 		
-	
 	}
 
 	public String getMatricula() {
