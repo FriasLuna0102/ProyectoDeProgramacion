@@ -2,6 +2,8 @@ package Logico;
 
 import java.util.ArrayList;
 
+
+
 public class PUCMM {
 	private ArrayList<Personas> misPersonas;
 	private ArrayList<Trabajos> misTrabajos;
@@ -19,12 +21,14 @@ public class PUCMM {
 		misComisiones = new ArrayList<>();
 
 	}
+	
 	public static PUCMM getInstance() {
 		if(alma == null) {
 			alma = new PUCMM();
 		}
 		return alma;
 	}
+	
 	public ArrayList<Personas> getMisPersonas() {
 		return misPersonas;
 	}
@@ -104,7 +108,18 @@ public class PUCMM {
 		return cantByTipo;
 
 	}	
-	
+	public Personas getPersonasCodigo(String codigo) {
+		Personas personas = null;
+		boolean encontrado = false;
+		int i = 0;
+		while(!encontrado && i < misPersonas.size()) {
+			if(misPersonas.get(i).getCedula().equalsIgnoreCase(codigo)) {
+				personas = misPersonas.get(i);
+				encontrado = true;
+			}
+		}
+		return personas;
+	}
 	
 
 } 
