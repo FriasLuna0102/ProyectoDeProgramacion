@@ -56,11 +56,38 @@ public class PUCMM {
 		this.misComisiones = misComisiones;
 	}
 
-	public void addPersona(Personas person) {
-		misPersonas.add(person);
-
+	public void addEventos (Eventos event) {
+		misEventos.add(event);
 	}
 
+	public void addPersona(Personas person) {
+		misPersonas.add(person);
+	}
+	
+	public boolean disponibilidadRecursos(String recurse) {
+		boolean dispon = false;
+		Recursos recursos = buscarRecursos(recurse);
+		if (recursos != null) {
+			dispon = true;
+			
+		}	
+		return dispon;
+		
+	}
+	private Recursos buscarRecursos(String tipoDeRecursos) {
+		boolean encontrado = false;
+		int i = 0;
+		Recursos recursos = null;
+		while(!encontrado && i < misRecursos.size()) {
+			if(misRecursos.get(i).getTipoDeRecurso().equalsIgnoreCase(tipoDeRecursos)) {
+				encontrado = true;
+				recursos = misRecursos.get(i);			
+			}
+		}	
+		return recursos;
+	}
+	
+	
 	public int [] cantTipoDePersonas() {
 		int [] cantByTipo = new int [2];
 		for (Personas aux : misPersonas) {
@@ -75,5 +102,9 @@ public class PUCMM {
 			}
 		}
 		return cantByTipo;
+
 	}	
+	
+	
+
 } 

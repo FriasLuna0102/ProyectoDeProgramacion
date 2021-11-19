@@ -10,12 +10,15 @@ public class Participantes extends Personas {
 	private ArrayList<Trabajos> misTrabajos;
 
 	public Participantes(String nombre, String direccion, String cedula, String apellido, String telefono,
-			String correo, String matricula, String proyecto, String institucionesProvenientes) {
+			String correo, String matricula, String proyecto, String institucionesProvenientes,
+			String codigo, String nombreTrabajo,String tema) {
 		super(nombre, direccion, cedula, apellido, telefono, correo);
 		this.Matricula = matricula;
 		this.Proyecto = proyecto;
 		this.institucionProveniente = institucionesProvenientes;
 		misTrabajos = new ArrayList<>();
+		Trabajos trabajo = new Trabajos(codigo, nombreTrabajo, tema);
+		misTrabajos.add(trabajo);
 		
 	}
 
