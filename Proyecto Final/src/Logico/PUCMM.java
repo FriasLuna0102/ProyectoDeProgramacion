@@ -7,6 +7,7 @@ public class PUCMM {
 	 private ArrayList<Trabajos> misTrabajos;
 	 private ArrayList<Recursos> misRecursos;
 	 private ArrayList<Eventos> misEventos;
+	 private ArrayList<Comisiones> misComisiones;
 	 public static PUCMM alma = null;
 	 
 	 private PUCMM() {
@@ -15,6 +16,7 @@ public class PUCMM {
 		 misTrabajos = new ArrayList<>();
 		 misRecursos = new ArrayList<>();
 		 misEventos = new ArrayList<>();
+		 misComisiones = new ArrayList<>();
 		 
 	 }
 	 public static PUCMM getInstance() {
@@ -47,5 +49,11 @@ public class PUCMM {
 	public void setMisEventos(ArrayList<Eventos> misEventos) {
 		this.misEventos = misEventos;
 	}
-
+	public ArrayList<Comisiones> getMisComisiones() {
+		return misComisiones;
+	}
+	public void setMisComisiones(ArrayList<Comisiones> misComisiones) {
+		this.misComisiones = misComisiones;
+	}
+	
 }

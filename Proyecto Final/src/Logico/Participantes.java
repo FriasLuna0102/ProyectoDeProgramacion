@@ -17,6 +17,7 @@ public class Participantes extends Personas {
 		this.institucionProveniente = institucionesProvenientes;
 		misTrabajos = new ArrayList<>();
 		
+	
 	}
 
 	public String getMatricula() {
@@ -50,6 +51,4 @@ public class Participantes extends Personas {
 	public void setMisTrabajos(ArrayList<Trabajos> misTrabajos) {
 		this.misTrabajos = misTrabajos;
 	}
-
-	
 }
