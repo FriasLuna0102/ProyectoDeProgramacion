@@ -24,7 +24,7 @@ public class RegistroParticipantes extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	} 
 
 	/**
 	 * Create the dialog.
