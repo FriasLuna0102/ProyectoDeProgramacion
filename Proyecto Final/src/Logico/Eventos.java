@@ -114,4 +114,4 @@ public class Eventos {
 	public void setLimiteDeParticipantes(int limiteDeParticipantes) {
 		this.limiteDeParticipantes = limiteDeParticipantes;
 	}
-}
+} 

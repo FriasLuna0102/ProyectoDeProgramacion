@@ -50,4 +50,4 @@ public class Participantes extends Personas {
 	public void setMisTrabajos(ArrayList<Trabajos> misTrabajos) {
 		this.misTrabajos = misTrabajos;
 	}
-}
+} 

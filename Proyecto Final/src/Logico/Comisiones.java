@@ -28,5 +28,5 @@ public class Comisiones {
 	public void setPresidente(String presidente) {
 		this.presidente = presidente;
 	}
-	
+	 
 }

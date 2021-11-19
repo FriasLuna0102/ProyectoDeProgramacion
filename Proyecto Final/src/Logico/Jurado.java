@@ -50,4 +50,4 @@ public class Jurado extends Personas {
 		this.lugarDeRecomendacion = lugarDeRecomendacion;
 	}
 
-}
+} 

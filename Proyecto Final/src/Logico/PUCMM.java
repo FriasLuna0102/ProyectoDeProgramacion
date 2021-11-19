@@ -76,4 +76,4 @@ public class PUCMM {
 		}
 		return cantByTipo;
 	}	
-}
+} 
