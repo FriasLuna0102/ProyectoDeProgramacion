@@ -97,7 +97,7 @@ public class PUCMM {
 			if(aux instanceof Jurado) {
 				cantByTipo[1]+=1;
 				if(cantByTipo[1] > 3) {
-					System.out.print("Solo pueden ser 3 Jurados");
+					System.out.print("Solo pueden ser 3 Jurados.");
 				}
 			}
 		}
