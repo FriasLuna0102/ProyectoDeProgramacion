@@ -143,6 +143,25 @@ public class PUCMM {
 		}		
 		return trabajo;
 	}
+	//Funcion para ver si se cumplen los requisitos del evento en cuanto a participantes, ver si cumplen el limite y el maximo.
+	public boolean verificarSiEventoSePuedeIniciarPorParticipantes(int maxDeParticipantes,int minParticipantes) {
+		boolean iniciar = false;
+		int [] cantParticipantes = new int [2];
+		for (Personas aux : misPersonas) {
+			if(aux instanceof Participantes) {
+				cantParticipantes[0]+=1;
+				if(cantParticipantes[0] > maxDeParticipantes ) {
+					System.out.println("Maximo de participantes superados.");
+				}else if(cantParticipantes[0]<=maxDeParticipantes && cantParticipantes[0] >= minParticipantes) {
+					System.out.println("Participantes registrados:"+cantParticipantes+"Evento se puede iniciar.");
+				}else if(cantParticipantes[0] < minParticipantes) {
+					System.out.println("Evento aun no se puede iniciar, participantes insuficientes.");
+				}
+			}
+			
+		}
+		return iniciar;		
+	}
 
 	//Funcion para regular el limite de trabajos permitidos en el evento.
 	public String limiteDeTrabajosAceptados(int lim,String codigoDeTrabajo) {
@@ -154,12 +173,12 @@ public class PUCMM {
 		return Aceptado;
 	}
 
-	//Funcion para comprobar si al evento correspondiente se le han atribuido los jurados.
-	public boolean VerSiLosjuradosEstanAsignados(String codigoDelEvento) {
+	//Funcion para comprobar si a la comision se le han atribuido los jurados.
+	public boolean VerSiLosjuradosEstanAsignados(String nombreDeComision) {
 		boolean juradoAsignados = false;
-		Eventos evento = null;
-		evento = buscarEvento(codigoDelEvento);
-		if(evento != null) {
+		Comisiones comision = null;
+		comision = buscarComisiones(nombreDeComision);
+		if(comision != null) {
 			int [] cantJurados = new int [2];
 			for (Personas aux : misPersonas) {
 				if(aux instanceof Jurado) {
@@ -178,15 +197,15 @@ public class PUCMM {
 	}
 
 	//Funcion para asignar un Jurado a presidente.
-	public String asignarPresidenteAEvento(String codigoDeEvento, String Jurado) {
-		Eventos evento = buscarEvento(codigoDeEvento);
+	public String asignarPresidenteAEvento(String nombreDeComision, String Jurado) {
+		Comisiones comision = buscarComisiones(nombreDeComision);
 		String presi = "";
-		if(evento != null) {
+		if(comision != null) {
 			for (Personas aux : misPersonas) {
 				int [] presidente = new int [2];
 				if(aux instanceof Jurado) {
 					presidente [0] = 1;
-					presi = "Se ha asignado un presidente al evento con codigo:"+codigoDeEvento;		
+					presi = "Se ha asignado un presidente a la comision con nombre:"+nombreDeComision;		
 				}
 			}
 		}
@@ -194,7 +213,7 @@ public class PUCMM {
 	}
 
 	//Funcion para buscar evento creados.
-	private Eventos buscarEvento(String codigoDelEvento) {
+	public Eventos buscarEvento(String codigoDelEvento) {
 		Eventos evento = null;
 		boolean encontrado = false;
 		int i = 0;
@@ -205,6 +224,19 @@ public class PUCMM {
 			}
 		}	
 		return evento;
+	}
+	//Funcion para buscar comisiones.
+	public Comisiones buscarComisiones (String nombreDeComision) {
+		boolean encontrado = false;
+		int i = 0;
+		Comisiones comision = null;
+		while(!encontrado & i<misComisiones.size()) {
+			if(misComisiones.get(i).getNombre().equalsIgnoreCase(nombreDeComision)) {
+				encontrado = true;
+				comision = misComisiones.get(i);
+			}
+		}
+		return comision;
 	}
 
 } 
