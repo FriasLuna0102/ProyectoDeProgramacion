@@ -2,22 +2,22 @@ package Logico;
 
 public class Trabajos {
 	
-	private String codigo;
+	private String codigoDeTrabajo;
 	private String nombre;
 	private String tema;
 	
 	public Trabajos(String codigo, String nombre, String tema) {
 		super();
-		this.codigo = codigo;
+		this.codigoDeTrabajo = codigo;
 		this.nombre = nombre;
 		this.tema = tema;
 	}
 	
 	public String getCodigo() {
-		return codigo;
+		return codigoDeTrabajo;
 	}
 	public void setCodigo(String codigo) {
-		this.codigo = codigo;
+		this.codigoDeTrabajo = codigo;
 	}
 	public String getNombre() {
 		return nombre;

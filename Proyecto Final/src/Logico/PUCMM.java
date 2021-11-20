@@ -21,14 +21,14 @@ public class PUCMM {
 		misComisiones = new ArrayList<>();
 
 	}
-	
+
 	public static PUCMM getInstance() {
 		if(alma == null) {
 			alma = new PUCMM();
 		}
 		return alma;
 	}
-	
+
 	public ArrayList<Personas> getMisPersonas() {
 		return misPersonas;
 	}
@@ -67,17 +67,18 @@ public class PUCMM {
 	public void addPersona(Personas person) {
 		misPersonas.add(person);
 	}
-	
+
 	public boolean disponibilidadRecursos(String recurse) {
 		boolean dispon = false;
 		Recursos recursos = buscarRecursos(recurse);
 		if (recursos != null) {
 			dispon = true;
-			
+
 		}	
 		return dispon;
-		
+
 	}
+	//Funcion para buscar tipos de recursos.
 	private Recursos buscarRecursos(String tipoDeRecursos) {
 		boolean encontrado = false;
 		int i = 0;
@@ -90,8 +91,8 @@ public class PUCMM {
 		}	
 		return recursos;
 	}
-	
-	
+
+	//Funcion para buscar los tipos de personas, participantes y jurados maximo  3.
 	public int [] cantTipoDePersonas() {
 		int [] cantByTipo = new int [2];
 		for (Personas aux : misPersonas) {
@@ -108,18 +109,102 @@ public class PUCMM {
 		return cantByTipo;
 
 	}	
-	public Personas getPersonasCodigo(String codigo) {
+	//Funcion para buscar personas mediante la cedula.
+	public Personas getPersonasCodigo(String cedula) {
 		Personas personas = null;
 		boolean encontrado = false;
 		int i = 0;
 		while(!encontrado && i < misPersonas.size()) {
-			if(misPersonas.get(i).getCedula().equalsIgnoreCase(codigo)) {
+			if(misPersonas.get(i).getCedula().equalsIgnoreCase(cedula)) {
 				personas = misPersonas.get(i);
 				encontrado = true;
 			}
 		}
 		return personas;
 	}
-	
+	//Funcion para saber la cantidad de trabajos registrado por los participantes.
+	public int cantDeTrabajosActivos(String codigoDeTrabajo) {
+		int cant = 0;
+		Trabajos trabajo = buscarTrabajosPresentados(codigoDeTrabajo);
+		if(trabajo != null) {
+			cant++;		
+		}	
+		return cant;	
+	}
+	//Funcion para buscar los trabajos de los participantes.
+	public Trabajos buscarTrabajosPresentados(String codigoDeTrabajo) {
+		boolean encontrado = false;
+		int i = 0;
+		Trabajos trabajo = null;
+		while(!encontrado && i < misTrabajos.size()) {
+			if(misTrabajos.get(i).getCodigo().equalsIgnoreCase(codigoDeTrabajo)) {
+				encontrado = true;
+				trabajo = misTrabajos.get(i);			}
+		}		
+		return trabajo;
+	}
+
+	//Funcion para regular el limite de trabajos permitidos en el evento.
+	public String limiteDeTrabajosAceptados(int lim,String codigoDeTrabajo) {
+		String Aceptado = "";
+		int cantDeTrabajos = cantDeTrabajosActivos(codigoDeTrabajo);
+		if(cantDeTrabajos > lim) {
+			Aceptado = "Se ha sobrepasado el limite de trabajos permitidos en el evento.";
+		}
+		return Aceptado;
+	}
+
+	//Funcion para comprobar si al evento correspondiente se le han atribuido los jurados.
+	public boolean VerSiLosjuradosEstanAsignados(String codigoDelEvento) {
+		boolean juradoAsignados = false;
+		Eventos evento = null;
+		evento = buscarEvento(codigoDelEvento);
+		if(evento != null) {
+			int [] cantJurados = new int [2];
+			for (Personas aux : misPersonas) {
+				if(aux instanceof Jurado) {
+					cantJurados[0] += 1;
+					if(cantJurados[0] == 3) {
+						juradoAsignados = true;
+
+					}else {
+						juradoAsignados = false;
+					}
+				}
+			}
+		}
+		return juradoAsignados;
+
+	}
+
+	//Funcion para asignar un Jurado a presidente.
+	public String asignarPresidenteAEvento(String codigoDeEvento, String Jurado) {
+		Eventos evento = buscarEvento(codigoDeEvento);
+		String presi = "";
+		if(evento != null) {
+			for (Personas aux : misPersonas) {
+				int [] presidente = new int [2];
+				if(aux instanceof Jurado) {
+					presidente [0] = 1;
+					presi = "Se ha asignado un presidente al evento con codigo:"+codigoDeEvento;		
+				}
+			}
+		}
+		return presi;
+	}
+
+	//Funcion para buscar evento creados.
+	private Eventos buscarEvento(String codigoDelEvento) {
+		Eventos evento = null;
+		boolean encontrado = false;
+		int i = 0;
+		while(!encontrado && i < misEventos.size()) {
+			if(misEventos.get(i).getCodigoDeEvento().equalsIgnoreCase(codigoDelEvento)) {
+				encontrado = true;
+				evento = misEventos.get(i);
+			}
+		}	
+		return evento;
+	}
 
 } 
