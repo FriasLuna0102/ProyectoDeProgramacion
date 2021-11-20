@@ -91,7 +91,7 @@ public class PUCMM {
 		}	
 		return recursos;
 	}
-
+ 
 	//Funcion para buscar los tipos de personas, participantes y jurados maximo  3.
 	public int [] cantTipoDePersonas() {
 		int [] cantByTipo = new int [2];
