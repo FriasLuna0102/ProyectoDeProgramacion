@@ -78,7 +78,7 @@ public class PUCMM {
 		return dispon;
 
 	}
-	//Funcion para buscar tipos de recursos.
+	//Metodo para buscar tipos de recursos.
 	private Recursos buscarRecursos(String tipoDeRecursos) {
 		boolean encontrado = false;
 		int i = 0;
@@ -92,7 +92,7 @@ public class PUCMM {
 		return recursos;
 	}
 
-	//Funcion para buscar los tipos de personas, participantes y jurados maximo  3.
+	//Metodo para buscar los tipos de personas, participantes y jurados maximo  3.
 	public int [] cantTipoDePersonas() {
 		int [] cantByTipo = new int [2];
 		for (Personas aux : misPersonas) {
@@ -109,7 +109,7 @@ public class PUCMM {
 		return cantByTipo;
 
 	}	
-	//Funcion para buscar personas mediante la cedula.
+	//Metodo para buscar personas mediante la cedula.
 	public Personas getPersonasCodigo(String cedula) {
 		Personas personas = null;
 		boolean encontrado = false;
@@ -122,7 +122,7 @@ public class PUCMM {
 		}
 		return personas;
 	}
-	//Funcion para saber la cantidad de trabajos registrado por los participantes.
+	//Metodo para saber la cantidad de trabajos registrado por los participantes.
 	public int cantDeTrabajosActivos(String codigoDeTrabajo) {
 		int cant = 0;
 		Trabajos trabajo = buscarTrabajosPresentados(codigoDeTrabajo);
@@ -131,7 +131,7 @@ public class PUCMM {
 		}	
 		return cant;	
 	}
-	//Funcion para buscar los trabajos de los participantes.
+	//Metodo para buscar los trabajos de los participantes.
 	public Trabajos buscarTrabajosPresentados(String codigoDeTrabajo) {
 		boolean encontrado = false;
 		int i = 0;
@@ -143,7 +143,7 @@ public class PUCMM {
 		}		
 		return trabajo;
 	}
-	//Funcion para ver si se cumplen los requisitos del evento en cuanto a participantes, ver si cumplen el limite y el maximo.
+	//Metodo para ver si se cumplen los requisitos del evento en cuanto a participantes, ver si cumplen el limite y el maximo.
 	public boolean verificarSiEventoSePuedeIniciarPorParticipantes(int maxDeParticipantes,int minParticipantes) {
 		boolean iniciar = false;
 		int [] cantParticipantes = new int [2];
@@ -163,7 +163,7 @@ public class PUCMM {
 		return iniciar;		
 	}
 
-	//Funcion para regular el limite de trabajos permitidos en el evento.
+	//Metodo para regular el limite de trabajos permitidos en el evento.
 	public String limiteDeTrabajosAceptados(int lim,String codigoDeTrabajo) {
 		String Aceptado = "";
 		int cantDeTrabajos = cantDeTrabajosActivos(codigoDeTrabajo);
@@ -173,7 +173,7 @@ public class PUCMM {
 		return Aceptado;
 	}
 
-	//Funcion para comprobar si a la comision se le han atribuido los jurados.
+	//Metodo para comprobar si a la comision se le han atribuido los jurados.
 	public boolean VerSiLosjuradosEstanAsignados(String nombreDeComision) {
 		boolean juradoAsignados = false;
 		Comisiones comision = null;
@@ -196,7 +196,7 @@ public class PUCMM {
 
 	}
 
-	//Funcion para asignar un Jurado a presidente.
+	//Metodo para asignar un Jurado a presidente.
 	public String asignarPresidenteAEvento(String nombreDeComision, String Jurado) {
 		Comisiones comision = buscarComisiones(nombreDeComision);
 		String presi = "";
@@ -212,7 +212,7 @@ public class PUCMM {
 		return presi;
 	}
 
-	//Funcion para buscar evento creados.
+	//Metodo para buscar evento creados.
 	public Eventos buscarEvento(String codigoDelEvento) {
 		Eventos evento = null;
 		boolean encontrado = false;
@@ -225,7 +225,7 @@ public class PUCMM {
 		}	
 		return evento;
 	}
-	//Funcion para buscar comisiones.
+	//Metodo para buscar comisiones.
 	public Comisiones buscarComisiones (String nombreDeComision) {
 		boolean encontrado = false;
 		int i = 0;
@@ -239,7 +239,7 @@ public class PUCMM {
 		return comision;
 	}
 
-	//Funcion para buscar Jurado.
+	//Metodo para buscar Jurado.
 	public Jurado buscarJurado() {
 		Jurado jurado = null;
 		for (Personas aux : misPersonas) {
@@ -250,7 +250,7 @@ public class PUCMM {
 		return jurado;
 	}
 
-	//Funcion para buscar los jurados mediante el area de conocimiento que estos tienen.
+	//Metodo para buscar los jurados mediante el area de conocimiento que estos tienen.
 	public Jurado buscarJuradoPorAreaDeConocimiento(String areaDeConocimiento) {
 		Jurado jurado = null;
 		for (Personas aux : misPersonas) {
@@ -266,7 +266,7 @@ public class PUCMM {
 		return jurado;		
 	}
 
-	//Funcion para buscar al participante con mejor trabajo presentado en el Evento que se deese saber.
+	//Metodo para buscar al participante con mejor trabajo presentado en el Evento que se deese saber.
 	public Participantes premioAlMejorParticipante(String codigoDeTrabajos,String codigoDeEvento) {
 		Participantes participante = null;
 		Eventos evento = buscarEvento(codigoDeEvento);
@@ -284,7 +284,8 @@ public class PUCMM {
 		}
 		return participante;
 	}
-
+	
+//Metodo para calificar los trabajos de los participantes
 	public String calificarTrabajos(String codigoDeTrabajo, String codigoDeEvento,int calificacionDeJurados) {
 		Trabajos trabajo = buscarTrabajosPresentados(codigoDeTrabajo);
 		Eventos event = buscarEvento(codigoDeEvento);

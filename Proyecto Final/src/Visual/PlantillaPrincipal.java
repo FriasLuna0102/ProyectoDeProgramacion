@@ -13,6 +13,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PlantillaPrincipal extends JFrame {
 
@@ -54,6 +56,13 @@ public class PlantillaPrincipal extends JFrame {
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Inscripci\u00F3n");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				InscripcionParticipantes inscripcion = new  InscripcionParticipantes();
+				inscripcion.setModal(true);
+				inscripcion.setVisible(true);
+			}
+		});
 		mnNewMenu.add(mntmNewMenuItem);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Listado de Participantes");
