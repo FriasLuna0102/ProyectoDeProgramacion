@@ -33,6 +33,16 @@ public class InscripcionParticipantes extends JDialog {
 	private JRadioButton rdbtnOtro;
 	private JPanel PanelParticipantes;
 	private JPanel PanelGenero;
+	private JButton btnRegistar;
+	private JTextField txtCorreo;
+	private JLabel lblNewLabel_4;
+	private JTextField txtMatricula;
+	private JLabel lblNewLabel_5;
+	private JTextField txtescuelaProveniente;
+	private JLabel lblNewLabel_6;
+	private JTextField textField;
+	private JLabel lblNewLabel_7;
+	private JTextField txtNombreDeTrabajo;
 
 	/**
 	 * Launch the application.
@@ -53,7 +63,7 @@ public class InscripcionParticipantes extends JDialog {
 	public InscripcionParticipantes() {
 		getContentPane().setEnabled(false);
 		setTitle("Inscripci\u00F3n de Participantes");
-		setBounds(100, 100, 633, 687);
+		setBounds(100, 100, 822, 777);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -61,7 +71,7 @@ public class InscripcionParticipantes extends JDialog {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Inscripción para Evento Científico PUCMM:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(0, 0, 620, 605);
+		panel.setBounds(0, 0, 762, 652);
 		contentPanel.add(panel);
 		panel.setLayout(null);
 		{
@@ -137,7 +147,7 @@ public class InscripcionParticipantes extends JDialog {
 		});
 		rdbtnEstudiante.setSelected(true);
 		rdbtnEstudiante.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		rdbtnEstudiante.setBounds(163, 42, 77, 23);
+		rdbtnEstudiante.setBounds(163, 42, 101, 23);
 		PanelParticipantes.add(rdbtnEstudiante);
 		
 		rdbtnVisitante = new JRadioButton("Visitante");
@@ -148,7 +158,7 @@ public class InscripcionParticipantes extends JDialog {
 			}
 		});
 		rdbtnVisitante.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		rdbtnVisitante.setBounds(294, 42, 69, 23);
+		rdbtnVisitante.setBounds(294, 42, 85, 23);
 		PanelParticipantes.add(rdbtnVisitante);
 		
 		PanelGenero = new JPanel();
@@ -203,21 +213,68 @@ public class InscripcionParticipantes extends JDialog {
 		rdbtnOtro.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		rdbtnOtro.setBounds(347, 32, 66, 23);
 		PanelGenero.add(rdbtnOtro);
+		
+		JLabel lblNewLabel_3 = new JLabel("Correo:");
+		lblNewLabel_3.setBounds(438, 62, 56, 16);
+		panel.add(lblNewLabel_3);
+		
+		txtCorreo = new JTextField();
+		txtCorreo.setBounds(437, 88, 116, 22);
+		panel.add(txtCorreo);
+		txtCorreo.setColumns(10);
+		
+		lblNewLabel_4 = new JLabel("Matricula:");
+		lblNewLabel_4.setBounds(420, 161, 73, 16);
+		panel.add(lblNewLabel_4);
+		
+		txtMatricula = new JTextField();
+		txtMatricula.setBounds(437, 196, 116, 22);
+		panel.add(txtMatricula);
+		txtMatricula.setColumns(10);
+		
+		lblNewLabel_5 = new JLabel("Escuela Proveniente:");
+		lblNewLabel_5.setBounds(420, 231, 133, 16);
+		panel.add(lblNewLabel_5);
+		
+		txtescuelaProveniente = new JTextField();
+		txtescuelaProveniente.setBounds(420, 283, 116, 22);
+		panel.add(txtescuelaProveniente);
+		txtescuelaProveniente.setColumns(10);
+		
+		lblNewLabel_6 = new JLabel("Codigo de Participante:");
+		lblNewLabel_6.setBounds(420, 320, 144, 16);
+		panel.add(lblNewLabel_6);
+		
+		textField = new JTextField();
+		textField.setBounds(420, 344, 116, 22);
+		panel.add(textField);
+		textField.setColumns(10);
+		
+		lblNewLabel_7 = new JLabel("Nombre de Trabajo:");
+		lblNewLabel_7.setBounds(615, 91, 135, 16);
+		panel.add(lblNewLabel_7);
+		
+		txtNombreDeTrabajo = new JTextField();
+		txtNombreDeTrabajo.setBounds(605, 127, 116, 22);
+		panel.add(txtNombreDeTrabajo);
+		txtNombreDeTrabajo.setColumns(10);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("Registrar");
-				okButton.addActionListener(new ActionListener() {
+				btnRegistar = new JButton("Registrar");
+				btnRegistar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						Participantes participantes = null;
+						//participantes = new Participantes(txtNombre.getText(), txtDireccion.getText(), txtCedula.getText(), txtApellido.getText(), txtTelefono.getText(), txtCodigo.get, matricula, proyecto, institucionesProvenientes, codigo, nombreTrabajo, tema)
 						
 					}
 				});
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				btnRegistar.setActionCommand("OK");
+				buttonPane.add(btnRegistar);
+				getRootPane().setDefaultButton(btnRegistar);
 			}
 			{
 				JButton cancelButton = new JButton("Cancelar");
