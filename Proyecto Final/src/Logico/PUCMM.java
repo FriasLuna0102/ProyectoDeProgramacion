@@ -91,7 +91,7 @@ public class PUCMM {
 		}	
 		return recursos;
 	}
- 
+
 	//Funcion para buscar los tipos de personas, participantes y jurados maximo  3.
 	public int [] cantTipoDePersonas() {
 		int [] cantByTipo = new int [2];
@@ -153,12 +153,12 @@ public class PUCMM {
 				if(cantParticipantes[0] > maxDeParticipantes ) {
 					System.out.println("Maximo de participantes superados.");
 				}else if(cantParticipantes[0]<=maxDeParticipantes && cantParticipantes[0] >= minParticipantes) {
-					System.out.println("Participantes registrados:"+cantParticipantes+"Evento se puede iniciar.");
+					System.out.println("Participantes registrados:"+cantParticipantes+".\n"+"Evento se puede iniciar.");
 				}else if(cantParticipantes[0] < minParticipantes) {
 					System.out.println("Evento aun no se puede iniciar, participantes insuficientes.");
 				}
 			}
-			
+
 		}
 		return iniciar;		
 	}
@@ -237,6 +237,72 @@ public class PUCMM {
 			}
 		}
 		return comision;
+	}
+
+	//Funcion para buscar Jurado.
+	public Jurado buscarJurado() {
+		Jurado jurado = null;
+		for (Personas aux : misPersonas) {
+			if(aux instanceof Jurado) {
+				jurado = (Jurado) aux;		
+			}		
+		}
+		return jurado;
+	}
+
+	//Funcion para buscar los jurados mediante el area de conocimiento que estos tienen.
+	public Jurado buscarJuradoPorAreaDeConocimiento(String areaDeConocimiento) {
+		Jurado jurado = null;
+		for (Personas aux : misPersonas) {
+			if(aux instanceof Jurado) {
+				if(((Jurado) aux).getAreaDeConocimiento().equalsIgnoreCase(areaDeConocimiento)) {
+					jurado = (Jurado) aux;
+				}else {
+					System.out.println("No se encontro ningun Jurado de esta area.");
+
+				}
+			}
+		}
+		return jurado;		
+	}
+
+	//Funcion para buscar al participante con mejor trabajo presentado en el Evento que se deese saber.
+	public Participantes premioAlMejorParticipante(String codigoDeTrabajos,String codigoDeEvento) {
+		Participantes participante = null;
+		Eventos evento = buscarEvento(codigoDeEvento);
+		Trabajos trabajo = buscarTrabajosPresentados(codigoDeTrabajos);
+		int i = 0;
+		if(evento != null && trabajo != null) {
+			for (Personas personas : misPersonas) {
+				if(personas instanceof Participantes) {
+					if(((Participantes) personas).getMisTrabajos().equals(codigoDeTrabajos)) {
+						participante = (Participantes) personas;
+
+					}
+				}
+			}
+		}
+		return participante;
+	}
+
+	public String calificarTrabajos(String codigoDeTrabajo, String codigoDeEvento,int calificacionDeJurados) {
+		Trabajos trabajo = buscarTrabajosPresentados(codigoDeTrabajo);
+		Eventos event = buscarEvento(codigoDeEvento);
+		String calificacion = "";
+		if(trabajo != null && event != null) {
+			if(calificacionDeJurados >= 90 && calificacionDeJurados <= 100) {
+				System.out.println("A");
+			}else if (calificacionDeJurados < 90 && calificacionDeJurados >= 80) {
+				calificacion = "B";
+			}else if (calificacionDeJurados < 80 && calificacionDeJurados >= 70) {
+				calificacion = "C";
+			}else if (calificacionDeJurados < 70 && calificacionDeJurados >= 60) {
+				calificacion = "D";
+			}else {
+				calificacion = "F";
+			}
+		}
+		return calificacion;		
 	}
 
 } 

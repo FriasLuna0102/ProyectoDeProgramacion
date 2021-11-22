@@ -4,13 +4,13 @@ public class Recursos {
 	private int cantDeRecursos;
 	private boolean disponibilidad;
 	private String tipoDeRecurso;
-	private  Recursos[] salones;
-	public Recursos(int cantDeRecursos, boolean disponibilidad, String tipoDeRecurso, int numSalonesDisponibles) {
+	private int salonesDisponibles;
+	public Recursos(int cantDeRecursos, boolean disponibilidad, String tipoDeRecurso,  int salonesDisponibles) {
 		super();
 		this.cantDeRecursos = cantDeRecursos;
 		this.disponibilidad = disponibilidad;
 		this.tipoDeRecurso = tipoDeRecurso;
-		salones = new Recursos[numSalonesDisponibles]; 
+		this.salonesDisponibles = salonesDisponibles;
 	}
 	
 	public int getCantDeRecursos() {
@@ -30,6 +30,14 @@ public class Recursos {
 	}
 	public void setTipoDeRecurso(String tipoDeRecurso) {
 		this.tipoDeRecurso = tipoDeRecurso;
+	}
+
+	public int getSalonesDisponibles() {
+		return salonesDisponibles;
+	}
+
+	public void setSalonesDisponibles(int salonesDisponibles) {
+		this.salonesDisponibles = salonesDisponibles;
 	}
 	
 }

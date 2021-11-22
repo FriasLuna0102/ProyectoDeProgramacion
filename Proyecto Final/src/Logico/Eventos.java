@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Eventos {
-	
+
 	private int limiteDeParticipantes;
 	private String tituloDeEvento;
 	private ArrayList<Participantes> misParticipantes;
@@ -34,7 +34,7 @@ public class Eventos {
 		this.fechaDeCierre = new Date();
 		this.fechaDeInicio = new Date();
 		this.fechaLimiteDeEntregaDeTrabajos = new Date();
-		
+
 	}
 	public String getTituloDeEvento() {
 		return tituloDeEvento;
@@ -114,6 +114,11 @@ public class Eventos {
 	public void setLimiteDeParticipantes(int limiteDeParticipantes) {
 		this.limiteDeParticipantes = limiteDeParticipantes;
 	}
-	
+
+	//Funcion para insertar Eventos.
+	public void insertarEvento(Eventos event) {
+		PUCMM.getInstance().getMisEventos().add(event);
+
+	}
 
 } 
