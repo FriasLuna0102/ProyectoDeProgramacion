@@ -36,6 +36,7 @@ public class Eventos {
 		this.fechaLimiteDeEntregaDeTrabajos = new Date();
 
 	}
+
 	public String getTituloDeEvento() {
 		return tituloDeEvento;
 	}
@@ -121,4 +122,11 @@ public class Eventos {
 
 	}
 
+
+	public void insertarParticipantes(Participantes participantes) {
+		int i = 0;
+		misParticipantes.add(participantes);
+		i++;
+	}
+	
 } 

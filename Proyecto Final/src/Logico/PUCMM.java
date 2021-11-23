@@ -11,6 +11,9 @@ public class PUCMM {
 	private ArrayList<Eventos> misEventos;
 	private ArrayList<Comisiones> misComisiones;
 	public static PUCMM alma = null;
+	private int generadorDeCodigo;
+	public static int cant = 0;
+
 
 	private PUCMM() {
 		super();
@@ -19,6 +22,7 @@ public class PUCMM {
 		misRecursos = new ArrayList<>();
 		misEventos = new ArrayList<>();
 		misComisiones = new ArrayList<>();
+		generadorDeCodigo = 1;
 
 	}
 
@@ -68,6 +72,36 @@ public class PUCMM {
 		misPersonas.add(person);
 	}
 
+
+	//Funcion para agregar participante al evento correspondiente.
+	public void addParticipante(String codigoDeEvento, Participantes participantes) {
+		Eventos event = buscarEvento(codigoDeEvento);
+
+		if(event != null) {
+			event.getMisParticipantes().add(participantes);
+			generadorDeCodigo++;
+		}
+
+	}
+
+	public int getGeneradorCodigoVino() {
+		return generadorDeCodigo;
+	}
+
+	//Funcion para buscar las personas del evento mediante la cedula.
+	public Personas buscarPersonas(String cedula) {
+		Personas persona = null;
+		boolean encontrado = false;
+		int i = 0;
+		while(!encontrado && i<misPersonas.size()) {
+			if(misPersonas.get(i).getCedula().equalsIgnoreCase(cedula)) {
+				encontrado = false;
+				persona = misPersonas.get(i);
+			}
+		}
+		return persona;
+	}
+
 	public boolean disponibilidadRecursos(String recurse) {
 		boolean dispon = false;
 		Recursos recursos = buscarRecursos(recurse);
@@ -79,7 +113,7 @@ public class PUCMM {
 
 	}
 	//Metodo para buscar tipos de recursos.
-	private Recursos buscarRecursos(String tipoDeRecursos) {
+	public Recursos buscarRecursos(String tipoDeRecursos) {
 		boolean encontrado = false;
 		int i = 0;
 		Recursos recursos = null;
@@ -240,15 +274,49 @@ public class PUCMM {
 	}
 
 	//Metodo para buscar Jurado.
-	public Jurado buscarJurado() {
+	public Jurado buscarJurado(	String cedula) {
 		Jurado jurado = null;
 		for (Personas aux : misPersonas) {
 			if(aux instanceof Jurado) {
-				jurado = (Jurado) aux;		
+				if(aux.getCedula().equalsIgnoreCase(cedula)) {
+					jurado = (Jurado) aux;		
+				}
 			}		
 		}
 		return jurado;
 	}
+
+	//Funcion #1 para buscar Participantes.
+	public Participantes buscarParticipantes(String eventoCodigo, String cedula) {
+		Eventos evento = buscarEvento(eventoCodigo);
+		Participantes participante = null;
+		int i = 0;
+		boolean encontrado = false;
+		if(evento != null) {
+			while(!encontrado && i<evento.getMisParticipantes().size()) {
+				if(evento.getMisParticipantes().get(i).getCedula().equalsIgnoreCase(cedula)) {
+					encontrado = true;
+					participante = evento.getMisParticipantes().get(i);
+				}
+			}
+		}
+		return participante;
+	}
+	/*
+	//Funcion #2 para buscar Participantes.
+	public Participantes bucarParticipantes(String cedula) {
+		Participantes participantee = null;
+		int [] i = new int [2];
+		for (Personas aux : misPersonas) {
+			if(aux instanceof Participantes) {
+				if(aux.getCedula().equalsIgnoreCase(cedula)) {
+					i[0] += 1;
+					participantee = (Participantes) aux; 
+				}			
+			}
+		}
+		return participantee;
+	}*/
 
 	//Metodo para buscar los jurados mediante el area de conocimiento que estos tienen.
 	public Jurado buscarJuradoPorAreaDeConocimiento(String areaDeConocimiento) {
@@ -284,15 +352,15 @@ public class PUCMM {
 		}
 		return participante;
 	}
-	
-//Metodo para calificar los trabajos de los participantes
+
+	//Metodo para calificar los trabajos de los participantes
 	public String calificarTrabajos(String codigoDeTrabajo, String codigoDeEvento,int calificacionDeJurados) {
 		Trabajos trabajo = buscarTrabajosPresentados(codigoDeTrabajo);
 		Eventos event = buscarEvento(codigoDeEvento);
 		String calificacion = "";
 		if(trabajo != null && event != null) {
 			if(calificacionDeJurados >= 90 && calificacionDeJurados <= 100) {
-				System.out.println("A");
+				calificacion = "A";
 			}else if (calificacionDeJurados < 90 && calificacionDeJurados >= 80) {
 				calificacion = "B";
 			}else if (calificacionDeJurados < 80 && calificacionDeJurados >= 70) {
@@ -306,4 +374,24 @@ public class PUCMM {
 		return calificacion;		
 	}
 
-} 
+	//Funcion para determinar si el participante cumple con la edad requerida del evento.
+	private boolean edadDeParticipantePermitida(Participantes p1, int edadMinima, int edadMaxima) {
+		boolean permitido = false;
+		Participantes participante = null;
+		for (Personas aux : misPersonas) {
+			if(aux instanceof Participantes) {
+				participante = (Participantes) aux;
+				if(participante.getEdadParticipante() <= edadMaxima && participante.getEdadParticipante() >= edadMinima ) {
+					permitido = true;
+				}else {
+					permitido = false;
+				}
+			}
+		}
+		return permitido;
+
+	}
+
+}
+
+
