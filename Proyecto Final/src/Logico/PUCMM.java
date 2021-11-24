@@ -90,7 +90,7 @@ public class PUCMM {
 
 	}
 
-	public int getGeneradorCodigoVino() {
+	public int getGeneradorCodigoVino() {//vino?
 		return generadorDeCodigo;
 	}
 
