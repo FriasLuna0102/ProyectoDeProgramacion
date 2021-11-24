@@ -64,16 +64,22 @@ public class PUCMM {
 		this.misComisiones = misComisiones;
 	}
 
+	//Funcion para agregar Comisiones al arreglo misComisiones. Verificado.
+	public void addComisiones (Comisiones comision) {
+		misComisiones.add(comision);
+	}
+	//Funcion para agregar Eventos al arreglo misEventos. Verificado.
 	public void addEventos (Eventos event) {
 		misEventos.add(event);
 	}
 
+	//Funcion para agregar persona al arreglo misPersonas. Verificado.
 	public void addPersona(Personas person) {
 		misPersonas.add(person);
 	}
 
 
-	//Funcion para agregar participante al evento correspondiente.
+	//Funcion para agregar participante al evento correspondiente. Verificado
 	public void addParticipante(String codigoDeEvento, Participantes participantes) {
 		Eventos event = buscarEvento(codigoDeEvento);
 
@@ -85,35 +91,34 @@ public class PUCMM {
 	}
 
 	public int getGeneradorCodigoVino() {
-		
 		return generadorDeCodigo;
 	}
 
-	//Funcion para buscar las personas del evento mediante la cedula.
+	//Funcion para buscar las personas del evento mediante la cedula. Verificada
 	public Personas buscarPersonas(String cedula) {
 		Personas persona = null;
 		boolean encontrado = false;
 		int i = 0;
 		while(!encontrado && i<misPersonas.size()) {
 			if(misPersonas.get(i).getCedula().equalsIgnoreCase(cedula)) {
-				encontrado = false;
+				encontrado = true;
 				persona = misPersonas.get(i);
 			}
 		}
 		return persona;
 	}
-
-	public boolean disponibilidadRecursos(String recurse) {
+	//Funcion para ver disponibilidad del tipo de recurso. Verificada.
+	public boolean disponibilidadRecursos(String tipoDeRecursos, boolean disponibilidad) {
 		boolean dispon = false;
-		Recursos recursos = buscarRecursos(recurse);
-		if (recursos != null) {
+		Recursos recursos = buscarRecursos(tipoDeRecursos);
+		if (recursos != null && disponibilidad != false) {
 			dispon = true;
 
 		}	
 		return dispon;
 
 	}
-	//Metodo para buscar tipos de recursos.
+	//Metodo para buscar tipos de recursos. Verificada.
 	public Recursos buscarRecursos(String tipoDeRecursos) {
 		boolean encontrado = false;
 		int i = 0;
@@ -127,7 +132,7 @@ public class PUCMM {
 		return recursos;
 	}
 
-	//Metodo para buscar los tipos de personas, participantes y jurados maximo  3.
+	//Metodo para buscar los tipos de personas, participantes y jurados maximo  3. Verificada.
 	public int [] cantTipoDePersonas() {
 		int [] cantByTipo = new int [2];
 		for (Personas aux : misPersonas) {
@@ -144,110 +149,58 @@ public class PUCMM {
 		return cantByTipo;
 
 	}	
-	//Metodo para buscar personas mediante la cedula.
-	public Personas getPersonasCodigo(String cedula) {
-		Personas personas = null;
-		boolean encontrado = false;
-		int i = 0;
-		while(!encontrado && i < misPersonas.size()) {
-			if(misPersonas.get(i).getCedula().equalsIgnoreCase(cedula)) {
-				personas = misPersonas.get(i);
-				encontrado = true;
-			}
-		}
-		return personas;
-	}
-	//Metodo para saber la cantidad de trabajos registrado por los participantes.
-	public int cantDeTrabajosActivos(String codigoDeTrabajo) {
+
+	//Metodo para saber la cantidad de trabajos registrado por los participantes. Verificada
+	public int cantDeTrabajosActivos() {
 		int cant = 0;
-		Trabajos trabajo = buscarTrabajosPresentados(codigoDeTrabajo);
-		if(trabajo != null) {
-			cant++;		
+		if(misTrabajos.size() != 0) {
+			cant = misTrabajos.size();
 		}	
 		return cant;	
 	}
-	//Metodo para buscar los trabajos de los participantes.
-	public Trabajos buscarTrabajosPresentados(String codigoDeTrabajo) {
+	//Metodo para buscar los trabajos de los participantes. Verificado
+	public Trabajos buscarTrabajosRegistrados(String codigoDeTrabajo) {
 		boolean encontrado = false;
 		int i = 0;
 		Trabajos trabajo = null;
 		while(!encontrado && i < misTrabajos.size()) {
 			if(misTrabajos.get(i).getCodigo().equalsIgnoreCase(codigoDeTrabajo)) {
 				encontrado = true;
-				trabajo = misTrabajos.get(i);			}
+				trabajo = misTrabajos.get(i);		
+			}
+			
 		}		
 		return trabajo;
 	}
-	//Metodo para ver si se cumplen los requisitos del evento en cuanto a participantes, ver si cumplen el limite y el maximo.
-	public boolean verificarSiEventoSePuedeIniciarPorParticipantes(int maxDeParticipantes,int minParticipantes) {
-		boolean iniciar = false;
-		int [] cantParticipantes = new int [2];
-		for (Personas aux : misPersonas) {
-			if(aux instanceof Participantes) {
-				cantParticipantes[0]+=1;
-				if(cantParticipantes[0] > maxDeParticipantes ) {
-					System.out.println("Maximo de participantes superados.");
-				}else if(cantParticipantes[0]<=maxDeParticipantes && cantParticipantes[0] >= minParticipantes) {
-					System.out.println("Participantes registrados:"+cantParticipantes+".\n"+"Evento se puede iniciar.");
-				}else if(cantParticipantes[0] < minParticipantes) {
-					System.out.println("Evento aun no se puede iniciar, participantes insuficientes.");
-				}
-			}
-
+	
+	//Metodo para ver si se cumplen los requisitos del evento en cuanto a participantes, ver si cumplen el limite y el maximo. Verificado
+	public void verificarSiEventoSePuedeIniciarPorParticipantess(int maxDeParticipantes,int minParticipantes,String codigoDeEvento) {
+		Eventos evento = buscarEvento(codigoDeEvento);
+		int cantParticipantes = evento.getMisParticipantes().size();
+		if(cantParticipantes > maxDeParticipantes) {
+			System.out.println("Maximo de participantes superados. El maximo es:"+maxDeParticipantes+". Cantidad de Participantes registrados es: "+cantParticipantes);
+		}else if(cantParticipantes <= maxDeParticipantes && cantParticipantes >= minParticipantes) {
+			System.out.println("Participantes registrados:"+cantParticipantes+".\n"+"Evento se puede iniciar.");
+		}else {
+			System.out.println("Evento aun no se puede iniciar, participantes insuficientes.");
 		}
-		return iniciar;		
 	}
 
-	//Metodo para regular el limite de trabajos permitidos en el evento.
-	public String limiteDeTrabajosAceptados(int lim,String codigoDeTrabajo) {
+
+	//Metodo para regular el limite de trabajos permitidos en el evento ya que un participante puede tener varios trabajo. Verificado
+	//Ojo se podria hacer una funcion con limite de trabajos por participantes
+	public String limiteDeTrabajosAceptados(int lim, int cant) {
 		String Aceptado = "";
-		int cantDeTrabajos = cantDeTrabajosActivos(codigoDeTrabajo);
+		int cantDeTrabajos = cantDeTrabajosActivos();
 		if(cantDeTrabajos > lim) {
-			Aceptado = "Se ha sobrepasado el limite de trabajos permitidos en el evento.";
+			Aceptado = "Se ha sobrepasado el limite de trabajos permitidos en el evento. El limite es:"+lim+" y la cantidad de trabajo que hay es:"+cant;
+		}else {
+			Aceptado = "Todo correcto.";
 		}
 		return Aceptado;
 	}
-
-	//Metodo para comprobar si a la comision se le han atribuido los jurados.
-	public boolean VerSiLosjuradosEstanAsignados(String nombreDeComision) {
-		boolean juradoAsignados = false;
-		Comisiones comision = null;
-		comision = buscarComisiones(nombreDeComision);
-		if(comision != null) {
-			int [] cantJurados = new int [2];
-			for (Personas aux : misPersonas) {
-				if(aux instanceof Jurado) {
-					cantJurados[0] += 1;
-					if(cantJurados[0] == 3) {
-						juradoAsignados = true;
-
-					}else {
-						juradoAsignados = false;
-					}
-				}
-			}
-		}
-		return juradoAsignados;
-
-	}
-
-	//Metodo para asignar un Jurado a presidente.
-	public String asignarPresidenteAEvento(String nombreDeComision, String Jurado) {
-		Comisiones comision = buscarComisiones(nombreDeComision);
-		String presi = "";
-		if(comision != null) {
-			for (Personas aux : misPersonas) {
-				int [] presidente = new int [2];
-				if(aux instanceof Jurado) {
-					presidente [0] = 1;
-					presi = "Se ha asignado un presidente a la comision con nombre:"+nombreDeComision;		
-				}
-			}
-		}
-		return presi;
-	}
-
-	//Metodo para buscar evento creados.
+	
+	//Metodo para buscar evento creados. Verificada
 	public Eventos buscarEvento(String codigoDelEvento) {
 		Eventos evento = null;
 		boolean encontrado = false;
@@ -260,13 +213,14 @@ public class PUCMM {
 		}	
 		return evento;
 	}
-	//Metodo para buscar comisiones.
+	
+	//Metodo para buscar comisiones. Verificada
 	public Comisiones buscarComisiones (String nombreDeComision) {
 		boolean encontrado = false;
 		int i = 0;
 		Comisiones comision = null;
 		while(!encontrado & i<misComisiones.size()) {
-			if(misComisiones.get(i).getNombre().equalsIgnoreCase(nombreDeComision)) {
+			if(misComisiones.get(i).getNombreDeComision().equalsIgnoreCase(nombreDeComision)) {
 				encontrado = true;
 				comision = misComisiones.get(i);
 			}
@@ -286,8 +240,9 @@ public class PUCMM {
 		}
 		return jurado;
 	}
-
-	//Funcion #1 para buscar Participantes.
+	
+	
+	//Funcion #1 para buscar Participantes. Verificada
 	public Participantes buscarParticipantes(String eventoCodigo, String cedula) {
 		Eventos evento = buscarEvento(eventoCodigo);
 		Participantes participante = null;
@@ -303,21 +258,7 @@ public class PUCMM {
 		}
 		return participante;
 	}
-	/*
-	//Funcion #2 para buscar Participantes.
-	public Participantes bucarParticipantes(String cedula) {
-		Participantes participantee = null;
-		int [] i = new int [2];
-		for (Personas aux : misPersonas) {
-			if(aux instanceof Participantes) {
-				if(aux.getCedula().equalsIgnoreCase(cedula)) {
-					i[0] += 1;
-					participantee = (Participantes) aux; 
-				}			
-			}
-		}
-		return participantee;
-	}*/
+	
 
 	//Metodo para buscar los jurados mediante el area de conocimiento que estos tienen.
 	public Jurado buscarJuradoPorAreaDeConocimiento(String areaDeConocimiento) {
@@ -339,8 +280,7 @@ public class PUCMM {
 	public Participantes premioAlMejorParticipante(String codigoDeTrabajos,String codigoDeEvento) {
 		Participantes participante = null;
 		Eventos evento = buscarEvento(codigoDeEvento);
-		Trabajos trabajo = buscarTrabajosPresentados(codigoDeTrabajos);
-		int i = 0;
+		Trabajos trabajo = buscarTrabajosRegistrados(codigoDeTrabajos);
 		if(evento != null && trabajo != null) {
 			for (Personas personas : misPersonas) {
 				if(personas instanceof Participantes) {
@@ -355,8 +295,8 @@ public class PUCMM {
 	}
 
 	//Metodo para calificar los trabajos de los participantes
-	public String calificarTrabajos(String codigoDeTrabajo, String codigoDeEvento,int calificacionDeJurados) {
-		Trabajos trabajo = buscarTrabajosPresentados(codigoDeTrabajo);
+	public void calificarTrabajos(String codigoDeTrabajo, String codigoDeEvento,int calificacionDeJurados) {
+		Trabajos trabajo = buscarTrabajosRegistrados(codigoDeTrabajo);
 		Eventos event = buscarEvento(codigoDeEvento);
 		String calificacion = "";
 		if(trabajo != null && event != null) {
@@ -372,7 +312,6 @@ public class PUCMM {
 				calificacion = "F";
 			}
 		}
-		return calificacion;		
 	}
 
 	//Funcion para determinar si el participante cumple con la edad requerida del evento.

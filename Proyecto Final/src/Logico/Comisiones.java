@@ -1,20 +1,22 @@
 package Logico;
 
+import java.util.ArrayList;
+
 public class Comisiones {
-	private String nombre;
+	private String nombreDeComision;
 	private String jurado;
 	private String presidente;
-	public Comisiones(String nombre, String jurado, String presidente) {
+	public Comisiones(String nombreDeComision, String jurado, String presidente) {
 		super();
-		this.nombre = nombre;
+		this.nombreDeComision = nombreDeComision;
 		this.jurado = jurado;
 		this.presidente = presidente;
 	}
-	public String getNombre() {
-		return nombre;
+	public String getNombreDeComision() {
+		return nombreDeComision;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombreDeComision(String nombreDeComision) {
+		this.nombreDeComision = nombreDeComision;
 	}
 	public String getJurado() {
 		return jurado;
@@ -28,5 +30,5 @@ public class Comisiones {
 	public void setPresidente(String presidente) {
 		this.presidente = presidente;
 	}
-	 
+ 
 }
