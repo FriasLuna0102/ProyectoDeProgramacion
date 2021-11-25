@@ -15,6 +15,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Logico.Eventos;
+import Logico.Jurado;
 import Logico.PUCMM;
 import Logico.Participantes;
 
@@ -23,7 +24,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class PlantillaParticipantes extends JDialog {
+public class PlantillaJurados extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private Dimension dim;
@@ -33,7 +34,7 @@ public class PlantillaParticipantes extends JDialog {
 	private JTable table;
 	private static Object[] rows;
 	private static DefaultTableModel model;
-	private Participantes selected = null;
+	private Jurado selected = null;
 
 
 	/**
@@ -41,7 +42,7 @@ public class PlantillaParticipantes extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			PlantillaParticipantes dialog = new PlantillaParticipantes();
+			PlantillaJurados dialog = new PlantillaJurados();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -52,7 +53,7 @@ public class PlantillaParticipantes extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public PlantillaParticipantes() {
+	public PlantillaJurados() {
 		setBounds(100, 100, 511, 399);
 		dim = getToolkit().getScreenSize();
 		getContentPane().setLayout(new BorderLayout());
@@ -64,7 +65,7 @@ public class PlantillaParticipantes extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			panel = new JPanel();
-			panel.setBorder(new TitledBorder(null, "Listado De Participantes:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel.setBorder(new TitledBorder(null, "Listado De Jurados:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panel.setBounds(0, 0, 1350, 685);
 			contentPanel.add(panel);
 			panel.setLayout(null);
@@ -85,14 +86,14 @@ public class PlantillaParticipantes extends JDialog {
 					int aux =-1;
 					 aux = table.getSelectedRow();
 					if(aux != -1) {
-						String participantes = (String) table.getValueAt(aux, 0);
-						selected = PUCMM.getInstance().buscarParticipantes(participantes, participantes);
-						System.out.println(selected.getNombre()+""+selected.getCodigoDeEvento());
+						String jurados = (String) table.getValueAt(aux, 0);
+						selected = PUCMM.getInstance().buscarJurado(jurados);
+						System.out.println(selected.getNombre()+""+selected.getAreaDeConocimiento());
 					}
 				}
 			});
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			String[] headers = {"Nombre","Apellido","Matricula","Edad","Cédula","Teléfono"};			
+			String[] headers = {"Nombre","Apellido","Labor","Área de Conocimiento","Año de Experiencia","Lugar de Recomendación","Cédula","Teléfono"};			
 			model = new DefaultTableModel();
 			model.setColumnIdentifiers(headers);	
 			table.setModel(model);
@@ -114,11 +115,11 @@ public class PlantillaParticipantes extends JDialog {
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
-			loadParticipantes(0,  "");
+			loadJurados(0,  "");
 		}
 
 	}
-	public static void loadParticipantes(int select, String codigoEvento) {
+	public static void loadJurados(int select, String codigoEvento) {
 		
 		//if(evento != null) {
 			//model.setRowCount(0);
@@ -129,13 +130,14 @@ public class PlantillaParticipantes extends JDialog {
 		rows = new Object[model.getColumnCount()];
 		Eventos evento = PUCMM.getInstance().buscarEvento(codigoEvento);
 		if(evento != null) {
-				for (int i = 0; i < evento.getMisParticipantes().size(); i++) {
-					rows[0] = evento.getMisParticipantes().get(i).getApellido();
-					rows[1] = evento.getMisParticipantes().get(i).getCedula();
-					rows[2] = evento.getMisParticipantes().get(i).getNombre();
-					rows[3] = evento.getMisParticipantes().get(i).getMatricula();
-					rows[4] = evento.getMisParticipantes().get(i).getEdadParticipante();
-					rows[5] = evento.getMisParticipantes().get(i).getTelefono();
+				for (int i = 0; i < evento.getMisJurados().size(); i++) {
+					rows[0] = evento.getMisJurados().get(i).getApellido();
+					rows[1] = evento.getMisJurados().get(i).getCedula();
+					rows[2] = evento.getMisJurados().get(i).getNombre();
+					rows[3] = evento.getMisJurados().get(i).getAreaDeConocimiento();
+					rows[4] = evento.getMisJurados().get(i).getAñoDeExperiencia();
+					rows[5] = evento.getMisJurados().get(i).getLugarDeRecomendacion();
+					rows[6] = evento.getMisJurados().get(i).getTelefono();
 					model.addRow(rows);		     
 
 				}

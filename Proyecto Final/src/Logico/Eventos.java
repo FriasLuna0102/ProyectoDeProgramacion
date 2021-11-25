@@ -9,6 +9,7 @@ public class Eventos {
 	private String tituloDeEvento;
 	private ArrayList<Participantes> misParticipantes;
 	private ArrayList<Trabajos> misTrabajos;
+	private ArrayList<Jurado> misJurados;
 	private Comisiones comision;
 	private Recursos recursoUtilizados;
 	private String codigoDeEvento;
@@ -32,6 +33,7 @@ public class Eventos {
 		this.limiteDeParticipantes = limiteDeParticipantes;
 		misParticipantes = new ArrayList<>();
 		misTrabajos = new ArrayList<>();
+		misJurados = new ArrayList<>();
 		this.fechaDeCierre = new Date();
 		this.fechaDeInicio = new Date();
 		this.fechaLimiteDeEntregaDeTrabajos = new Date();
@@ -56,6 +58,12 @@ public class Eventos {
 	}
 	public void setMisTrabajos(ArrayList<Trabajos> misTrabajos) {
 		this.misTrabajos = misTrabajos;
+	}
+	public ArrayList<Jurado> getMisJurados() {
+		return misJurados;
+	}
+	public void setMisJurados(ArrayList<Jurado> misJurados) {
+		this.misJurados = misJurados;
 	}
 	public Comisiones getComision() {
 		return comision;

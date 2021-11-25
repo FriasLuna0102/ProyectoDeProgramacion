@@ -14,7 +14,7 @@ import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import javax.swing.DefaultComboBoxModel;
 
-public class crearEvento extends JDialog {
+public class CrearEvento extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JPanel panel;
@@ -31,7 +31,7 @@ public class crearEvento extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			crearEvento dialog = new crearEvento();
+			CrearEvento dialog = new CrearEvento();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -42,7 +42,7 @@ public class crearEvento extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public crearEvento() {
+	public CrearEvento() {
 		setTitle("Crear Evento:");
 		setResizable(false);
 		setBounds(100, 100, 776, 656);
