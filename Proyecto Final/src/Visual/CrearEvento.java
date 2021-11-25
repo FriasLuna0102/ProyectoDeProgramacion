@@ -131,6 +131,7 @@ public class CrearEvento extends JDialog {
 		panel.add(spnLimiteDeParticipantes);
 		
 		txtCorreoDelEvento = new JTextField();
+		txtCorreoDelEvento.setEditable(false);
 		txtCorreoDelEvento.setBounds(538, 359, 347, 22);
 		panel.add(txtCorreoDelEvento);
 		txtCorreoDelEvento.setColumns(10);
