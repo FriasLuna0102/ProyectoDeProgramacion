@@ -185,7 +185,7 @@ public class InscripcionParticipantes extends JDialog {
 		txtCodigoDeParticipante = new JTextField();
 		txtCodigoDeParticipante.setEditable(false);
 		txtCodigoDeParticipante.setBounds(734, 313, 137, 20);
-		txtCodigoDeParticipante.setText("P-"+PUCMM.getInstance().getGeneradorCodigoVino());
+		txtCodigoDeParticipante.setText("P-"+PUCMM.getInstance().getGeneradorCodigoVino());//incrementar el codigo de participante
 		panel.add(txtCodigoDeParticipante);
 		txtCodigoDeParticipante.setColumns(10);
 

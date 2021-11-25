@@ -89,6 +89,16 @@ public class PUCMM {
 		}
 
 	}
+	//Funcion para agregar jurados al evento correspondiente.
+	public void addJurado(String codigoDeEvento, Jurado jurados) {
+		Eventos event = buscarEvento(codigoDeEvento);
+
+		if(event != null) {
+			event.getMisJurados().add(jurados);
+			generadorDeCodigo++;
+		}
+
+	}
 
 	public int getGeneradorCodigoVino() {//vino?
 		return generadorDeCodigo;

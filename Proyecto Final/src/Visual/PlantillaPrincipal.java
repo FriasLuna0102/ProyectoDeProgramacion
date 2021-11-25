@@ -56,19 +56,12 @@ public class PlantillaPrincipal extends JFrame {
 		menuBar.setBackground(new Color(0, 153, 153));
 		setJMenuBar(menuBar);
 		
-		JMenu mnNewMenu = new JMenu("Registro De Participantes");
+		JMenu mnNewMenu = new JMenu("Participantes");
 		mnNewMenu.setForeground(new Color(255, 255, 255));
 		menuBar.add(mnNewMenu);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Inscripci\u00F3n");
-		mntmNewMenuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				InscripcionParticipantes inscripcion = new  InscripcionParticipantes();
-				inscripcion.setModal(true);
-				inscripcion.setVisible(true);
-			}
-		});
-		mnNewMenu.add(mntmNewMenuItem);
+		
+		
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Listado de Participantes");
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
@@ -85,10 +78,40 @@ public class PlantillaPrincipal extends JFrame {
 		menuBar.add(mnNewMenu_1);
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Listado de Jurados");
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PlantillaJurados jurados = new PlantillaJurados();
+				jurados.setModal(true);
+				jurados.setVisible(true);
+			}
+		});
 		mnNewMenu_1.add(mntmNewMenuItem_2);
 		
 		JMenu mnNewMenu_2 = new JMenu("");
 		menuBar.add(mnNewMenu_2);
+		
+		JMenu mnNewMenu_3 = new JMenu("Inscripciones");
+		mnNewMenu_3.setForeground(new Color(255, 255, 255));
+		
+		menuBar.add(mnNewMenu_3);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Inscripci\u00F3n para Participantes");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InscripcionParticipantes inscripcion = new  InscripcionParticipantes();
+				inscripcion.setModal(true);
+				inscripcion.setVisible(true);
+			}
+		});
+		mnNewMenu_3.add(mntmNewMenuItem);
+		
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Inscripci\u00F3n para Jurados");//hacer plantilla jurados, copiar la misma que participantes y arreglar
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		mnNewMenu_3.add(mntmNewMenuItem_3);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 153, 153));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
