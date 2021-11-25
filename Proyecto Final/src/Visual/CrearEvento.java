@@ -9,12 +9,18 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+
+import Logico.Eventos;
+import Logico.PUCMM;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CrearEvento extends JDialog {
 
@@ -28,13 +34,14 @@ public class CrearEvento extends JDialog {
 	private JSpinner spnLimiteDeParticipantes;
 	private JSpinner spnFechaDeInscripcion;
 	private JSpinner spnFechaDeInicio;
+	private static Eventos updated = null;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			CrearEvento dialog = new CrearEvento();
+			CrearEvento dialog = new CrearEvento(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -45,8 +52,16 @@ public class CrearEvento extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public CrearEvento() {
-		setTitle("Crear Evento:");
+	public CrearEvento(Eventos evento) {
+		updated = evento;
+		setModal(true);
+		setResizable(false);
+		if(updated == null) {
+			setTitle("Crear Evento:");
+		}else {
+			setTitle("Cancelar Evento");
+		}
+		
 		setResizable(false);
 		setBounds(100, 100, 776, 656);
 		dim = getToolkit().getScreenSize();
@@ -139,17 +154,29 @@ public class CrearEvento extends JDialog {
 		lblFechaDeFin.setBounds(682, 313, 100, 16);
 		panel.add(lblFechaDeFin);
 		
+
+	
 		JLabel lblNewLabel_7 = new JLabel("Para crear un evento le invitamos a llenar el siguiente formulario, al terminar s\u00F3lo presione el bot\u00F3n registrar.");
 		lblNewLabel_7.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		lblNewLabel_7.setBounds(312, 122, 689, 14);
 		panel.add(lblNewLabel_7);
-		{
+		{	if(updated == null) {
+			txtCorreoDelEvento.setText("eventopucmm@ce.pucmm.edu.do ");
+		}
+	}
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton btnRegistrar = new JButton("Registrar");
+				btnRegistrar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(updated == null) {
+							//Eventos aux = new Eventos(null,null,txtCodigoDelEvento.getText(),txtCorreoDelEvento.getText(),txtTituloDelEvento.getText(),Integer.valueOf(spnFechaFInal.getValue().toString()),Integer.valueOf(spnFechaDeInicio.getValue().toString()),Integer.valueOf(spnFechaDeInscripcion.getValue().toString()),Integer.valueOf(spnLimiteDeParticipantes.getValue().toString()) );
+						}
+					}
+				});
 				btnRegistrar.setActionCommand("OK");
 				buttonPane.add(btnRegistrar);
 				getRootPane().setDefaultButton(btnRegistrar);
@@ -161,4 +188,4 @@ public class CrearEvento extends JDialog {
 			}
 		}
 	}
-}
+

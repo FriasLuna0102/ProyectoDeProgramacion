@@ -163,7 +163,7 @@ public class PlantillaPrincipal extends JFrame {
 		lblNewLabel_8.setBounds(615, 377, 139, 14);
 		panel.add(lblNewLabel_8);
 		
-		JLabel lblNewLabel_9 = new JLabel("Para calificar en la Segunda ronda deber\u00E1n de mandar sus proyectos al siguiente correo: proyectopucmm@ce.pucmm.edu.do");
+		JLabel lblNewLabel_9 = new JLabel("Para calificar en la Segunda ronda deber\u00E1n de mandar sus proyectos al siguiente correo: eventopucmm@ce.pucmm.edu.do");
 		lblNewLabel_9.setFont(new Font("Times New Roman", Font.PLAIN, 17));
 		lblNewLabel_9.setForeground(new Color(255, 255, 255));
 		lblNewLabel_9.setBounds(252, 440, 862, 14);
