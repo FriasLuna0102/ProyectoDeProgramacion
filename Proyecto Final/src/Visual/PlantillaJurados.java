@@ -54,6 +54,7 @@ public class PlantillaJurados extends JDialog {
 	 * Create the dialog.
 	 */
 	public PlantillaJurados() {
+		setResizable(false);
 		setBounds(100, 100, 511, 399);
 		dim = getToolkit().getScreenSize();
 		getContentPane().setLayout(new BorderLayout());

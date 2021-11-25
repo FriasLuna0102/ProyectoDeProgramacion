@@ -78,6 +78,7 @@ public class InscripcionParticipantes extends JDialog {
 	 * Create the dialog.
 	 */
 	public InscripcionParticipantes() {
+		setResizable(false);
 		getContentPane().setEnabled(false);
 		dim = getToolkit().getScreenSize();
 		setTitle("Inscripci\u00F3n de Participantes");

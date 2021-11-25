@@ -39,6 +39,7 @@ public class UsuarioParticipantes extends JDialog {
 	 * Create the dialog.
 	 */
 	public UsuarioParticipantes() {
+		setResizable(false);
 		setTitle("Bienvenidos Participantes");
 		setBounds(100, 100, 450, 424);
 		dim = getToolkit().getScreenSize();

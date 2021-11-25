@@ -39,6 +39,7 @@ public class UsuarioJurados extends JDialog {
 	 * Create the dialog.
 	 */
 	public UsuarioJurados() {
+		setResizable(false);
 		setTitle("Bienvenidos Jurados");
 		setBounds(100, 100, 450, 424);
 		dim = getToolkit().getScreenSize();
