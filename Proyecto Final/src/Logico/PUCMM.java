@@ -294,8 +294,8 @@ public class PUCMM {
 		return participante;
 	}
 
-	//Metodo para calificar los trabajos de los participantes
-	public void calificarTrabajos(String codigoDeTrabajo, String codigoDeEvento,int calificacionDeJurados) {
+	//Metodo para calificar los trabajos de los participantes. Verificada
+	public String calificarTrabajos(String codigoDeTrabajo, String codigoDeEvento,int calificacionDeJurados) {
 		Trabajos trabajo = buscarTrabajosRegistrados(codigoDeTrabajo);
 		Eventos event = buscarEvento(codigoDeEvento);
 		String calificacion = "";
@@ -312,24 +312,23 @@ public class PUCMM {
 				calificacion = "F";
 			}
 		}
+		return calificacion;
 	}
 
-	//Funcion para determinar si el participante cumple con la edad requerida del evento.
-	private boolean edadDeParticipantePermitida(Participantes p1, int edadMinima, int edadMaxima) {
+	//Funcion para determinar si el participante cumple con la edad requerida del evento. Verificada
+	public boolean edadDeParticipantePermitida(String codigoEvento, String cedula, int edadMinima, int edadMaxima) {
 		boolean permitido = false;
-		Participantes participante = null;
-		for (Personas aux : misPersonas) {
-			if(aux instanceof Participantes) {
-				participante = (Participantes) aux;
-				if(participante.getEdadParticipante() <= edadMaxima && participante.getEdadParticipante() >= edadMinima ) {
-					permitido = true;
-				}else {
-					permitido = false;
-				}
+		Eventos evento = buscarEvento(codigoEvento);
+		Participantes participante = buscarParticipantes(codigoEvento, cedula);
+		if(participante != null && evento != null) {
+			if(participante.getEdadParticipante() <= edadMaxima && participante.getEdadParticipante() >= edadMinima) {
+				permitido = true;
+			}else {
+				permitido = false;
 			}
 		}
 		return permitido;
-
+		
 	}
 
 }
