@@ -21,6 +21,7 @@ public class PlantillaPrincipal extends JFrame {
 
 	private JPanel contentPane;
 	private Dimension dim;
+	private JMenuItem mntmNewMenuItem_4;
 
 	/**
 	 * Launch the application.
@@ -66,7 +67,7 @@ public class PlantillaPrincipal extends JFrame {
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Listado de Participantes");
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				PlantillaParticipantes participantes = new PlantillaParticipantes();
+				ListadoDeParticipantes participantes = new ListadoDeParticipantes();
 				participantes.setModal(true);
 				participantes.setVisible(true);
 			}
@@ -112,6 +113,26 @@ public class PlantillaPrincipal extends JFrame {
 			}
 		});
 		mnNewMenu_3.add(mntmNewMenuItem_3);
+		
+		mntmNewMenuItem_4 = new JMenuItem("Registro De Evento");
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearEvento conect = new CrearEvento(null);
+				conect.setVisible(true);
+				conect.setModal(true);		
+			}
+		});
+		
+		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Listado de Eventos");
+		mntmNewMenuItem_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListadoDeEventos list = new ListadoDeEventos();
+				list.setVisible(true);
+				list.setModal(true);
+			}
+		});
+		menuBar.add(mntmNewMenuItem_5);
+		menuBar.add(mntmNewMenuItem_4);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 153, 153));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -141,7 +162,7 @@ public class PlantillaPrincipal extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("EVENTO CIENTIFICO PUCMM");
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_1.setFont(new Font("Bodoni MT Condensed", Font.PLAIN, 67));
-		lblNewLabel_1.setBounds(451, 38, 553, 69);
+		lblNewLabel_1.setBounds(451, 38, 553, 69); 
 		panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Campus Santiago");

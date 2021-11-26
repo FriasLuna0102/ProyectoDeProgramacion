@@ -23,7 +23,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class PlantillaParticipantes extends JDialog {
+public class ListadoDeParticipantes extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private Dimension dim;
@@ -41,7 +41,7 @@ public class PlantillaParticipantes extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			PlantillaParticipantes dialog = new PlantillaParticipantes();
+			ListadoDeParticipantes dialog = new ListadoDeParticipantes();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -52,7 +52,7 @@ public class PlantillaParticipantes extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public PlantillaParticipantes() {
+	public ListadoDeParticipantes() {
 		setResizable(false);
 		setBounds(100, 100, 511, 399);
 		dim = getToolkit().getScreenSize();
@@ -88,7 +88,6 @@ public class PlantillaParticipantes extends JDialog {
 					if(aux != -1) {
 						String participantes = (String) table.getValueAt(aux, 0);
 						selected = PUCMM.getInstance().buscarParticipantes(participantes, participantes);
-						System.out.println(selected.getNombre()+""+selected.getCodigoDeEvento());
 					}
 				}
 			});

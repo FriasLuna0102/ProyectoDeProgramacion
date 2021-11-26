@@ -2,6 +2,8 @@ package Logico;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 
 
 public class PUCMM {
@@ -89,18 +91,26 @@ public class PUCMM {
 		}
 
 	}
-	//Funcion para agregar jurados al evento correspondiente.
-	public void addJurado(String codigoDeEvento, Jurado jurados) {
-		Eventos event = buscarEvento(codigoDeEvento);
+	//Funcion para agregar jurados al evento correspondiente. Verificado
+		public void addJurado(String codigoDeEvento, Jurado jurado) {
+			Eventos event = buscarEvento(codigoDeEvento);
 
-		if(event != null) {
-			event.getMisJurados().add(jurados);
-			generadorDeCodigo++;
+			if(event != null) {
+				event.getMisJurados().add(jurado);
+				generadorDeCodigo++;
+			}
+
 		}
-
+		
+	//Funcion para agregar trabajos al evento que le corresponde. Verificado
+	public void addTrabajosAMisTrabajosEnEventos(String codigoDelEvento, Trabajos trabajo) {
+		Eventos evento = buscarEvento(codigoDelEvento);
+		if(evento != null) {
+			evento.getMisTrabajos().add(trabajo);
+		}
 	}
 
-	public int getGeneradorCodigoVino() {//vino?
+	public int getGeneradorCodigoParticipantes() {//vino?
 		return generadorDeCodigo;
 	}
 
@@ -237,8 +247,8 @@ public class PUCMM {
 		}
 		return comision;
 	}
-
-	//Metodo para buscar Jurado.
+	
+	//Metodo para buscar Jurado. Verificada.
 	public Jurado buscarJurado(	String cedula) {
 		Jurado jurado = null;
 		for (Personas aux : misPersonas) {
@@ -270,7 +280,7 @@ public class PUCMM {
 	}
 	
 
-	//Metodo para buscar los jurados mediante el area de conocimiento que estos tienen.
+	//Metodo para buscar los jurados mediante el area de conocimiento que estos tienen. Verifiacada
 	public Jurado buscarJuradoPorAreaDeConocimiento(String areaDeConocimiento) {
 		Jurado jurado = null;
 		for (Personas aux : misPersonas) {
@@ -278,51 +288,46 @@ public class PUCMM {
 				if(((Jurado) aux).getAreaDeConocimiento().equalsIgnoreCase(areaDeConocimiento)) {
 					jurado = (Jurado) aux;
 				}else {
-					System.out.println("No se encontro ningun Jurado de esta area.");
-
+					JOptionPane.showMessageDialog(null, "No se encontro ningun Jurado de esta area.", "Informacion", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		}
 		return jurado;		
 	}
 
-	//Metodo para buscar al participante con mejor trabajo presentado en el Evento que se deese saber.
+	//Metodo para buscar al participante con mejor trabajo presentado en el Evento que se deese saber. Verificado
 	public Participantes premioAlMejorParticipante(String codigoDeTrabajos,String codigoDeEvento) {
 		Participantes participante = null;
 		Eventos evento = buscarEvento(codigoDeEvento);
 		Trabajos trabajo = buscarTrabajosRegistrados(codigoDeTrabajos);
-		if(evento != null && trabajo != null) {
-			for (Personas personas : misPersonas) {
-				if(personas instanceof Participantes) {
-					if(((Participantes) personas).getMisTrabajos().equals(codigoDeTrabajos)) {
-						participante = (Participantes) personas;
-
-					}
+		if(evento != null && trabajo != null) 
+			for(int i = 0; i < evento.getMisParticipantes().size(); i++) {
+				for(int j = 0; j<evento.getMisParticipantes().get(i).getMisTrabajos().size(); j++) {
+					if(evento.getMisParticipantes().get(i).getMisTrabajos().get(j).equals(codigoDeTrabajos));
+					participante = evento.getMisParticipantes().get(i);
 				}
 			}
-		}
 		return participante;
 	}
 
-	//Metodo para calificar los trabajos de los participantes. Verificada
-	public String calificarTrabajos(String codigoDeTrabajo, String codigoDeEvento,int calificacionDeJurados) {
+	//Metodo para calificar los trabajos de los participantes. Verificada // Se califica el de arreglo de misTrabajos en PUCMM.
+	public void calificarTrabajos(String codigoDeTrabajo, String codigoDeEvento,int calificacionDeJurados) {
 		Trabajos trabajo = buscarTrabajosRegistrados(codigoDeTrabajo);
 		Eventos event = buscarEvento(codigoDeEvento);
 		String calificacion = "";
 		if(trabajo != null && event != null) {
 			if(calificacionDeJurados >= 90 && calificacionDeJurados <= 100) {
-				calificacion = "A";
+				JOptionPane.showMessageDialog(null, "La calificacion es: A", "Informacion", JOptionPane.INFORMATION_MESSAGE);
 			}else if (calificacionDeJurados < 90 && calificacionDeJurados >= 80) {
-				calificacion = "B";
+				JOptionPane.showMessageDialog(null, "La calificacion es: B", "Informacion", JOptionPane.INFORMATION_MESSAGE);
 			}else if (calificacionDeJurados < 80 && calificacionDeJurados >= 70) {
-				calificacion = "C";
+				JOptionPane.showMessageDialog(null, "La calificacion es: C", "Informacion", JOptionPane.INFORMATION_MESSAGE);
 			}else if (calificacionDeJurados < 70 && calificacionDeJurados >= 60) {
-				calificacion = "D";
+				JOptionPane.showMessageDialog(null, "La calificacion es: D", "Informacion", JOptionPane.INFORMATION_MESSAGE);
 			}else {
-				calificacion = "F";
+				JOptionPane.showMessageDialog(null, "Reprobado: F", "Informacion", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
-		return calificacion;
 	}
 
 	//Funcion para determinar si el participante cumple con la edad requerida del evento. Verificada
@@ -341,6 +346,22 @@ public class PUCMM {
 		
 	}
 
+	public void insertarEvento(Eventos evento) {
+		int index = 0;
+		misEventos.add(index, evento);
+		index++;
+	}
+	/*
+	public void suspenderEvento(String codigoDeEvento) {
+		Eventos evento = buscarEvento(codigoDeEvento);
+		if(evento != null) {	
+				misEventos.remove(index);
+				index++;
+			}
+
+		
+	}
+	*/
 }
 
 
