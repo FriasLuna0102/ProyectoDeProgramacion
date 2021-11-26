@@ -16,6 +16,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JButton;
+import javax.swing.ImageIcon;
 
 public class PlantillaPrincipal extends JFrame {
 
@@ -57,40 +59,6 @@ public class PlantillaPrincipal extends JFrame {
 		menuBar.setBackground(new Color(0, 153, 153));
 		setJMenuBar(menuBar);
 		
-		JMenu mnNewMenu = new JMenu("Participantes");
-		mnNewMenu.setForeground(new Color(255, 255, 255));
-		menuBar.add(mnNewMenu);
-		
-		
-		
-		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Listado de Participantes");
-		mntmNewMenuItem_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				ListadoDeParticipantes participantes = new ListadoDeParticipantes();
-				participantes.setModal(true);
-				participantes.setVisible(true);
-			}
-		});
-		mnNewMenu.add(mntmNewMenuItem_1);
-		
-		JMenu mnNewMenu_1 = new JMenu("Jurados");
-		mnNewMenu_1.setForeground(Color.WHITE);
-		menuBar.add(mnNewMenu_1);
-		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Listado de Jurados");
-		mntmNewMenuItem_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				PlantillaJurados jurados = new PlantillaJurados();
-				jurados.setModal(true);
-				jurados.setVisible(true);
-			}
-		});
-		mnNewMenu_1.add(mntmNewMenuItem_2);
-		
-		JMenu mnNewMenu_2 = new JMenu("");
-		menuBar.add(mnNewMenu_2);
-		
 		JMenu mnNewMenu_3 = new JMenu("Inscripciones");
 		mnNewMenu_3.setForeground(new Color(255, 255, 255));
 		
@@ -114,7 +82,26 @@ public class PlantillaPrincipal extends JFrame {
 		});
 		mnNewMenu_3.add(mntmNewMenuItem_3);
 		
+		JMenu mnNewMenu_1 = new JMenu("Jurados");
+		mnNewMenu_1.setForeground(Color.WHITE);
+		menuBar.add(mnNewMenu_1);
+		
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Listado de Jurados");
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PlantillaJurados jurados = new PlantillaJurados();
+				jurados.setModal(true);
+				jurados.setVisible(true);
+			}
+		});
+		mnNewMenu_1.add(mntmNewMenuItem_2);
+		
+		JMenu mnNewMenu_2 = new JMenu("");
+		menuBar.add(mnNewMenu_2);
+		
 		mntmNewMenuItem_4 = new JMenuItem("Registro De Evento");
+		mntmNewMenuItem_4.setForeground(new Color(255, 255, 255));
+		mntmNewMenuItem_4.setBackground(new Color(0, 153, 153));
 		mntmNewMenuItem_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CrearEvento conect = new CrearEvento(null);
@@ -124,6 +111,8 @@ public class PlantillaPrincipal extends JFrame {
 		});
 		
 		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Listado de Eventos");
+		mntmNewMenuItem_5.setForeground(new Color(255, 255, 255));
+		mntmNewMenuItem_5.setBackground(new Color(0, 153, 153));
 		mntmNewMenuItem_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListadoDeEventos list = new ListadoDeEventos();
@@ -131,6 +120,23 @@ public class PlantillaPrincipal extends JFrame {
 				list.setModal(true);
 			}
 		});
+		
+		JMenu mnNewMenu = new JMenu("Participantes");
+		mnNewMenu.setForeground(new Color(255, 255, 255));
+		menuBar.add(mnNewMenu);
+		
+		
+		
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Listado de Participantes");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ListadoDeParticipantes participantes = new ListadoDeParticipantes();
+				participantes.setModal(true);
+				participantes.setVisible(true);
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem_1);
 		menuBar.add(mntmNewMenuItem_5);
 		menuBar.add(mntmNewMenuItem_4);
 		contentPane = new JPanel();
@@ -162,40 +168,40 @@ public class PlantillaPrincipal extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("EVENTO CIENTIFICO PUCMM");
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_1.setFont(new Font("Bodoni MT Condensed", Font.PLAIN, 67));
-		lblNewLabel_1.setBounds(451, 38, 553, 69); 
+		lblNewLabel_1.setBounds(464, 37, 553, 69); 
 		panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Campus Santiago");
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));
 		lblNewLabel_2.setFont(new Font("Imprint MT Shadow", Font.ITALIC, 18));
-		lblNewLabel_2.setBounds(757, 135, 149, 30);
+		lblNewLabel_2.setBounds(804, 134, 149, 30);
 		panel.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("DE LA ESCULA DE CIENCIAS DE INGENIERIA");
 		lblNewLabel_3.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3.setFont(new Font("Bodoni MT Poster Compressed", Font.PLAIN, 37));
-		lblNewLabel_3.setBounds(533, 99, 413, 41);
+		lblNewLabel_3.setBounds(576, 98, 413, 41);
 		panel.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Se apr\u00F3xima el Evento Cient\u00EDfico PUCMM en el cual estudiantes y exteriores pueden presentar sus proyectos cientificos");
 		lblNewLabel_4.setForeground(new Color(255, 255, 255));
 		lblNewLabel_4.setFont(new Font("Times New Roman", Font.PLAIN, 17));
-		lblNewLabel_4.setBounds(267, 209, 851, 30);
+		lblNewLabel_4.setBounds(263, 279, 851, 30);
 		panel.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("Desde el jueves 2 de diciembre  hasta el s\u00E1bado 4 de diciembre del 2021");
 		lblNewLabel_5.setFont(new Font("Times New Roman", Font.PLAIN, 17));
 		lblNewLabel_5.setForeground(new Color(255, 255, 255));
-		lblNewLabel_5.setBounds(451, 300, 510, 14);
+		lblNewLabel_5.setBounds(451, 345, 510, 14);
 		panel.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_6 = new JLabel("9:00 a.m - 3:00 p.m");
 		lblNewLabel_6.setFont(new Font("Times New Roman", Font.PLAIN, 17));
 		lblNewLabel_6.setForeground(new Color(255, 255, 255));
-		lblNewLabel_6.setBounds(615, 340, 149, 14);
+		lblNewLabel_6.setBounds(599, 370, 149, 14);
 		panel.add(lblNewLabel_6);
 		
-		JLabel lblNewLabel_7 = new JLabel("Para mayor informaci\u00F3n contactarse al (809) 580-1962, Ext. 4265");
+		JLabel lblNewLabel_7 = new JLabel("Para favor informaci\u00F3n contactarse al (809) 580-1962, Ext. 4265");
 		lblNewLabel_7.setForeground(new Color(255, 255, 255));
 		lblNewLabel_7.setFont(new Font("Times New Roman", Font.PLAIN, 17));
 		lblNewLabel_7.setBounds(471, 551, 490, 14);
@@ -204,7 +210,7 @@ public class PlantillaPrincipal extends JFrame {
 		JLabel lblNewLabel_8 = new JLabel("Costo: $250 c/u");
 		lblNewLabel_8.setForeground(new Color(255, 255, 255));
 		lblNewLabel_8.setFont(new Font("Times New Roman", Font.PLAIN, 17));
-		lblNewLabel_8.setBounds(615, 377, 139, 14);
+		lblNewLabel_8.setBounds(614, 404, 139, 14);
 		panel.add(lblNewLabel_8);
 		
 		JLabel lblNewLabel_9 = new JLabel("Para calificar en la Segunda ronda deber\u00E1n de mandar sus proyectos al siguiente correo: eventopucmm@ce.pucmm.edu.do");
@@ -216,7 +222,18 @@ public class PlantillaPrincipal extends JFrame {
 		JLabel lblNewLabel_10 = new JLabel("Est\u00E1 es tu oportunidad de demostrar el poder del conocimiento y la creatividad.");
 		lblNewLabel_10.setForeground(new Color(255, 255, 255));
 		lblNewLabel_10.setFont(new Font("Times New Roman", Font.PLAIN, 17));
-		lblNewLabel_10.setBounds(433, 251, 583, 14);
+		lblNewLabel_10.setBounds(434, 320, 583, 14);
 		panel.add(lblNewLabel_10);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setIcon(new ImageIcon("C:\\Users\\natas\\Desktop\\pucmm-logo.jpg"));
+		btnNewButton.setSelectedIcon(new ImageIcon("C:\\Users\\natas\\Desktop\\pucmm.jpg"));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.setBackground(new Color(0, 153, 153));
+		btnNewButton.setBounds(125, 11, 254, 240);
+		panel.add(btnNewButton);
 	} 
 }

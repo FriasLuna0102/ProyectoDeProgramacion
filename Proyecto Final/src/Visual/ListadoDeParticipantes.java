@@ -71,7 +71,7 @@ public class ListadoDeParticipantes extends JDialog {
 			panel.setLayout(null);
 
 			panel_1 = new JPanel();
-			panel_1.setBounds(0, 79, 1350, 576);
+			panel_1.setBounds(0, 56, 1350, 597);
 			panel.add(panel_1);
 			panel_1.setLayout(null);
 
