@@ -351,17 +351,30 @@ public class PUCMM {
 		misEventos.add(index, evento);
 		index++;
 	}
-	/*
+	
 	public void suspenderEvento(String codigoDeEvento) {
-		Eventos evento = buscarEvento(codigoDeEvento);
-		if(evento != null) {	
+		int index = buscarIndexCodeEvento(codigoDeEvento);
+		if(index != -1) {
+			while(index < misEventos.size()) {
 				misEventos.remove(index);
 				index++;
 			}
-
+		}
 		
 	}
-	*/
+	private int buscarIndexCodeEvento(String code) {
+		int publ = -1;
+		int i = 0;
+		boolean encontrado = false;
+		while(!encontrado && i < misEventos.size()) {
+			if(misEventos.get(i).getCodigoDeEvento().equalsIgnoreCase(code)) {
+				encontrado = true;
+				publ = i;
+			}
+		}	
+		return publ;
+
+	}
 }
 
 

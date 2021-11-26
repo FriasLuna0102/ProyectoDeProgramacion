@@ -18,7 +18,7 @@ public class MainPrueba {
 		Trabajos trabajso = new Trabajos("25", "Quimica", "Los medios");
 
 		Recursos recurso = new Recursos(81, true, "salones",25);
-		Eventos evento = new Eventos("Cientifico", comision, recurso, "9090", "San pedro", 25, ".com", 5, "Cientifico");
+		Eventos evento = new Eventos("Cientifico", comision, recurso, "9090", "San pedro", 25, ".com", 5, "Cientifico","Fisica");
 		Participantes participante = new Participantes("Angel", "6 de junio", "00000011111", "Luna", "8025455", ".cpm", "0001", "Fausto", "0001", "0001", "0001", 25, "9091");
 		Participantes participantee = new Participantes("Angel", "6 de junio", "00000011111", "Luna", "8025455", ".cpm", "0001", "Fausto", "0001", "0001", "0001", 25, "5858");
 		evento.getMisParticipantes().add(participantee);

@@ -20,8 +20,9 @@ public class Eventos {
 	private int horaDeEvento;
 	private String correoDeEvento;
 	private String tipoDeEvento;
+	private String nombreDeComision;
 	public Eventos(String tituloDeEvento, Comisiones comision, Recursos recursoUtilizados, String codigoDeEvento,
-			String lugarDeEvento, int horaDeEvento, String correoDeEvento, int limiteDeParticipantes,String tipoDeEvento) {
+			String lugarDeEvento, int horaDeEvento, String correoDeEvento, int limiteDeParticipantes,String tipoDeEvento,String nombreDeComision) {
 		super();
 		this.tituloDeEvento = tituloDeEvento;
 		this.comision = comision;
@@ -38,6 +39,7 @@ public class Eventos {
 		this.fechaDeInicio = new Date();
 		this.fechaLimiteDeEntregaDeTrabajos = new Date();
 		this.tipoDeEvento = tipoDeEvento;
+		this.nombreDeComision = nombreDeComision;
 
 	}
 
@@ -145,6 +147,14 @@ public class Eventos {
 
 	public void setTipoDeEvento(String tipoDeEvento) {
 		this.tipoDeEvento = tipoDeEvento;
+	}
+
+	public String getNombreDeComision() {
+		return nombreDeComision;
+	}
+
+	public void setNombreDeComision(String nombreDeComision) {
+		this.nombreDeComision = nombreDeComision;
 	}
 	
 } 

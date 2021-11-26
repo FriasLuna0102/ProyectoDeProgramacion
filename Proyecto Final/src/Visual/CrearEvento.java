@@ -23,8 +23,13 @@ import javax.swing.JSpinner;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
+import javax.swing.SpinnerDateModel;
+import java.util.Date;
+import java.util.Calendar;
+import javax.swing.SpinnerNumberModel;
 
 public class CrearEvento extends JDialog {
 
@@ -123,6 +128,7 @@ public class CrearEvento extends JDialog {
 		panel.add(lblNewLabel_5);
 
 		spnFechaDeInscripcion = new JSpinner();
+		spnFechaDeInscripcion.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(0)));
 		spnFechaDeInscripcion.setBounds(538, 273, 109, 22);
 		panel.add(spnFechaDeInscripcion);
 
@@ -157,6 +163,8 @@ public class CrearEvento extends JDialog {
 		panel.add(cbxTipoDeEventos);
 
 		spnFechaFInal = new JSpinner();
+
+		spnFechaFInal.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(0)));
 		spnFechaFInal.setBounds(538, 311, 109, 22);
 		panel.add(spnFechaFInal);
 
@@ -219,11 +227,12 @@ public class CrearEvento extends JDialog {
 			JButton btnRegistrar = new JButton("Registrar");
 			btnRegistrar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					
 					Comisiones comision = PUCMM.getInstance().buscarComisiones(txtNombreComision.getText());
 					Recursos recurso = PUCMM.getInstance().buscarRecursos(rdbtnSalones.getText().toString());
 					//	String salones = rdbtnSalones.getText().toString();
 					Eventos evento = new Eventos(txtTituloDelEvento.getText(), comision,recurso , txtCodigoDelEvento.getText(),txtPucmm.getText() , Integer.valueOf(spnFechaDeInicio.getValue().toString()), txtCorreoDelEvento.getText(),Integer.valueOf(spnLimiteDeParticipantes.getValue().toString()),
-							cbxTipoDeEventos.getSelectedItem().toString());
+							cbxTipoDeEventos.getSelectedItem().toString(),txtNombreComision.getText());
 					if(evento.getCodigoDeEvento().length() != 0 && evento.getTituloDeEvento().length() != 0 )
 					{
 						PUCMM.getInstance().insertarEvento(evento);
@@ -251,6 +260,17 @@ public class CrearEvento extends JDialog {
 			buttonPane.add(btnCerrar);
 		}
 	}
+	/*
+	private void loadWine (Eventos evento) {
+		if(evento != null) {
+			txtCodigoDelEvento.setText(evento.getCodigoDeEvento());
+			txtTituloDelEvento.setText(evento.getTituloDeEvento());
+			Calendar auxDate = Calendar.getInstance();
+			auxDate.set(evento.getFechaDeInicio(), 1,1);
+			
+		}
+	}*/
+	
 	private void clean() {
 		txtTituloDelEvento.setText("");
 		txtNombreComision.setText("");

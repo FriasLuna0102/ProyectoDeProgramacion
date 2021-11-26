@@ -37,7 +37,9 @@ public class ListadoDeEventos extends JDialog {
 	private JPanel panel_1;
 	private JPanel panel;
 	private JLabel lblNewLabel;
-	private JComboBox comboBox;
+	private JComboBox cbxTipodeEventos;
+	private JButton btnSuspender;
+	private JButton btnCerrar;
 
 	/**
 	 * Launch the application.
@@ -59,26 +61,26 @@ public class ListadoDeEventos extends JDialog {
 		setTitle("Listado de Eventos");
 		setModal(true);
 		setResizable(false);
-		setBounds(100, 100, 932, 589);
+		setBounds(100, 100, 1136, 612);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		
+
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
 			panel = new JPanel();
 			panel.setBorder(new TitledBorder(null, "Listado de Eventos:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			panel.setBounds(0, 0, 914, 507);
+			panel.setBounds(0, 0, 1118, 530);
 			contentPanel.add(panel);
 			panel.setLayout(null);
 
 			panel_1 = new JPanel();
-			panel_1.setBounds(12, 117, 890, 377);
+			panel_1.setBounds(12, 117, 1082, 400);
 			panel.add(panel_1);
 			panel_1.setLayout(null);
 
 			scrollPane = new JScrollPane();
-			scrollPane.setBounds(0, 0, 890, 389);
+			scrollPane.setBounds(0, 0, 1082, 400);
 			panel_1.add(scrollPane);
 
 
@@ -89,13 +91,14 @@ public class ListadoDeEventos extends JDialog {
 					int aux = -1;
 					aux = table.getSelectedRow();
 					if(aux != -1) {
+						btnSuspender.setEnabled(true);
 						String eventos = (String) table.getValueAt(aux, 0);
 						selected = PUCMM.getInstance().buscarEvento(eventos);
 					}
 				}
 			});
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			String[] headers = {"Titulo del Evento","Codigo del Evento","Limite de Participantes","Lugar del Evento","Correo del Evento","Tipo de Evento"};			
+			String[] headers = {"Titulo del Evento","Codigo del Evento","Limite de Participantes","Lugar del Evento","Correo del Evento","Tipo de Evento","Fecha de Inicio","Fecha de cierre","Nombre de Comision"};			
 			model = new DefaultTableModel();
 			model.setColumnIdentifiers(headers);	
 			table.setModel(model);
@@ -106,10 +109,16 @@ public class ListadoDeEventos extends JDialog {
 				panel.add(lblNewLabel);
 			}
 			{
-				comboBox = new JComboBox();
-				comboBox.setModel(new DefaultComboBoxModel(new String[] {"<<Seleccionar>>", "\t\t\t\t\t\tCientifico", "\t\t\t\t\t\tMesa Redonda", "\t\t\t\t\t\tConferencia", "\t\t\t\t\t\tDeportivo", "\t\t\t\t\t\tDiscurso Motivacional", "\t\t\t\t\t\tVideoJuegos", "\t\t\t\t\t\tOtro..."}));
-				comboBox.setBounds(189, 53, 428, 22);
-				panel.add(comboBox);
+				cbxTipodeEventos = new JComboBox();
+				cbxTipodeEventos.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						int selection = cbxTipodeEventos.getSelectedIndex();
+						loadwines(selection);
+					}
+				});
+				cbxTipodeEventos.setModel(new DefaultComboBoxModel(new String[] {"<<Todos>>", "\t\t\t\t\t\tCientifico", "\t\t\t\t\t\tMesa Redonda", "\t\t\t\t\t\tConferencia", "\t\t\t\t\t\tDeportivo", "\t\t\t\t\t\tDiscurso Motivacional", "\t\t\t\t\t\tVideoJuegos", "\t\t\t\t\t\tOtro..."}));
+				cbxTipodeEventos.setBounds(189, 53, 428, 22);
+				panel.add(cbxTipodeEventos);
 			}
 
 		}
@@ -118,14 +127,14 @@ public class ListadoDeEventos extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton btnSuspender = new JButton("Suspender");
+				btnSuspender = new JButton("Suspender");
 				btnSuspender.setEnabled(false);
 				btnSuspender.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						int select = JOptionPane.showConfirmDialog(null, "Seguro desea eliminar la Publicacion con Codigo"+selected.getCodigoDeEvento(), "Confirmacion", JOptionPane.WARNING_MESSAGE);
 						if (select == JOptionPane.YES_OPTION) {
 
-							//PUCMM.getInstance().suspenderEvento(selected.getCodigoDeEvento());
+							PUCMM.getInstance().suspenderEvento(selected.getCodigoDeEvento());
 							loadwines(0);
 							btnSuspender.setEnabled(false);
 							selected = null;
@@ -137,7 +146,7 @@ public class ListadoDeEventos extends JDialog {
 				getRootPane().setDefaultButton(btnSuspender);
 			}
 			{
-				JButton btnCerrar = new JButton("Cerrar");
+				btnCerrar = new JButton("Cerrar");
 				btnCerrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
@@ -161,10 +170,128 @@ public class ListadoDeEventos extends JDialog {
 				rows[3] = PUCMM.getInstance().getMisEventos().get(i).getLugarDeEvento();
 				rows[4] = PUCMM.getInstance().getMisEventos().get(i).getCorreoDeEvento();
 				rows[5] = PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento();
+				rows[6] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeInicio();
+				rows[7] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeCierre();
+				rows[8] = PUCMM.getInstance().getMisEventos().get(i).getNombreDeComision();
+
 
 				model.addRow(rows);		
 			}
 			break;
+		case 1:
+			for (int i = 0; i < PUCMM.getInstance().getMisEventos().size(); i++) {
+				if(PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento().equalsIgnoreCase("Cientifico")) {
+					rows[0] = PUCMM.getInstance().getMisEventos().get(i).getTituloDeEvento();
+					rows[1] = PUCMM.getInstance().getMisEventos().get(i).getCodigoDeEvento();
+					rows[2] = PUCMM.getInstance().getMisEventos().get(i).getLimiteDeParticipantes();
+					rows[3] = PUCMM.getInstance().getMisEventos().get(i).getLugarDeEvento();
+					rows[4] = PUCMM.getInstance().getMisEventos().get(i).getCorreoDeEvento();
+					rows[5] = PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento();
+					rows[6] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeInicio();
+					rows[7] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeCierre();
+					rows[8] = PUCMM.getInstance().getMisEventos().get(i).getNombreDeComision();
+					model.addRow(rows);	
+
+				}
+
+			}
+			break;
+		case 2:
+			for (int i = 0; i < PUCMM.getInstance().getMisEventos().size(); i++) {
+				if(PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento().equalsIgnoreCase("Mesa Redonda")) {
+					rows[0] = PUCMM.getInstance().getMisEventos().get(i).getTituloDeEvento();
+					rows[1] = PUCMM.getInstance().getMisEventos().get(i).getCodigoDeEvento();
+					rows[2] = PUCMM.getInstance().getMisEventos().get(i).getLimiteDeParticipantes();
+					rows[3] = PUCMM.getInstance().getMisEventos().get(i).getLugarDeEvento();
+					rows[4] = PUCMM.getInstance().getMisEventos().get(i).getCorreoDeEvento();
+					rows[5] = PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento();
+					rows[6] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeInicio();
+					rows[7] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeCierre();
+					rows[8] = PUCMM.getInstance().getMisEventos().get(i).getNombreDeComision();
+					model.addRow(rows);	
+
+				}
+
+			}
+			break;
+		case 3:
+			for (int i = 0; i < PUCMM.getInstance().getMisEventos().size(); i++) {
+				if(PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento().equalsIgnoreCase("Conferencia")) {
+					rows[0] = PUCMM.getInstance().getMisEventos().get(i).getTituloDeEvento();
+					rows[1] = PUCMM.getInstance().getMisEventos().get(i).getCodigoDeEvento();
+					rows[2] = PUCMM.getInstance().getMisEventos().get(i).getLimiteDeParticipantes();
+					rows[3] = PUCMM.getInstance().getMisEventos().get(i).getLugarDeEvento();
+					rows[4] = PUCMM.getInstance().getMisEventos().get(i).getCorreoDeEvento();
+					rows[5] = PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento();
+					rows[6] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeInicio();
+					rows[7] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeCierre();
+					rows[8] = PUCMM.getInstance().getMisEventos().get(i).getNombreDeComision();
+					model.addRow(rows);	
+
+				}
+			}
+			break;
+		case 4:
+			for (int i = 0; i < PUCMM.getInstance().getMisEventos().size(); i++) {
+				if(PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento().equalsIgnoreCase("Deportivo")) {
+					rows[0] = PUCMM.getInstance().getMisEventos().get(i).getTituloDeEvento();
+					rows[1] = PUCMM.getInstance().getMisEventos().get(i).getCodigoDeEvento();
+					rows[2] = PUCMM.getInstance().getMisEventos().get(i).getLimiteDeParticipantes();
+					rows[3] = PUCMM.getInstance().getMisEventos().get(i).getLugarDeEvento();
+					rows[4] = PUCMM.getInstance().getMisEventos().get(i).getCorreoDeEvento();
+					rows[5] = PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento();
+					rows[6] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeInicio();
+					rows[7] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeCierre();
+					rows[8] = PUCMM.getInstance().getMisEventos().get(i).getNombreDeComision();
+					model.addRow(rows);	
+				}
+			}
+			break;
+		case 5:
+			for (int i = 0; i < PUCMM.getInstance().getMisEventos().size(); i++) {
+				if(PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento().equalsIgnoreCase("Discurso Motivacional")) {
+					rows[0] = PUCMM.getInstance().getMisEventos().get(i).getTituloDeEvento();
+					rows[1] = PUCMM.getInstance().getMisEventos().get(i).getCodigoDeEvento();
+					rows[2] = PUCMM.getInstance().getMisEventos().get(i).getLimiteDeParticipantes();
+					rows[3] = PUCMM.getInstance().getMisEventos().get(i).getLugarDeEvento();
+					rows[4] = PUCMM.getInstance().getMisEventos().get(i).getCorreoDeEvento();
+					rows[5] = PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento();
+					rows[6] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeInicio();
+					rows[7] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeCierre();
+					rows[8] = PUCMM.getInstance().getMisEventos().get(i).getNombreDeComision();
+					model.addRow(rows);	
+				}
+			}
+			break;
+		case 6:
+			for (int i = 0; i < PUCMM.getInstance().getMisEventos().size(); i++) {
+				if(PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento().equalsIgnoreCase("VideoJuegos")) {
+					rows[0] = PUCMM.getInstance().getMisEventos().get(i).getTituloDeEvento();
+					rows[1] = PUCMM.getInstance().getMisEventos().get(i).getCodigoDeEvento();
+					rows[2] = PUCMM.getInstance().getMisEventos().get(i).getLimiteDeParticipantes();
+					rows[3] = PUCMM.getInstance().getMisEventos().get(i).getLugarDeEvento();
+					rows[4] = PUCMM.getInstance().getMisEventos().get(i).getCorreoDeEvento();
+					rows[5] = PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento();
+					rows[6] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeInicio();
+					rows[7] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeCierre();
+					rows[8] = PUCMM.getInstance().getMisEventos().get(i).getNombreDeComision();
+					model.addRow(rows);	}
+			}
+			break;
+		case 7:
+			for (int i = 0; i < PUCMM.getInstance().getMisEventos().size(); i++) {
+				if(PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento().equalsIgnoreCase("Otro...")) {
+					rows[0] = PUCMM.getInstance().getMisEventos().get(i).getTituloDeEvento();
+					rows[1] = PUCMM.getInstance().getMisEventos().get(i).getCodigoDeEvento();
+					rows[2] = PUCMM.getInstance().getMisEventos().get(i).getLimiteDeParticipantes();
+					rows[3] = PUCMM.getInstance().getMisEventos().get(i).getLugarDeEvento();
+					rows[4] = PUCMM.getInstance().getMisEventos().get(i).getCorreoDeEvento();
+					rows[5] = PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento();
+					rows[6] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeInicio();
+					rows[7] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeCierre();
+					rows[8] = PUCMM.getInstance().getMisEventos().get(i).getNombreDeComision();
+					model.addRow(rows);	}
+			}
 		}
 	}
 }
