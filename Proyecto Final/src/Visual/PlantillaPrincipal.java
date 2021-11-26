@@ -140,7 +140,7 @@ public class PlantillaPrincipal extends JFrame {
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(0, 153, 153));
+		panel.setBackground(new Color(0, 153, 153));	
 		panel.setForeground(Color.WHITE);
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		contentPane.add(panel, BorderLayout.CENTER);

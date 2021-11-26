@@ -235,7 +235,7 @@ public class CrearEvento extends JDialog {
 							cbxTipoDeEventos.getSelectedItem().toString(),txtNombreComision.getText());
 					if(evento.getCodigoDeEvento().length() != 0 && evento.getTituloDeEvento().length() != 0 )
 					{
-						PUCMM.getInstance().insertarEvento(evento);
+						PUCMM.getInstance().getMisEventos().add(evento);
 						JOptionPane.showMessageDialog(null, "El Evento se ha creado sastifactoriamente.", "Informacion", JOptionPane.INFORMATION_MESSAGE);
 						clean();
 					}else {

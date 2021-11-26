@@ -12,6 +12,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+import com.sun.corba.se.impl.encoding.CodeSetConversion.BTCConverter;
+
 import Logico.Eventos;
 import Logico.PUCMM;
 
@@ -38,7 +40,7 @@ public class ListadoDeEventos extends JDialog {
 	private JPanel panel;
 	private JLabel lblNewLabel;
 	private JComboBox cbxTipodeEventos;
-	private JButton btnSuspender;
+	private static JButton btnSuspender;
 	private JButton btnCerrar;
 
 	/**
@@ -74,6 +76,25 @@ public class ListadoDeEventos extends JDialog {
 			contentPanel.add(panel);
 			panel.setLayout(null);
 
+
+			lblNewLabel = new JLabel("Filtro:");
+			lblNewLabel.setBounds(358, 24, 101, 16);
+			panel.add(lblNewLabel);
+
+
+			cbxTipodeEventos = new JComboBox();
+			cbxTipodeEventos.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					int selection = cbxTipodeEventos.getSelectedIndex();
+					loadwines(selection);
+				}
+			});
+			cbxTipodeEventos.setModel(new DefaultComboBoxModel(new String[] {"<<Todos>>", "\t\t\t\t\t\tCientifico", "\t\t\t\t\t\tMesa Redonda", "\t\t\t\t\t\tConferencia", "\t\t\t\t\t\tDeportivo", "\t\t\t\t\t\tDiscurso Motivacional", "\t\t\t\t\t\tVideoJuegos", "\t\t\t\t\t\tOtro..."}));
+			cbxTipodeEventos.setBounds(189, 53, 428, 22);
+			panel.add(cbxTipodeEventos);
+
+
+
 			panel_1 = new JPanel();
 			panel_1.setBounds(12, 117, 1082, 400);
 			panel.add(panel_1);
@@ -88,38 +109,24 @@ public class ListadoDeEventos extends JDialog {
 			table.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					int aux = -1;
-					aux = table.getSelectedRow();
+
+					int aux = table.getSelectedRow();
 					if(aux != -1) {
 						btnSuspender.setEnabled(true);
 						String eventos = (String) table.getValueAt(aux, 0);
 						selected = PUCMM.getInstance().buscarEvento(eventos);
-					}
-				}
-			});
+						
+					}					
+				}});
+			
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			String[] headers = {"Titulo del Evento","Codigo del Evento","Limite de Participantes","Lugar del Evento","Correo del Evento","Tipo de Evento","Fecha de Inicio","Fecha de cierre","Nombre de Comision"};			
 			model = new DefaultTableModel();
 			model.setColumnIdentifiers(headers);	
 			table.setModel(model);
 			scrollPane.setViewportView(table);
-			{
-				lblNewLabel = new JLabel("Filtro:");
-				lblNewLabel.setBounds(358, 24, 101, 16);
-				panel.add(lblNewLabel);
-			}
-			{
-				cbxTipodeEventos = new JComboBox();
-				cbxTipodeEventos.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						int selection = cbxTipodeEventos.getSelectedIndex();
-						loadwines(selection);
-					}
-				});
-				cbxTipodeEventos.setModel(new DefaultComboBoxModel(new String[] {"<<Todos>>", "\t\t\t\t\t\tCientifico", "\t\t\t\t\t\tMesa Redonda", "\t\t\t\t\t\tConferencia", "\t\t\t\t\t\tDeportivo", "\t\t\t\t\t\tDiscurso Motivacional", "\t\t\t\t\t\tVideoJuegos", "\t\t\t\t\t\tOtro..."}));
-				cbxTipodeEventos.setBounds(189, 53, 428, 22);
-				panel.add(cbxTipodeEventos);
-			}
+
+
 
 		}
 		{
@@ -158,6 +165,7 @@ public class ListadoDeEventos extends JDialog {
 			loadwines(0);
 		}
 	}
+	
 	public static void loadwines(int select) {
 		model.setRowCount(0);
 		rows = new Object[model.getColumnCount()];
@@ -290,9 +298,15 @@ public class ListadoDeEventos extends JDialog {
 					rows[6] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeInicio();
 					rows[7] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeCierre();
 					rows[8] = PUCMM.getInstance().getMisEventos().get(i).getNombreDeComision();
-					model.addRow(rows);	}
+					model.addRow(rows);
+				}
 			}
+			break;
 		}
+		btnSuspender.setEnabled(false);
+
 	}
+
+
 }
 

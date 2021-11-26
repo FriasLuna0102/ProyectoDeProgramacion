@@ -92,16 +92,16 @@ public class PUCMM {
 
 	}
 	//Funcion para agregar jurados al evento correspondiente. Verificado
-		public void addJurado(String codigoDeEvento, Jurado jurado) {
-			Eventos event = buscarEvento(codigoDeEvento);
+	public void addJurado(String codigoDeEvento, Jurado jurado) {
+		Eventos event = buscarEvento(codigoDeEvento);
 
-			if(event != null) {
-				event.getMisJurados().add(jurado);
-				generadorDeCodigo++;
-			}
-
+		if(event != null) {
+			event.getMisJurados().add(jurado);
+			generadorDeCodigo++;
 		}
-		
+
+	}
+
 	//Funcion para agregar trabajos al evento que le corresponde. Verificado
 	public void addTrabajosAMisTrabajosEnEventos(String codigoDelEvento, Trabajos trabajo) {
 		Eventos evento = buscarEvento(codigoDelEvento);
@@ -124,6 +124,7 @@ public class PUCMM {
 				encontrado = true;
 				persona = misPersonas.get(i);
 			}
+			i++;
 		}
 		return persona;
 	}
@@ -148,6 +149,7 @@ public class PUCMM {
 				encontrado = true;
 				recursos = misRecursos.get(i);			
 			}
+			i++;
 		}	
 		return recursos;
 	}
@@ -188,11 +190,12 @@ public class PUCMM {
 				encontrado = true;
 				trabajo = misTrabajos.get(i);		
 			}
-			
+			i++;
+
 		}		
 		return trabajo;
 	}
-	
+
 	//Metodo para ver si se cumplen los requisitos del evento en cuanto a participantes, ver si cumplen el limite y el maximo. Verificado
 	public void verificarSiEventoSePuedeIniciarPorParticipantess(int maxDeParticipantes,int minParticipantes,String codigoDeEvento) {
 		Eventos evento = buscarEvento(codigoDeEvento);
@@ -219,7 +222,7 @@ public class PUCMM {
 		}
 		return Aceptado;
 	}
-	
+
 	//Metodo para buscar evento creados. Verificada
 	public Eventos buscarEvento(String codigoDelEvento) {
 		Eventos evento = null;
@@ -230,10 +233,11 @@ public class PUCMM {
 				encontrado = true;
 				evento = misEventos.get(i);
 			}
+			i++;
 		}	
 		return evento;
 	}
-	
+
 	//Metodo para buscar comisiones. Verificada
 	public Comisiones buscarComisiones (String nombreDeComision) {
 		boolean encontrado = false;
@@ -244,10 +248,11 @@ public class PUCMM {
 				encontrado = true;
 				comision = misComisiones.get(i);
 			}
+			i++;
 		}
 		return comision;
 	}
-	
+
 	//Metodo para buscar Jurado. Verificada.
 	public Jurado buscarJurado(	String cedula) {
 		Jurado jurado = null;
@@ -260,8 +265,8 @@ public class PUCMM {
 		}
 		return jurado;
 	}
-	
-	
+
+
 	//Funcion #1 para buscar Participantes. Verificada
 	public Participantes buscarParticipantes(String eventoCodigo, String cedula) {
 		Eventos evento = buscarEvento(eventoCodigo);
@@ -275,10 +280,11 @@ public class PUCMM {
 					participante = evento.getMisParticipantes().get(i);
 				}
 			}
+			i++;
 		}
 		return participante;
 	}
-	
+
 
 	//Metodo para buscar los jurados mediante el area de conocimiento que estos tienen. Verifiacada
 	public Jurado buscarJuradoPorAreaDeConocimiento(String areaDeConocimiento) {
@@ -306,6 +312,7 @@ public class PUCMM {
 					if(evento.getMisParticipantes().get(i).getMisTrabajos().get(j).equals(codigoDeTrabajos));
 					participante = evento.getMisParticipantes().get(i);
 				}
+				i++;
 			}
 		return participante;
 	}
@@ -343,7 +350,7 @@ public class PUCMM {
 			}
 		}
 		return permitido;
-		
+
 	}
 
 	public void insertarEvento(Eventos evento) {
@@ -351,28 +358,30 @@ public class PUCMM {
 		misEventos.add(index, evento);
 		index++;
 	}
-	
+
 	public void suspenderEvento(String codigoDeEvento) {
 		int index = buscarIndexCodeEvento(codigoDeEvento);
 		if(index != -1) {
 			while(index < misEventos.size()) {
 				misEventos.remove(index);
-				index++;
+				
 			}
+			index++;
 		}
-		
+
 	}
 	private int buscarIndexCodeEvento(String code) {
-		int publ = -1;
+		int event = -1;
 		int i = 0;
 		boolean encontrado = false;
 		while(!encontrado && i < misEventos.size()) {
 			if(misEventos.get(i).getCodigoDeEvento().equalsIgnoreCase(code)) {
 				encontrado = true;
-				publ = i;
+				event = i;
 			}
+			i++;
 		}	
-		return publ;
+		return event;
 
 	}
 }
