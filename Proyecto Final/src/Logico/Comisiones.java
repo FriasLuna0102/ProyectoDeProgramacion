@@ -18,7 +18,7 @@ public class Comisiones {
 	public void setNombreDeComision(String nombreDeComision) {
 		this.nombreDeComision = nombreDeComision;
 	}
-	public String getJurado() {
+	public String getJurado() { 
 		return jurado;
 	}
 	public void setJurado(String jurado) {

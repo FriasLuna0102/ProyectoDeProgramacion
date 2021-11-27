@@ -35,7 +35,7 @@ public class UsuarioParticipantes extends JDialog {
 		}
 	}
 
-	/**
+	/** 
 	 * Create the dialog.
 	 */
 	public UsuarioParticipantes() {

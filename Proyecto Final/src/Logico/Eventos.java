@@ -83,7 +83,7 @@ public class Eventos {
 	}
 	public void setCodigoDeEvento(String codigoDeEvento) {
 		this.codigoDeEvento = codigoDeEvento;
-	}
+	} 
 	
 	public String getLugarDeEvento() {
 		return lugarDeEvento;
