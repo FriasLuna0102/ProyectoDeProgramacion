@@ -120,7 +120,7 @@ public class ListadoDeEventos extends JDialog {
 				}});
 			
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			String[] headers = {"Titulo del Evento","Codigo del Evento","Limite de Participantes","Lugar del Evento","Correo del Evento","Tipo de Evento","Fecha de Inicio","Fecha de cierre","Nombre de Comision"};			
+			String[] headers = {"Titulo del Evento","Codigo del Evento","Limite de Participantes","Lugar del Evento","Correo del Evento","Tipo de Evento","Fecha de Inicio","Fecha de Fin","Nombre de Comision"};			
 			model = new DefaultTableModel();
 			model.setColumnIdentifiers(headers);	
 			table.setModel(model);

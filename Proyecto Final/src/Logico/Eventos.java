@@ -13,8 +13,8 @@ public class Eventos {
 	private Comisiones comision;
 	private Recursos recursoUtilizados;
 	private String codigoDeEvento;
-	private Date fechaDeInicio;
-	private Date fechaDeCierre;
+	private int fechaDeInicio;
+	private int fechaDeCierre;
 	private String lugarDeEvento;
 	private Date fechaLimiteDeEntregaDeTrabajos;
 	private int horaDeEvento;
@@ -22,24 +22,23 @@ public class Eventos {
 	private String tipoDeEvento;
 	private String nombreDeComision;
 	public Eventos(String tituloDeEvento, Comisiones comision, Recursos recursoUtilizados, String codigoDeEvento,
-			String lugarDeEvento, int horaDeEvento, String correoDeEvento, int limiteDeParticipantes,String tipoDeEvento,String nombreDeComision) {
+			String lugarDeEvento, int fechaDeInicio, String correoDeEvento, int limiteDeParticipantes,String tipoDeEvento,String nombreDeComision, int fechaDeCierre) {
 		super();
 		this.tituloDeEvento = tituloDeEvento;
 		this.comision = comision;
 		this.recursoUtilizados = recursoUtilizados;
 		this.codigoDeEvento = codigoDeEvento;
 		this.lugarDeEvento = lugarDeEvento;
-		this.horaDeEvento = horaDeEvento;
+		this.fechaDeInicio = fechaDeInicio;
 		this.correoDeEvento = correoDeEvento;
 		this.limiteDeParticipantes = limiteDeParticipantes;
 		misParticipantes = new ArrayList<>();
 		misTrabajos = new ArrayList<>();
 		misJurados = new ArrayList<>();
-		this.fechaDeCierre = new Date();
-		this.fechaDeInicio = new Date();
 		this.fechaLimiteDeEntregaDeTrabajos = new Date();
 		this.tipoDeEvento = tipoDeEvento;
 		this.nombreDeComision = nombreDeComision;
+		this.fechaDeCierre = fechaDeCierre;
 
 	}
 
@@ -85,18 +84,7 @@ public class Eventos {
 	public void setCodigoDeEvento(String codigoDeEvento) {
 		this.codigoDeEvento = codigoDeEvento;
 	}
-	public Date getFechaDeInicio() {
-		return fechaDeInicio;
-	}
-	public void setFechaDeInicio(Date fechaDeInicio) {
-		this.fechaDeInicio = fechaDeInicio;
-	}
-	public Date getFechaDeCierre() {
-		return fechaDeCierre;
-	}
-	public void setFechaDeCierre(Date fechaDeCierre) {
-		this.fechaDeCierre = fechaDeCierre;
-	}
+	
 	public String getLugarDeEvento() {
 		return lugarDeEvento;
 	}
@@ -155,6 +143,22 @@ public class Eventos {
 
 	public void setNombreDeComision(String nombreDeComision) {
 		this.nombreDeComision = nombreDeComision;
+	}
+
+	public int getFechaDeCierre() {
+		return fechaDeCierre;
+	}
+
+	public void setFechaDeCierre(int fechaDeCierre) {
+		this.fechaDeCierre = fechaDeCierre;
+	}
+
+	public int getFechaDeInicio() {
+		return fechaDeInicio;
+	}
+
+	public void setFechaDeInicio(int fechaDeInicio) {
+		this.fechaDeInicio = fechaDeInicio;
 	}
 	
 } 

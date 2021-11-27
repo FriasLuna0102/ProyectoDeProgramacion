@@ -131,30 +131,17 @@ public class CrearEvento extends JDialog {
 		panel.add(lblNewLabel_1);
 
 		spnFechaDeFin = new JSpinner();
+		Date datee = new Date();
 		spnFechaDeFin.setForeground(new Color(0, 0, 0));
 		spnFechaDeFin.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		Date date = new Date();
-		spnFechaDeFin.setModel(new SpinnerDateModel(date,null,null,Calendar.DAY_OF_MONTH));
-		JSpinner.DateEditor de= new JSpinner.DateEditor(spnFechaDeFin, "dd/M/yyyy");
+		spnFechaDeFin.setModel(new SpinnerDateModel(new Date(1638021128669L), null, null, Calendar.YEAR));
+		JSpinner.DateEditor de= new JSpinner.DateEditor(spnFechaDeFin, "yyyy");
 		spnFechaDeFin.setEditor(de);
 		spnFechaDeFin.setBounds(771, 223, 109, 22);
 		panel.add(spnFechaDeFin);
 
-		JLabel lblNewLabel_5 = new JLabel("Fecha de Inscripci\u00F3n:");
-		lblNewLabel_5.setForeground(new Color(255, 255, 255));
-		lblNewLabel_5.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblNewLabel_5.setBounds(391, 187, 141, 16);
-		panel.add(lblNewLabel_5);
-
-		spnFechaDeInscripcion = new JSpinner();
-		spnFechaDeInscripcion.setForeground(new Color(0, 0, 0));
-		spnFechaDeInscripcion.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		Date dat = new Date();
-		spnFechaDeInscripcion.setModel(new SpinnerDateModel(dat,null,null,Calendar.DAY_OF_MONTH));
-		JSpinner.DateEditor d = new JSpinner.DateEditor(spnFechaDeInscripcion, "d/M/yyyy");
-		spnFechaDeInscripcion.setEditor(d);
-		spnFechaDeInscripcion.setBounds(533, 185, 109, 22);
-		panel.add(spnFechaDeInscripcion);
+		
+		
 
 		JLabel lblNewLabel_2 = new JLabel("L\u00EDmite de participantes:");
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));
@@ -196,11 +183,11 @@ public class CrearEvento extends JDialog {
 		panel.add(cbxTipoDeEventos);
 
 		spnFechaDeInicio = new JSpinner();
+		Date date = new Date();
 		spnFechaDeInicio.setForeground(new Color(0, 0, 0));
 		spnFechaDeInicio.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		Date dia = new Date();
-		spnFechaDeInicio.setModel(new SpinnerDateModel(dia,null,null,Calendar.DAY_OF_MONTH));
-		JSpinner.DateEditor di = new JSpinner.DateEditor(spnFechaDeInicio, "d/M/yyyy");
+		spnFechaDeInicio.setModel(new SpinnerDateModel(new Date(1638021128669L), null, null, Calendar.YEAR));
+		JSpinner.DateEditor di = new JSpinner.DateEditor(spnFechaDeInicio, "yyyy");
 		spnFechaDeInicio.setEditor(di);
 		spnFechaDeInicio.setBounds(533, 223, 109, 22);
 		panel.add(spnFechaDeInicio);
@@ -309,11 +296,20 @@ public class CrearEvento extends JDialog {
 			btnRegistrar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
+					
+					Date dateAuxx = (Date) spnFechaDeFin.getValue();
+					SimpleDateFormat dee = new SimpleDateFormat("yyyy");
+					String yearr = dee.format(dateAuxx);
+					
+					Date dateAuxxx = (Date) spnFechaDeInicio.getValue();
+					SimpleDateFormat deee = new SimpleDateFormat("yyyy");
+					String yearrr = deee.format(dateAuxxx);
+					
 					Comisiones comision = PUCMM.getInstance().buscarComisiones(txtNombreComision.getText());
 					Recursos recurso = PUCMM.getInstance().buscarRecursos(rdbtnSalones.getText().toString());
 					//	String salones = rdbtnSalones.getText().toString();
-					Eventos evento = new Eventos(txtTituloDelEvento.getText(), comision,recurso , txtCodigoDelEvento.getText(),txtPucmm.getText() , Integer.valueOf(spnFechaDeFin.getValue().toString()), txtCorreoDelEvento.getText(),Integer.valueOf(spnLimiteDeParticipantes.getValue().toString()),
-							cbxTipoDeEventos.getSelectedItem().toString(),txtNombreComision.getText());
+					Eventos evento = new Eventos(txtTituloDelEvento.getText(), comision,recurso , txtCodigoDelEvento.getText(),txtPucmm.getText() ,Integer.valueOf(yearrr) , txtCorreoDelEvento.getText(),Integer.valueOf(spnLimiteDeParticipantes.getValue().toString()),
+							cbxTipoDeEventos.getSelectedItem().toString(),txtNombreComision.getText(),Integer.valueOf(yearr));
 					if(evento.getCodigoDeEvento().length() != 0 && evento.getTituloDeEvento().length() != 0 )
 					{
 						PUCMM.getInstance().getMisEventos().add(evento);
@@ -357,11 +353,10 @@ public class CrearEvento extends JDialog {
 		txtNombreComision.setText("");
 		txtCodigoDelEvento.setText("");
 		cbxTipoDeEventos.setSelectedItem(0);
-		spnFechaDeFin.setValue(Integer.valueOf(0));
-		spnFechaDeInscripcion.setValue(Integer.valueOf(0));
+		spnFechaDeInicio.setValue(new Date());
+		spnFechaDeFin.setValue(new Date());
 		spnLimiteDeParticipantes.setValue(Integer.valueOf(0));
-		
-
+	
 	}
 }
 
