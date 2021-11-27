@@ -23,7 +23,7 @@ public class Participantes extends Personas {
 		Trabajos trabajo = new Trabajos(codigo, nombreTrabajo, tema);
 		misTrabajos.add(trabajo);
 		this.sexo = sexo;
-		
+		 
 	}
 
 	public String getMatricula() {

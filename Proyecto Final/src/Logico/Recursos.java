@@ -18,7 +18,7 @@ public class Recursos {
 	}
 	public void setCantDeRecursos(int cantDeRecursos) {
 		this.cantDeRecursos = cantDeRecursos;
-	}
+	} 
 	public boolean isDisponibilidad() {
 		return disponibilidad;
 	}

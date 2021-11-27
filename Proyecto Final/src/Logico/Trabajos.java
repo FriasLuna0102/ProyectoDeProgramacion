@@ -18,7 +18,7 @@ public class Trabajos {
 	}
 	public void setCodigo(String codigo) {
 		this.codigoDeTrabajo = codigo;
-	}
+	} 
 	public String getNombre() {
 		return nombre;
 	}

@@ -34,7 +34,7 @@ public class UsuarioJurados extends JDialog {
 			e.printStackTrace();
 		}
 	}
-
+ 
 	/**
 	 * Create the dialog.
 	 */

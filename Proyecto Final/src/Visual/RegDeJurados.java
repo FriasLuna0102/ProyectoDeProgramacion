@@ -23,7 +23,7 @@ public class RegDeJurados extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	} 
 
 	/**
 	 * Create the dialog.

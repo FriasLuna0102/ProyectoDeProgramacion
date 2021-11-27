@@ -117,7 +117,7 @@ public class ListadoDeParticipantes extends JDialog {
 			}
 			for (int i = 0; i<PUCMM.getInstance().getMisEventos().size(); i++) {
 				loadParticipantes(0,  PUCMM.getInstance().getMisEventos().get(i).getCodigoDeEvento());
-			}
+			} 
 		}
 
 	}

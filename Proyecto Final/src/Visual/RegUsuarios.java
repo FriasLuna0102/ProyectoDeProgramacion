@@ -33,7 +33,7 @@ public class RegUsuarios extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	} 
 
 	/**
 	 * Create the dialog.
