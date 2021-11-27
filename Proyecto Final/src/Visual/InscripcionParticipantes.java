@@ -302,7 +302,7 @@ public class InscripcionParticipantes extends JDialog {
 				btnRegistar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 							Participantes participantes = null;
-								 
+								  
 								participantes = new Participantes(txtNombre.getText(), txtDireccion.getText(), txtCedula.getText(), txtApellido.getText(), txtTelefono.getText(), txtCorreo.getText(), txtMatricula.getText(),txtLugarProveniente.getText(),										
 										txtCodigoDeParticipante.getText(),txtNombreDeTrabajo.getText(), null,Integer.valueOf(spnEdadDeParticipantes.getValue().toString()),txtCodigoDelEvento.getText(),txtGenero.getText());
 								Eventos evento = PUCMM.getInstance().buscarEvento(txtCodigoDelEvento.getText());

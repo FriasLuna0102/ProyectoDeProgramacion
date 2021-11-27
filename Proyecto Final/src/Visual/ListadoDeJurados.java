@@ -41,7 +41,7 @@ public class ListadoDeJurados extends JDialog {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		try { 
+		try {  
 			ListadoDeJurados dialog = new ListadoDeJurados();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);

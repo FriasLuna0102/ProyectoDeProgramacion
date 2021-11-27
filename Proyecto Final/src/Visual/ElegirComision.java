@@ -35,7 +35,7 @@ public class ElegirComision extends JDialog {
 	}
 
 	/**
-	 * Create the dialog. 
+	 * Create the dialog.  
 	 */
 	public ElegirComision() {
 		setTitle("Comisiones");

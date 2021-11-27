@@ -171,7 +171,7 @@ public class PlantillaPrincipal extends JFrame {
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_1.setFont(new Font("Bodoni MT Condensed", Font.PLAIN, 67));
 		lblNewLabel_1.setBounds(464, 37, 553, 69); 
-		panel.add(lblNewLabel_1); 
+		panel.add(lblNewLabel_1);  
 		
 		JLabel lblNewLabel_2 = new JLabel("Campus Santiago");
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));

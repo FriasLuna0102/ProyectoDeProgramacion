@@ -146,7 +146,7 @@ public class ListadoDeEventos extends JDialog {
 							btnSuspender.setEnabled(false);
 							selected = null;
 						}
-					} 
+					}  
 				});
 				btnSuspender.setActionCommand("OK");
 				buttonPane.add(btnSuspender);
