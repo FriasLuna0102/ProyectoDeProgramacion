@@ -53,7 +53,7 @@ public class CrearEvento extends JDialog {
 	private JRadioButton rdbtnLuces;
 	private JRadioButton rdbtnSalones;
 
-	/** 
+	/**  
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
