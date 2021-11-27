@@ -93,7 +93,7 @@ public class ListadoDeParticipantes extends JDialog {
 			});
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			String[] headers = {"Nombre","Apellido","Matricula","Edad","Cédula","Teléfono","Lugar Proveniente","Dirrecion","Correo Electronico","Codigo del evento",
-					"Genero","Trabajos"};			
+					"Genero","Nombre de Trabajos"};			
 			model = new DefaultTableModel();
 			model.setColumnIdentifiers(headers);	
 			table.setModel(model);
