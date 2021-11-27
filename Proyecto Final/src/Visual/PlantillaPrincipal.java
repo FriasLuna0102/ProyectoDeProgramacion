@@ -18,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import java.awt.Toolkit;
 
 public class PlantillaPrincipal extends JFrame {
 
@@ -46,6 +47,7 @@ public class PlantillaPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public PlantillaPrincipal() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Starl\\Downloads\\WhatsApp Image 2021-11-25 at 3.50.46 PM.jpeg"));
 		setBackground(new Color(169, 169, 169));
 		dim = getToolkit().getScreenSize();
 		setResizable(false);
@@ -89,7 +91,7 @@ public class PlantillaPrincipal extends JFrame {
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Listado de Jurados");
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PlantillaJurados jurados = new PlantillaJurados();
+				ListadoDeJurados jurados = new ListadoDeJurados();
 				jurados.setModal(true);
 				jurados.setVisible(true);
 			}
@@ -225,15 +227,9 @@ public class PlantillaPrincipal extends JFrame {
 		lblNewLabel_10.setBounds(434, 320, 583, 14);
 		panel.add(lblNewLabel_10);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setIcon(new ImageIcon("C:\\Users\\natas\\Desktop\\pucmm-logo.jpg"));
-		btnNewButton.setSelectedIcon(new ImageIcon("C:\\Users\\natas\\Desktop\\pucmm.jpg"));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton.setBackground(new Color(0, 153, 153));
-		btnNewButton.setBounds(125, 11, 254, 240);
-		panel.add(btnNewButton);
+		JLabel lblNewLabel_11 = new JLabel("");
+		lblNewLabel_11.setIcon(new ImageIcon("C:\\Users\\Starl\\Downloads\\WhatsApp Image 2021-11-25 at 3.50.46 PM (1).jpeg"));
+		lblNewLabel_11.setBounds(78, 26, 320, 216);
+		panel.add(lblNewLabel_11);
 	} 
 }

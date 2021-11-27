@@ -83,8 +83,8 @@ public class ListadoDeParticipantes extends JDialog {
 			table.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					int aux =-1;
-					 aux = table.getSelectedRow();
+					
+					int aux = table.getSelectedRow();
 					if(aux != -1) {
 						String participantes = (String) table.getValueAt(aux, 0);
 						selected = PUCMM.getInstance().buscarParticipantes(participantes, participantes);
@@ -114,37 +114,34 @@ public class ListadoDeParticipantes extends JDialog {
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
-			loadParticipantes(0,  "");
+			for (int i = 0; i<PUCMM.getInstance().getMisEventos().size(); i++) {
+				loadParticipantes(0,  PUCMM.getInstance().getMisEventos().get(i).getCodigoDeEvento());
+			}
 		}
 
 	}
+	
 	public static void loadParticipantes(int select, String codigoEvento) {
-		
-		//if(evento != null) {
-			//model.setRowCount(0);
-			//rows = new Object[model.getColumnCount()];
-			//switch (select) {
-			//case 0:
 		model.setRowCount(0);
 		rows = new Object[model.getColumnCount()];
 		Eventos evento = PUCMM.getInstance().buscarEvento(codigoEvento);
 		if(evento != null) {
-				for (int i = 0; i < evento.getMisParticipantes().size(); i++) {
-					rows[0] = evento.getMisParticipantes().get(i).getApellido();
-					rows[1] = evento.getMisParticipantes().get(i).getCedula();
-					rows[2] = evento.getMisParticipantes().get(i).getNombre();
-					rows[3] = evento.getMisParticipantes().get(i).getMatricula();
-					rows[4] = evento.getMisParticipantes().get(i).getEdadParticipante();
-					rows[5] = evento.getMisParticipantes().get(i).getTelefono();
-					model.addRow(rows);		     
-
-				}
-				
-		}
+			for (int i = 0; i < evento.getMisParticipantes().size(); i++) {
+				rows[0] = evento.getMisParticipantes().get(i).getApellido();
+				rows[1] = evento.getMisParticipantes().get(i).getCedula();
+				rows[2] = evento.getMisParticipantes().get(i).getNombre();
+				rows[3] = evento.getMisParticipantes().get(i).getMatricula();
+				rows[4] = evento.getMisParticipantes().get(i).getEdadParticipante();
+				rows[5] = evento.getMisParticipantes().get(i).getTelefono();
+				model.addRow(rows);		     
 
 			}
+			
+		}
 
-		
 	}
-	
+
+
+}
+
 

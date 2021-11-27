@@ -1,12 +1,23 @@
 package Logico;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 
-public class PUCMM {
+
+public class PUCMM implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/*Para logearme
+	private ArrayList<Usuarios> misUsuarios;
+	private static Usuarios loginUsuario;
+	*/	
 	private ArrayList<Personas> misPersonas;
 	private ArrayList<Trabajos> misTrabajos;
 	private ArrayList<Recursos> misRecursos;
@@ -24,6 +35,7 @@ public class PUCMM {
 		misRecursos = new ArrayList<>();
 		misEventos = new ArrayList<>();
 		misComisiones = new ArrayList<>();
+		//misUsuarios = new ArrayList<>(); 
 		generadorDeCodigo = 1;
 
 	}
@@ -284,8 +296,7 @@ public class PUCMM {
 		}
 		return participante;
 	}
-
-
+ 	
 	//Metodo para buscar los jurados mediante el area de conocimiento que estos tienen. Verifiacada
 	public Jurado buscarJuradoPorAreaDeConocimiento(String areaDeConocimiento) {
 		Jurado jurado = null;
@@ -384,6 +395,32 @@ public class PUCMM {
 		return event;
 
 	}
+	
+	public ArrayList<Participantes> retornarParti(String codigoDelEvento){
+		Eventos evento = buscarEvento(codigoDelEvento);
+		Participantes participante = null;
+		if(evento != null) {
+			for(int i = 0; i<evento.getMisParticipantes().size(); i++) {
+				participante = evento.getMisParticipantes().get(i);
+				if(participante != null) {
+					i++;
+				}
+			}
+		}
+		return evento.getMisParticipantes();
+		
+	}
+	/*
+	public boolean confirmarLogin(String texto1, String texto2) {
+		boolean login = false;
+		for (Usuarios usuarios : misUsuarios) {
+			if(Usuario.getNombreDeUsuario.equals(texto1) && user.getPass().equals(texto2)) {
+				loginUsuario = usuarios;
+				login = true;
+			}
+		}
+	}*/
+		
 }
 
 
