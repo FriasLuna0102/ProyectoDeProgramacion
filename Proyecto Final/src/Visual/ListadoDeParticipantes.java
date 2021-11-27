@@ -92,7 +92,8 @@ public class ListadoDeParticipantes extends JDialog {
 				}
 			});
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			String[] headers = {"Nombre","Apellido","Matricula","Edad","Cédula","Teléfono"};			
+			String[] headers = {"Nombre","Apellido","Matricula","Edad","Cédula","Teléfono","Lugar Proveniente","Dirrecion","Correo Electronico","Codigo del evento",
+					"Genero","Trabajos"};			
 			model = new DefaultTableModel();
 			model.setColumnIdentifiers(headers);	
 			table.setModel(model);
@@ -105,7 +106,7 @@ public class ListadoDeParticipantes extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton cancelButton = new JButton("Cancelar");
+				JButton cancelButton = new JButton("Cerrar\r\n");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						dispose();
@@ -127,12 +128,20 @@ public class ListadoDeParticipantes extends JDialog {
 		Eventos evento = PUCMM.getInstance().buscarEvento(codigoEvento);
 		if(evento != null) {
 			for (int i = 0; i < evento.getMisParticipantes().size(); i++) {
-				rows[0] = evento.getMisParticipantes().get(i).getApellido();
-				rows[1] = evento.getMisParticipantes().get(i).getCedula();
-				rows[2] = evento.getMisParticipantes().get(i).getNombre();
-				rows[3] = evento.getMisParticipantes().get(i).getMatricula();
-				rows[4] = evento.getMisParticipantes().get(i).getEdadParticipante();
-				rows[5] = evento.getMisParticipantes().get(i).getTelefono();
+				rows[0] = evento.getMisParticipantes().get(i).getNombre();
+				rows[1] = evento.getMisParticipantes().get(i).getApellido();
+				rows[2] = evento.getMisParticipantes().get(i).getMatricula();
+				rows[3] = evento.getMisParticipantes().get(i).getEdadParticipante();
+				rows[4] = evento.getMisParticipantes().get(i).getCedula();
+				rows[5] = evento.getMisParticipantes().get(i).getDireccion();
+				rows[6] = evento.getMisParticipantes().get(i).getInstitucionProveniente();
+				rows[7] = evento.getMisParticipantes().get(i).getTelefono();
+				rows[8] = evento.getMisParticipantes().get(i).getCorreo();
+				rows[9] = evento.getMisParticipantes().get(i).getCodigoDeEvento();
+				rows[10] = evento.getMisParticipantes().get(i).getSexo();
+				for(int j = 0; j<evento.getMisParticipantes().size(); j++) {
+					rows[11] = evento.getMisParticipantes().get(j).getMisTrabajos().get(i).getNombre();
+				}				
 				model.addRow(rows);		     
 
 			}

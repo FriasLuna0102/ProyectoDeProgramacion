@@ -9,10 +9,11 @@ public class Participantes extends Personas {
 	private ArrayList<Trabajos> misTrabajos;
 	private int edadParticipante;
 	private String codigoDeEvento;
+	private String sexo;
 
 	public Participantes(String nombre, String direccion, String cedula, String apellido, String telefono,
 			String correo, String matricula,String institucionesProvenientes,
-			String codigo, String nombreTrabajo,String tema, int edadParticipante,String codigoDeEvento) {
+			String codigo, String nombreTrabajo,String tema, int edadParticipante,String codigoDeEvento,String sexo) {
 		super(nombre, direccion, cedula, apellido, telefono, correo);
 		this.Matricula = matricula;
 		this.edadParticipante = edadParticipante;
@@ -21,6 +22,7 @@ public class Participantes extends Personas {
 		misTrabajos = new ArrayList<>();
 		Trabajos trabajo = new Trabajos(codigo, nombreTrabajo, tema);
 		misTrabajos.add(trabajo);
+		this.sexo = sexo;
 		
 	}
 
@@ -62,6 +64,14 @@ public class Participantes extends Personas {
 
 	public void setCodigoDeEvento(String codigoDeEvento) {
 		this.codigoDeEvento = codigoDeEvento;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
 	}
 
 	

@@ -14,6 +14,7 @@ import Logico.Eventos;
 import Logico.PUCMM;
 import Logico.Participantes;
 import Logico.Personas;
+import Logico.Trabajos;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -37,9 +38,6 @@ public class InscripcionParticipantes extends JDialog {
 	private JTextField txtTelefono;
 	private JRadioButton rdbtnEstudiante;
 	private JRadioButton rdbtnVisitante;
-	private JRadioButton rdbtnMujer;
-	private JRadioButton rdbtnHombre;
-	private JRadioButton rdbtnOtro;
 	private JPanel PanelParticipantes;
 	private JPanel PanelGenero;
 	private JButton btnRegistar;
@@ -52,6 +50,7 @@ public class InscripcionParticipantes extends JDialog {
 	private JTextField txtCodigoDeParticipante;
 	private JLabel lblNewLabel_7;
 	private JTextField txtNombreDeTrabajo;
+	private JTextField txtSexo;
 	private JLabel lblNewLabel_8;
 	private JSpinner spnEdadDeParticipantes;
 	private JLabel lblNewLabel_9;
@@ -60,6 +59,8 @@ public class InscripcionParticipantes extends JDialog {
 	private JPanel panel_1;
 	private JPanel panel_2;
 	private JLabel label_2;
+	private JTextField txtGenero;
+	private static String codeTrabaj;
 
 	/**
 	 * Launch the application.
@@ -233,50 +234,13 @@ public class InscripcionParticipantes extends JDialog {
 						
 								JLabel label_1 = new JLabel("G\u00E9nero:");
 								label_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-								label_1.setBounds(517, 11, 256, 14);
+								label_1.setBounds(581, 13, 256, 14);
 								PanelGenero.add(label_1);
 								
-										rdbtnMujer = new JRadioButton("Mujer");
-										rdbtnMujer.addActionListener(new ActionListener() {
-											public void actionPerformed(ActionEvent e) {
-												PanelGenero.setVisible(true);
-												rdbtnMujer.setSelected(true);
-												rdbtnHombre.setSelected(false);
-												rdbtnOtro.setSelected(false);
-
-											}
-										});
-										rdbtnMujer.setSelected(true);
-										rdbtnMujer.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-										rdbtnMujer.setBounds(517, 55, 66, 23);
-										PanelGenero.add(rdbtnMujer);
-										
-												rdbtnHombre = new JRadioButton("Hombre");
-												rdbtnHombre.addActionListener(new ActionListener() {
-													public void actionPerformed(ActionEvent e) {
-														PanelGenero.setVisible(true);
-														rdbtnMujer.setSelected(false);
-														rdbtnHombre.setSelected(true);
-														rdbtnOtro.setSelected(false);
-
-													}
-												});
-												rdbtnHombre.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-												rdbtnHombre.setBounds(623, 55, 94, 23);
-												PanelGenero.add(rdbtnHombre);
-												
-														rdbtnOtro = new JRadioButton("Otro");
-														rdbtnOtro.addActionListener(new ActionListener() {
-															public void actionPerformed(ActionEvent e) {
-																PanelGenero.setVisible(true);
-																rdbtnMujer.setSelected(false);
-																rdbtnHombre.setSelected(false);
-																rdbtnOtro.setSelected(true);
-															}
-														});
-														rdbtnOtro.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-														rdbtnOtro.setBounds(733, 55, 66, 23);
-														PanelGenero.add(rdbtnOtro);
+								txtGenero = new JTextField();
+								txtGenero.setBounds(504, 40, 215, 22);
+								PanelGenero.add(txtGenero);
+								txtGenero.setColumns(10);
 																						
 																								PanelParticipantes = new JPanel();
 																								PanelParticipantes.setBounds(10, 11, 1310, 83);
@@ -338,21 +302,25 @@ public class InscripcionParticipantes extends JDialog {
 				btnRegistar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 							Participantes participantes = null;
-							
+								
 								participantes = new Participantes(txtNombre.getText(), txtDireccion.getText(), txtCedula.getText(), txtApellido.getText(), txtTelefono.getText(), txtCorreo.getText(), txtMatricula.getText(),txtLugarProveniente.getText(),										
-										txtCodigoDeParticipante.getText(),txtNombreDeTrabajo.getText(), null,Integer.valueOf(spnEdadDeParticipantes.getValue().toString()),txtCodigoDelEvento.getText());
+										txtCodigoDeParticipante.getText(),txtNombreDeTrabajo.getText(), null,Integer.valueOf(spnEdadDeParticipantes.getValue().toString()),txtCodigoDelEvento.getText(),txtGenero.getText());
 								Eventos evento = PUCMM.getInstance().buscarEvento(txtCodigoDelEvento.getText());
-								if(evento != null) {
-									PUCMM.getInstance().addParticipante(txtCedula.getText(),participantes);
+								
+								if(evento != null && Integer.valueOf(spnEdadDeParticipantes.getValue().toString()) >= 18 && Integer.valueOf(spnEdadDeParticipantes.getValue().toString()) <= 40
+										&& txtGenero.getText().length() != 0) {
+									PUCMM.getInstance().addParticipante(txtCodigoDelEvento.getText(),participantes);
+									Trabajos trabajos = new Trabajos(txtMatricula.getText(), txtNombreDeTrabajo.getText(), null);
+									participantes.getMisTrabajos().add(trabajos);
 									JOptionPane.showMessageDialog(null, "Registro Satifactorio", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-									i++;
 									clean();
-								}else {									
-									JOptionPane.showMessageDialog(null, "Este evento con codigo: "+ txtCodigoDelEvento.getText()+ " no existe. No puedes registrarte.");
-									clean();
-
+								}else if(Integer.valueOf(spnEdadDeParticipantes.getValue().toString()) < 18 || Integer.valueOf(spnEdadDeParticipantes.getValue().toString()) > 40 ) {	
+									JOptionPane.showMessageDialog(null, "Su edad no cumple los requisitos. Debes ser mayor de 18 y menor de 41.");			
+								}else {
+									JOptionPane.showMessageDialog(null, "Es posible que este evento con codigo: "+ txtCodigoDelEvento.getText()+ " no exista, O intenta llenar todos los campos"
+											+ " de manera correspondiente.");
 								}
-																								
+																															
 					}
 				});
 				btnRegistar.setActionCommand("OK");
@@ -384,5 +352,6 @@ public class InscripcionParticipantes extends JDialog {
 		txtNombreDeTrabajo.setText("");
 		spnEdadDeParticipantes.setValue(Integer.valueOf(0));
 		txtCodigoDelEvento.setText("");
+		txtGenero.setText("");
 	}
 }

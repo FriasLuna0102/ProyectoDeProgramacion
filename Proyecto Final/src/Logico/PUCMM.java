@@ -98,7 +98,9 @@ public class PUCMM implements Serializable {
 		Eventos event = buscarEvento(codigoDeEvento);
 
 		if(event != null) {
-			event.getMisParticipantes().add(participantes);
+			//event.getMisParticipantes().add(participantes);
+			event.getMisParticipantes().add(cant, participantes);
+			cant++;
 			generadorDeCodigo++;
 		}
 
@@ -109,7 +111,7 @@ public class PUCMM implements Serializable {
 
 		if(event != null) {
 			event.getMisJurados().add(jurado);
-			generadorDeCodigo++;
+			//generadorDeCodigo++;
 		}
 
 	}
