@@ -17,7 +17,7 @@ public class Jurado extends Personas {
 		this.recomendacion = recomendacion;
 		this.lugarDeRecomendacion = lugarDeRecomendacion;
 	}
-
+ 
 	public String getAreaDeConocimiento() {
 		return areaDeConocimiento;
 	}

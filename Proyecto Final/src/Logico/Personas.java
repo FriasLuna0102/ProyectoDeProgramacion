@@ -21,7 +21,7 @@ public class Personas {
 		return nombre;
 	}
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		this.nombre = nombre; 
 	}
 	public String getDireccion() {
 		return direccion;
