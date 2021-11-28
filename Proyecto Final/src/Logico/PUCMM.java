@@ -98,9 +98,9 @@ public class PUCMM implements Serializable {
 		Eventos event = buscarEvento(codigoDeEvento);
 
 		if(event != null) {
-			//event.getMisParticipantes().add(participantes);
-			event.getMisParticipantes().add(cant, participantes);
-			cant++;
+			event.getMisParticipantes().add(participantes);
+			//event.getMisParticipantes().add(cant, participantes);
+			//cant++;
 			generadorDeCodigo++;
 		}
 
@@ -120,7 +120,10 @@ public class PUCMM implements Serializable {
 	public void addTrabajosAMisTrabajosEnEventos(String codigoDelEvento, Trabajos trabajo) {
 		Eventos evento = buscarEvento(codigoDelEvento);
 		if(evento != null) {
-			evento.getMisTrabajos().add(trabajo);
+			for(int i = 0; i<evento.getMisTrabajos().size(); i++) {
+				evento.getMisTrabajos().add(trabajo);
+			}
+			
 		}
 	}
 

@@ -26,6 +26,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import java.awt.Color;
+import javax.swing.DefaultComboBoxModel;
 
 public class InscripcionParticipantes extends JDialog {
 
@@ -59,8 +60,8 @@ public class InscripcionParticipantes extends JDialog {
 	private JPanel panel_1;
 	private JPanel panel_2;
 	private JLabel label_2;
-	private JTextField txtGenero;
 	private static String codeTrabaj;
+	private JComboBox cbxGenero;
 
 	/**
 	 * Launch the application.
@@ -237,10 +238,10 @@ public class InscripcionParticipantes extends JDialog {
 								label_1.setBounds(581, 13, 256, 14);
 								PanelGenero.add(label_1);
 								
-								txtGenero = new JTextField();
-								txtGenero.setBounds(504, 40, 215, 22);
-								PanelGenero.add(txtGenero);
-								txtGenero.setColumns(10);
+								cbxGenero = new JComboBox();
+								cbxGenero.setModel(new DefaultComboBoxModel(new String[] {"<<Selecciones>>", "Hombre", "Mujer", "Otro"}));
+								cbxGenero.setBounds(496, 40, 227, 22);
+								PanelGenero.add(cbxGenero);
 																						
 																								PanelParticipantes = new JPanel();
 																								PanelParticipantes.setBounds(10, 11, 1310, 83);
@@ -304,14 +305,14 @@ public class InscripcionParticipantes extends JDialog {
 							Participantes participantes = null;
 								  
 								participantes = new Participantes(txtNombre.getText(), txtDireccion.getText(), txtCedula.getText(), txtApellido.getText(), txtTelefono.getText(), txtCorreo.getText(), txtMatricula.getText(),txtLugarProveniente.getText(),										
-										txtCodigoDeParticipante.getText(),txtNombreDeTrabajo.getText(), null,Integer.valueOf(spnEdadDeParticipantes.getValue().toString()),txtCodigoDelEvento.getText(),txtGenero.getText());
+										txtCodigoDeParticipante.getText(),txtNombreDeTrabajo.getText(), null,Integer.valueOf(spnEdadDeParticipantes.getValue().toString()),txtCodigoDelEvento.getText(),cbxGenero.getSelectedItem().toString());
 								Eventos evento = PUCMM.getInstance().buscarEvento(txtCodigoDelEvento.getText());
 								
-								if(evento != null && Integer.valueOf(spnEdadDeParticipantes.getValue().toString()) >= 18 && Integer.valueOf(spnEdadDeParticipantes.getValue().toString()) <= 40
-										&& txtGenero.getText().length() != 0) {
+								if(evento != null && Integer.valueOf(spnEdadDeParticipantes.getValue().toString()) >= 18 && Integer.valueOf(spnEdadDeParticipantes.getValue().toString()) <= 40) {
 									PUCMM.getInstance().addParticipante(txtCodigoDelEvento.getText(),participantes);
 									Trabajos trabajos = new Trabajos(txtMatricula.getText(), txtNombreDeTrabajo.getText(), null);
-									participantes.getMisTrabajos().add(trabajos);
+									//participantes.getMisTrabajos().add(trabajos);
+									PUCMM.getInstance().addTrabajosAMisTrabajosEnEventos(txtCodigoDelEvento.getText(), trabajos);
 									JOptionPane.showMessageDialog(null, "Registro Satifactorio", "Informacion", JOptionPane.INFORMATION_MESSAGE);
 									clean();
 								}else if(Integer.valueOf(spnEdadDeParticipantes.getValue().toString()) < 18 || Integer.valueOf(spnEdadDeParticipantes.getValue().toString()) > 40 ) {	
@@ -352,6 +353,6 @@ public class InscripcionParticipantes extends JDialog {
 		txtNombreDeTrabajo.setText("");
 		spnEdadDeParticipantes.setValue(Integer.valueOf(0));
 		txtCodigoDelEvento.setText("");
-		txtGenero.setText("");
+		cbxGenero.setSelectedIndex(0);
 	}
 }
