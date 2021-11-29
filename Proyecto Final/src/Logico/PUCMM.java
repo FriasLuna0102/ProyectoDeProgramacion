@@ -14,10 +14,10 @@ public class PUCMM implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	/*Para logearme
-	private ArrayList<Usuarios> misUsuarios;
-	private static Usuarios loginUsuario;
-	*/	
+//	Para logearme
+	private ArrayList<Usuario> misUsuarios;
+	private static Usuario loginUsuario;
+		
 	private ArrayList<Personas> misPersonas;
 	private ArrayList<Trabajos> misTrabajos;
 	private ArrayList<Recursos> misRecursos;
@@ -415,16 +415,17 @@ public class PUCMM implements Serializable {
 		return evento.getMisParticipantes();
 		
 	}
-	/*
+	
 	public boolean confirmarLogin(String texto1, String texto2) {
 		boolean login = false;
-		for (Usuarios usuarios : misUsuarios) {
-			if(Usuario.getNombreDeUsuario.equals(texto1) && user.getPass().equals(texto2)) {
+		for (Usuario usuarios : misUsuarios) {
+			if(usuarios.getUserName().equals(texto1) && usuarios.getPass().equals(texto2)) {
 				loginUsuario = usuarios;
 				login = true;
 			}
 		}
-	}*/
+		return login;
+	}
 		
 }
 

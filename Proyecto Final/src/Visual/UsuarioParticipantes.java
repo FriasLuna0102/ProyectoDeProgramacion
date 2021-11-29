@@ -13,6 +13,9 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.Font;
 import javax.swing.border.TitledBorder;
+
+import com.sun.javafx.event.EventQueue;
+
 import java.awt.Color;
 
 public class UsuarioParticipantes extends JDialog {
