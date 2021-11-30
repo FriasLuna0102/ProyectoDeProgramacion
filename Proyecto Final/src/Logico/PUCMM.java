@@ -44,7 +44,7 @@ public class PUCMM implements Serializable {
 		if(alma == null) {
 			alma = new PUCMM();
 		}
-		return alma;
+		return alma; 
 	}
 
 	public ArrayList<Personas> getMisPersonas() {
