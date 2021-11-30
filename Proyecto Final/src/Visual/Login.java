@@ -49,7 +49,7 @@ public class Login extends JDialog {
 						empresa2 = new  FileOutputStream("empresa.dat");
 						empresaWrite = new ObjectOutputStream(empresa2);
 						Usuario aux = new Usuario("Administrador", "Admin", "Admin");
-						//PUCMM.getInstance().(aux);
+					//	PUCMM.getInstance().Re
 						empresaWrite.writeObject(PUCMM.getInstance());
 						empresa2.close();
 						empresaWrite.close();

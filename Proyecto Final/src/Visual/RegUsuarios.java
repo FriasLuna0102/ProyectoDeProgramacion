@@ -101,7 +101,7 @@ public class RegUsuarios extends JDialog {
 						Usuario user = new Usuario(comboBox.getSelectedItem().toString(), txtNombreUsuario.getText(),txtContraseña.getText());
 						//PUCMM.getInstance().
 					}
-				});
+				}); 
 				btnRegistrar.setActionCommand("OK");
 				buttonPane.add(btnRegistrar);
 				getRootPane().setDefaultButton(btnRegistrar);
