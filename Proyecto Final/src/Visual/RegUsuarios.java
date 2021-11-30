@@ -8,6 +8,10 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+
+import Logico.PUCMM;
+import Logico.Usuario;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -19,7 +23,7 @@ public class RegUsuarios extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtNombreUsuario;
-	private JTextField textField;
+	private JTextField txtContraseña;
 	private JTextField textField_1;
 
 	/**
@@ -64,10 +68,10 @@ public class RegUsuarios extends JDialog {
 		lblNewLabel_1.setBounds(12, 79, 116, 16);
 		panel.add(lblNewLabel_1);
 		
-		textField = new JTextField();
-		textField.setBounds(12, 118, 116, 22);
-		panel.add(textField);
-		textField.setColumns(10);
+		txtContraseña = new JTextField();
+		txtContraseña.setBounds(12, 118, 116, 22);
+		panel.add(txtContraseña);
+		txtContraseña.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Tipo de Usuario:");
 		lblNewLabel_2.setBounds(223, 13, 116, 16);
@@ -94,6 +98,8 @@ public class RegUsuarios extends JDialog {
 				JButton btnRegistrar = new JButton("Registrarme");
 				btnRegistrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						Usuario user = new Usuario(comboBox.getSelectedItem().toString(), txtNombreUsuario.getText(),txtContraseña.getText());
+						//PUCMM.getInstance().
 					}
 				});
 				btnRegistrar.setActionCommand("OK");
