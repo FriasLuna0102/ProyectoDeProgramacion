@@ -7,17 +7,16 @@ import javax.swing.JOptionPane;
 
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
-
-
 public class PUCMM implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 //	Para logearme
-	private ArrayList<Usuario> misUsuarios;
-	private static Usuario loginUsuario;
-		
+	private ArrayList<User> misUsers;	
+	private static User loginUser;
+
+	
 	private ArrayList<Personas> misPersonas;
 	private ArrayList<Trabajos> misTrabajos;
 	private ArrayList<Recursos> misRecursos;
@@ -35,7 +34,7 @@ public class PUCMM implements Serializable {
 		misRecursos = new ArrayList<>();
 		misEventos = new ArrayList<>();
 		misComisiones = new ArrayList<>();
-		//misUsuarios = new ArrayList<>(); 
+		misUsers = new ArrayList<>(); 
 		generadorDeCodigo = 1;
 
 	}
@@ -77,6 +76,55 @@ public class PUCMM implements Serializable {
 	public void setMisComisiones(ArrayList<Comisiones> misComisiones) {
 		this.misComisiones = misComisiones;
 	}
+	
+	///////////////////////////////////////////////////////////De Logearme
+	
+	public ArrayList<User> getMisUsers() {
+		return misUsers;
+	}
+
+	public void setMisUsers(ArrayList<User> misUsers) {
+		this.misUsers = misUsers;
+	}
+
+	public static User getLoginUser() {
+		return loginUser;
+	}
+
+	public static void setLoginUser(User loginUser) {
+		PUCMM.loginUser = loginUser;
+	}
+
+	public static PUCMM getAlma() {
+		return alma;
+	}
+
+	public static void setAlma(PUCMM alma) {
+		PUCMM.alma = alma;
+	}
+
+	public int getGeneradorDeCodigo() {
+		return generadorDeCodigo;
+	}
+
+	public void setGeneradorDeCodigo(int generadorDeCodigo) {
+		this.generadorDeCodigo = generadorDeCodigo;
+	}
+
+	public static int getCant() {
+		return cant;
+	}
+
+	public static void setCant(int cant) {
+		PUCMM.cant = cant;
+	}
+	
+	public void regUser(User user) {
+		misUsers.add(user);
+		
+	}
+
+	/////////////////////////////////////////////////////////
 
 	//Funcion para agregar Comisiones al arreglo misComisiones. Verificado.
 	public void addComisiones (Comisiones comision) {
@@ -418,9 +466,9 @@ public class PUCMM implements Serializable {
 	
 	public boolean confirmarLogin(String texto1, String texto2) {
 		boolean login = false;
-		for (Usuario usuarios : misUsuarios) {
+		for (User usuarios : misUsers) {
 			if(usuarios.getUserName().equals(texto1) && usuarios.getPass().equals(texto2)) {
-				loginUsuario = usuarios;
+				loginUser = usuarios;
 				login = true;
 			}
 		}
