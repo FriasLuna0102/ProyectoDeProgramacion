@@ -29,6 +29,7 @@ public class UsuarioParticipantes extends JDialog {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
 		try {
 			UsuarioParticipantes dialog = new UsuarioParticipantes();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
