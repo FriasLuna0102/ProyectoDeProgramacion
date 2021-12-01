@@ -1,6 +1,7 @@
 package Visual;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
@@ -27,10 +28,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.Font;
+import java.awt.Color;
 
 public class ListadoDeEventos extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	private Dimension dim;
 	private JTable table;
 	private Eventos selected = null;
 	private static Object[] rows;
@@ -64,25 +68,35 @@ public class ListadoDeEventos extends JDialog {
 		setModal(true);
 		setResizable(false);
 		setBounds(100, 100, 1136, 612);
+		dim = getToolkit().getScreenSize();
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(0, 51, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setSize(dim.width, dim.height-40);
+		setLocationRelativeTo(null);
 
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
 			panel = new JPanel();
+			panel.setBackground(new Color(0, 51, 255));
 			panel.setBorder(new TitledBorder(null, "Listado de Eventos:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			panel.setBounds(0, 0, 1118, 530);
+			panel.setBounds(0, 0, 1350, 655);
 			contentPanel.add(panel);
 			panel.setLayout(null);
 
 
 			lblNewLabel = new JLabel("Filtro:");
-			lblNewLabel.setBounds(358, 24, 101, 16);
+			lblNewLabel.setForeground(new Color(255, 255, 255));
+			lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 12));
+			lblNewLabel.setBounds(624, 24, 101, 16);
 			panel.add(lblNewLabel);
 
 
 			cbxTipodeEventos = new JComboBox();
+			cbxTipodeEventos.setBackground(new Color(255, 255, 255));
+			cbxTipodeEventos.setForeground(new Color(0, 0, 0));
+			cbxTipodeEventos.setFont(new Font("Times New Roman", Font.BOLD, 12));
 			cbxTipodeEventos.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					int selection = cbxTipodeEventos.getSelectedIndex();
@@ -90,18 +104,18 @@ public class ListadoDeEventos extends JDialog {
 				}
 			});
 			cbxTipodeEventos.setModel(new DefaultComboBoxModel(new String[] {"<<Todos>>", "\t\t\t\t\t\tCientifico", "\t\t\t\t\t\tMesa Redonda", "\t\t\t\t\t\tConferencia", "\t\t\t\t\t\tDeportivo", "\t\t\t\t\t\tDiscurso Motivacional", "\t\t\t\t\t\tVideoJuegos", "\t\t\t\t\t\tOtro..."}));
-			cbxTipodeEventos.setBounds(189, 53, 428, 22);
+			cbxTipodeEventos.setBounds(461, 53, 428, 22);
 			panel.add(cbxTipodeEventos);
 
 
 
 			panel_1 = new JPanel();
-			panel_1.setBounds(12, 117, 1082, 400);
+			panel_1.setBounds(12, 117, 1328, 527);
 			panel.add(panel_1);
 			panel_1.setLayout(null);
 
 			scrollPane = new JScrollPane();
-			scrollPane.setBounds(0, 0, 1082, 400);
+			scrollPane.setBounds(0, 0, 1328, 527);
 			panel_1.add(scrollPane);
 
 
@@ -131,6 +145,7 @@ public class ListadoDeEventos extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(0, 51, 255));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{

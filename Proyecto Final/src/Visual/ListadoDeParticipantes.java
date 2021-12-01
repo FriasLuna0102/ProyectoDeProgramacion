@@ -22,6 +22,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class ListadoDeParticipantes extends JDialog {
 
@@ -57,7 +58,8 @@ public class ListadoDeParticipantes extends JDialog {
 		setBounds(100, 100, 511, 399);
 		dim = getToolkit().getScreenSize();
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPanel.setBackground(new Color(0, 51, 255));
+		contentPanel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		setSize(dim.width, dim.height-40);
 		setLocationRelativeTo(null);
 
@@ -65,13 +67,16 @@ public class ListadoDeParticipantes extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			panel = new JPanel();
+			panel.setBackground(new Color(0, 51, 255));
 			panel.setBorder(new TitledBorder(null, "Listado De Participantes:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panel.setBounds(0, 0, 1350, 685);
 			contentPanel.add(panel);
 			panel.setLayout(null);
 
 			panel_1 = new JPanel();
-			panel_1.setBounds(0, 56, 1350, 597);
+			panel_1.setBackground(new Color(0, 51, 255));
+			panel_1.setBorder(new EmptyBorder(0, 0, 0, 0));
+			panel_1.setBounds(10, 56, 1330, 590);
 			panel.add(panel_1);
 			panel_1.setLayout(null);
 
@@ -92,8 +97,8 @@ public class ListadoDeParticipantes extends JDialog {
 				}
 			});
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			String[] headers = {"Nombre","Apellido","Matricula","Edad","Cédula","Teléfono","Lugar Proveniente","Dirrecion","Correo Electronico","Codigo del evento",
-					"Genero","Nombre de Trabajos"};			
+			String[] headers = {"Nombre ","Apellido ","Matrícula ","Edad ","Cédula ","Teléfono ","Lugar Proveniente ","Dirección ","Correo Electrónico ","Código del evento ",
+					"Género","Nombre de Trabajos "};			
 			model = new DefaultTableModel();
 			model.setColumnIdentifiers(headers);	
 			table.setModel(model);
@@ -102,6 +107,7 @@ public class ListadoDeParticipantes extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(0, 51, 255));
 			buttonPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
