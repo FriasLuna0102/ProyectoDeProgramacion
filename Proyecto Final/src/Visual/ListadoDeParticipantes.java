@@ -142,7 +142,7 @@ public class ListadoDeParticipantes extends JDialog {
 				rows[5] = evento.getMisParticipantes().get(i).getDireccion();
 				rows[6] = evento.getMisParticipantes().get(i).getInstitucionProveniente();
 				rows[7] = evento.getMisParticipantes().get(i).getTelefono();
-				rows[8] = evento.getMisParticipantes().get(i).getCorreo();
+				rows[8] = evento.getMisParticipantes().get(i).getCorreo(); 
 				rows[9] = evento.getMisParticipantes().get(i).getCodigoDeEvento();
 				rows[10] = evento.getMisParticipantes().get(i).getSexo();
 				for(int j = 0; j<evento.getMisParticipantes().size(); j++) {
