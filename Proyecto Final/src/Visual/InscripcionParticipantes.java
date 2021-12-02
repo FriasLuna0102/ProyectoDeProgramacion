@@ -89,18 +89,21 @@ public class InscripcionParticipantes extends JDialog {
 		setLocationRelativeTo(null);
 		
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(0, 51, 255));
 		contentPanel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(0, 51, 255));
 		panel.setBorder(new TitledBorder(null, "Inscripción para Evento Científico PUCMM:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBounds(10, 0, 1330, 370);
 		contentPanel.add(panel);
 		panel.setLayout(null);
 		{
 			JLabel lblNewLabel = new JLabel("Nombres:");
-			lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+			lblNewLabel.setForeground(new Color(255, 255, 255));
+			lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
 			lblNewLabel.setBounds(469, 48, 73, 14);
 			panel.add(lblNewLabel);
 		}
@@ -111,7 +114,8 @@ public class InscripcionParticipantes extends JDialog {
 		txtNombre.setColumns(10);
 
 		JLabel lblNewLabel_1 = new JLabel("Apellidos:");
-		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblNewLabel_1.setBounds(469, 96, 73, 14);
 		panel.add(lblNewLabel_1);
 
@@ -121,7 +125,8 @@ public class InscripcionParticipantes extends JDialog {
 		panel.add(txtApellido);
 
 		JLabel lblNewLabel_2 = new JLabel("Ced\u00FAla:");
-		lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblNewLabel_2.setForeground(new Color(255, 255, 255));
+		lblNewLabel_2.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblNewLabel_2.setBounds(469, 144, 73, 14);
 		panel.add(lblNewLabel_2);
 
@@ -131,12 +136,14 @@ public class InscripcionParticipantes extends JDialog {
 		panel.add(txtCedula);
 
 		JLabel lblDireccin = new JLabel("Direcci\u00F3n:");
-		lblDireccin.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblDireccin.setForeground(new Color(255, 255, 255));
+		lblDireccin.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblDireccin.setBounds(469, 240, 73, 14);
 		panel.add(lblDireccin);
 
 		JLabel lblTelfono = new JLabel("Tel\u00E9fono:");
-		lblTelfono.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblTelfono.setForeground(new Color(255, 255, 255));
+		lblTelfono.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblTelfono.setBounds(469, 200, 73, 14);
 		panel.add(lblTelfono);
 
@@ -151,7 +158,8 @@ public class InscripcionParticipantes extends JDialog {
 		panel.add(txtTelefono);
 
 		JLabel lblNewLabel_3 = new JLabel("Correo:");
-		lblNewLabel_3.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblNewLabel_3.setForeground(new Color(255, 255, 255));
+		lblNewLabel_3.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblNewLabel_3.setBounds(469, 288, 73, 14);
 		panel.add(lblNewLabel_3);
 
@@ -161,7 +169,8 @@ public class InscripcionParticipantes extends JDialog {
 		txtCorreo.setColumns(10);
 
 		lblNewLabel_4 = new JLabel("Matr\u00EDcula:");
-		lblNewLabel_4.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblNewLabel_4.setForeground(new Color(255, 255, 255));
+		lblNewLabel_4.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblNewLabel_4.setBounds(734, 47, 73, 16);
 		panel.add(lblNewLabel_4);
 
@@ -171,7 +180,8 @@ public class InscripcionParticipantes extends JDialog {
 		txtMatricula.setColumns(10);
 
 		lblNewLabel_5 = new JLabel("Lugar Proveniente:");
-		lblNewLabel_5.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblNewLabel_5.setForeground(new Color(255, 255, 255));
+		lblNewLabel_5.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblNewLabel_5.setBounds(734, 95, 116, 16);
 		panel.add(lblNewLabel_5);
 
@@ -181,7 +191,8 @@ public class InscripcionParticipantes extends JDialog {
 		txtLugarProveniente.setColumns(10);
 
 		lblNewLabel_6 = new JLabel("C\u00F3digo de Participante:");
-		lblNewLabel_6.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblNewLabel_6.setForeground(new Color(255, 255, 255));
+		lblNewLabel_6.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblNewLabel_6.setBounds(734, 287, 144, 16);
 		panel.add(lblNewLabel_6);
 
@@ -198,7 +209,8 @@ public class InscripcionParticipantes extends JDialog {
 		txtNombreDeTrabajo.setColumns(10);
 		
 		lblNewLabel_8 = new JLabel("Edad del Participante:");
-		lblNewLabel_8.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblNewLabel_8.setForeground(new Color(255, 255, 255));
+		lblNewLabel_8.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblNewLabel_8.setBounds(734, 143, 133, 16);
 		panel.add(lblNewLabel_8);
 		
@@ -207,7 +219,8 @@ public class InscripcionParticipantes extends JDialog {
 		panel.add(spnEdadDeParticipantes);
 		
 		lblNewLabel_9 = new JLabel("C\u00F3digo del Evento:");
-		lblNewLabel_9.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblNewLabel_9.setForeground(new Color(255, 255, 255));
+		lblNewLabel_9.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblNewLabel_9.setBounds(734, 239, 133, 16);
 		panel.add(lblNewLabel_9);
 		
@@ -217,23 +230,27 @@ public class InscripcionParticipantes extends JDialog {
 		txtCodigoDelEvento.setColumns(10);
 		
 				lblNewLabel_7 = new JLabel("Nombre de Trabajo:");
+				lblNewLabel_7.setForeground(new Color(255, 255, 255));
 				lblNewLabel_7.setBounds(734, 199, 135, 16);
 				panel.add(lblNewLabel_7);
-				lblNewLabel_7.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+				lblNewLabel_7.setFont(new Font("Times New Roman", Font.BOLD, 14));
 				
 				panel_1 = new JPanel();
+				panel_1.setBackground(new Color(0, 51, 255));
 				panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 				panel_1.setBounds(10, 390, 1330, 250);
 				contentPanel.add(panel_1);
 				panel_1.setLayout(null);
 				
 						PanelGenero = new JPanel();
+						PanelGenero.setBackground(new Color(0, 51, 255));
 						PanelGenero.setBounds(20, 105, 1310, 99);
 						panel_1.add(PanelGenero);
 						PanelGenero.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 						PanelGenero.setLayout(null);
 						
 								JLabel label_1 = new JLabel("G\u00E9nero:");
+								label_1.setForeground(new Color(255, 255, 255));
 								label_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 								label_1.setBounds(581, 13, 256, 14);
 								PanelGenero.add(label_1);
@@ -244,17 +261,22 @@ public class InscripcionParticipantes extends JDialog {
 								PanelGenero.add(cbxGenero);
 																						
 																								PanelParticipantes = new JPanel();
+																								PanelParticipantes.setForeground(new Color(255, 255, 255));
+																								PanelParticipantes.setBackground(new Color(0, 51, 255));
 																								PanelParticipantes.setBounds(10, 11, 1310, 83);
 																								panel_1.add(PanelParticipantes);
 																								PanelParticipantes.setLayout(null);
 																								PanelParticipantes.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 																								
 																										JLabel label = new JLabel("Es estudiante de la Universidad o Visitante?");
-																										label.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+																										label.setForeground(new Color(255, 255, 255));
+																										label.setFont(new Font("Times New Roman", Font.BOLD, 14));
 																										label.setBounds(512, 11, 282, 14);
 																										PanelParticipantes.add(label);
 																										
 																												rdbtnEstudiante = new JRadioButton("Estudiante");
+																												rdbtnEstudiante.setBackground(new Color(0, 51, 255));
+																												rdbtnEstudiante.setForeground(new Color(255, 255, 255));
 																												rdbtnEstudiante.addActionListener(new ActionListener() {
 																													public void actionPerformed(ActionEvent e) {
 																														PanelParticipantes.setVisible(true);
@@ -264,11 +286,13 @@ public class InscripcionParticipantes extends JDialog {
 																													}
 																												});
 																												rdbtnEstudiante.setSelected(true);
-																												rdbtnEstudiante.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+																												rdbtnEstudiante.setFont(new Font("Times New Roman", Font.BOLD, 14));
 																												rdbtnEstudiante.setBounds(512, 53, 101, 23);
 																												PanelParticipantes.add(rdbtnEstudiante);
 																												
 																														rdbtnVisitante = new JRadioButton("Visitante");
+																														rdbtnVisitante.setBackground(new Color(0, 51, 255));
+																														rdbtnVisitante.setForeground(new Color(255, 255, 255));
 																														rdbtnVisitante.addActionListener(new ActionListener() {
 																															public void actionPerformed(ActionEvent e) {
 																																PanelParticipantes.setVisible(true);
@@ -276,25 +300,26 @@ public class InscripcionParticipantes extends JDialog {
 																																txtMatricula.setEnabled(false);
 																															}
 																														});
-																														rdbtnVisitante.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+																														rdbtnVisitante.setFont(new Font("Times New Roman", Font.BOLD, 14));
 																														rdbtnVisitante.setBounds(709, 53, 85, 23);
 																														PanelParticipantes.add(rdbtnVisitante);
 																														
 																														panel_2 = new JPanel();
 																														panel_2.setLayout(null);
 																														panel_2.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-																														panel_2.setBackground(Color.LIGHT_GRAY);
+																														panel_2.setBackground(new Color(0, 51, 255));
 																														panel_2.setBounds(-51, 215, 1371, 30);
 																														panel_1.add(panel_2);
 																														
 																														label_2 = new JLabel("\u00A9Todos los derechos reservados");
 																														label_2.setBackground(Color.LIGHT_GRAY);
-																														label_2.setForeground(Color.BLACK);
+																														label_2.setForeground(new Color(255, 255, 255));
 																														label_2.setFont(new Font("Sylfaen", Font.PLAIN, 10));
 																														label_2.setBounds(655, 11, 162, 14);
 																														panel_2.add(label_2);
 		{
 			JPanel buttonPane = new JPanel(); 
+			buttonPane.setBackground(new Color(0, 51, 255));
 			buttonPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);

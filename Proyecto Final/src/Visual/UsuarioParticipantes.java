@@ -16,7 +16,11 @@ import javax.swing.border.TitledBorder;
 
 import com.sun.javafx.event.EventQueue;
 
+import Logico.PUCMM;
+
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class UsuarioParticipantes extends JDialog {
 
@@ -85,6 +89,15 @@ public class UsuarioParticipantes extends JDialog {
 			panel.add(lblNewLabel_1);
 			{
 				JButton okButton = new JButton("Conectar");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(PUCMM.getInstance().confirmarLogin(txtUsuario.getText(), psContrasena.getText().toString())) {
+							PlantillaPrincipal frame = new PlantillaPrincipal();
+							dispose();
+							frame.setVisible(true);
+						}
+					}
+				});
 				okButton.setBounds(594, 438, 161, 23);
 				panel.add(okButton);
 				okButton.setActionCommand("OK");

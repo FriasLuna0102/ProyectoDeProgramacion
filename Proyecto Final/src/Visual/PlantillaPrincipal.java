@@ -10,6 +10,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.border.TitledBorder;
+
+import Logico.PUCMM;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
@@ -19,6 +22,12 @@ import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 public class PlantillaPrincipal extends JFrame {
 
@@ -46,6 +55,7 @@ public class PlantillaPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public PlantillaPrincipal() {
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Starl\\Downloads\\WhatsApp Image 2021-11-25 at 3.50.46 PM.jpeg"));
 		setBackground(new Color(169, 169, 169));
 		dim = getToolkit().getScreenSize();
@@ -85,7 +95,9 @@ public class PlantillaPrincipal extends JFrame {
 				
 			}
 		});
-		mnNewMenu_3.add(mntmNewMenuItem_3);
+		
+		
+		
 		
 		JMenu mnNewMenu_1 = new JMenu("Jurados");
 		mnNewMenu_1.setForeground(Color.WHITE);

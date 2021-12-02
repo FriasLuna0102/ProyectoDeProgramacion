@@ -2,7 +2,7 @@ package Logico;
 
 import java.io.Serializable;
 
-public class Usuario implements Serializable {
+public class User implements Serializable {
 
 	/**
 	 * 
@@ -13,7 +13,7 @@ public class Usuario implements Serializable {
 	private String pass;
 	
 	
-	public Usuario(String tipo, String userName, String pass) {
+	public User(String tipo, String userName, String pass) {
 		super();
 		this.tipo = tipo;
 		this.userName = userName;

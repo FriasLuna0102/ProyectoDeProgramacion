@@ -10,7 +10,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import Logico.PUCMM;
-import Logico.Usuario;
+import Logico.User;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -98,8 +98,8 @@ public class RegUsuarios extends JDialog {
 				JButton btnRegistrar = new JButton("Registrarme");
 				btnRegistrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Usuario user = new Usuario(comboBox.getSelectedItem().toString(), txtNombreUsuario.getText(),txtContraseña.getText());
-						//PUCMM.getInstance().
+						User user = new User(comboBox.getSelectedItem().toString(), txtNombreUsuario.getText(),txtContraseña.getText());
+						PUCMM.getInstance().regUser(user);
 					}
 				}); 
 				btnRegistrar.setActionCommand("OK");
