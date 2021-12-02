@@ -116,19 +116,6 @@ public class Eventos {
 		this.limiteDeParticipantes = limiteDeParticipantes;
 	}
 
-	//Funcion para insertar Eventos.
-	public void insertarEvento(Eventos event) {
-		PUCMM.getInstance().getMisEventos().add(event);
-
-	}
-
-
-	public void insertarParticipantes(Participantes participantes) {
-		int i = 0;
-		misParticipantes.add(participantes);
-		i++;
-	}
-
 	public String getTipoDeEvento() {
 		return tipoDeEvento;
 	}

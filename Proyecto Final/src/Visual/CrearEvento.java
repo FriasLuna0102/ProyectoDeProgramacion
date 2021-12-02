@@ -84,7 +84,7 @@ public class CrearEvento extends JDialog {
 		setBounds(100, 100, 776, 656);
 		dim = getToolkit().getScreenSize();
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBackground(new Color(0, 153, 204));
+		contentPanel.setBackground(new Color(0, 51, 255));
 		contentPanel.setBorder(new TitledBorder(null, "Datos para crear Evento.", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		setSize(dim.width, dim.height-40);
@@ -92,7 +92,7 @@ public class CrearEvento extends JDialog {
 		contentPanel.setLayout(null);
 
 		panel = new JPanel();
-		panel.setBackground(new Color(0, 153, 204));
+		panel.setBackground(new Color(0, 51, 255));
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBounds(10, 43, 1360, 607);
 		contentPanel.add(panel);
@@ -241,7 +241,7 @@ public class CrearEvento extends JDialog {
 		panel.add(lblNewLabel_10);
 
 		rdbtnSalones = new JRadioButton("Salones");
-		rdbtnSalones.setBackground(new Color(0, 153, 204));
+		rdbtnSalones.setBackground(new Color(0, 51, 255));
 		rdbtnSalones.setForeground(new Color(255, 255, 255));
 		rdbtnSalones.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		/*rdbtnSalones.addActionListener(new ActionListener() {
@@ -256,7 +256,7 @@ public class CrearEvento extends JDialog {
 		panel.add(rdbtnSalones);
 
 		rdbtnLuces = new JRadioButton("Luces");
-		rdbtnLuces.setBackground(new Color(0, 153, 204));
+		rdbtnLuces.setBackground(new Color(0, 51, 255));
 		rdbtnLuces.setForeground(new Color(255, 255, 255));
 		rdbtnLuces.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		/*rdbtnLuces.addActionListener(new ActionListener() {
@@ -270,7 +270,7 @@ public class CrearEvento extends JDialog {
 		panel.add(rdbtnLuces);
 
 		rdbtnMicrofonos = new JRadioButton("Micr\u00F3fonos");
-		rdbtnMicrofonos.setBackground(new Color(0, 153, 204));
+		rdbtnMicrofonos.setBackground(new Color(0, 51, 255));
 		rdbtnMicrofonos.setForeground(new Color(255, 255, 255));
 		rdbtnMicrofonos.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		/*rdbtnMicrofonos.addActionListener(new ActionListener() {
@@ -287,7 +287,7 @@ public class CrearEvento extends JDialog {
 		}
 		}
 		JPanel buttonPane = new JPanel();
-		buttonPane.setBackground(new Color(0, 153, 204));
+		buttonPane.setBackground(new Color(0, 51, 255));
 		buttonPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		getContentPane().add(buttonPane, BorderLayout.SOUTH);
@@ -315,11 +315,13 @@ public class CrearEvento extends JDialog {
 						PUCMM.getInstance().insertarEvento(evento);
 						JOptionPane.showMessageDialog(null, "El Evento se ha creado sastifactoriamente.", "Informacion", JOptionPane.INFORMATION_MESSAGE);
 						clean();
-					}else {
+					}else  {
 						JOptionPane.showMessageDialog(null, "El Evento carece de informacion. Complete todos los campos.", "Informacion", JOptionPane.INFORMATION_MESSAGE);
 
-					}//hacer que si esta registrado correctamente que le de un usuario y una contrase;a la cual se va ir incrementando de uno a uno cuando se vayan registrando ese usuario y contrase;a deben de estar conectados a la pantalla de usuario de los don individuos
+						//hacer que si esta registrado correctamente que le de un usuario y una contrase;a la cual se va ir incrementando de uno a uno cuando se vayan registrando ese usuario y contrase;a deben de estar conectados a la pantalla de usuario de los don individuos
+					
 
+					}
 				}
 			});
 			btnRegistrar.setActionCommand("OK");

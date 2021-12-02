@@ -33,7 +33,6 @@ public class PlantillaPrincipal extends JFrame {
 
 	private JPanel contentPane;
 	private Dimension dim;
-	private JMenuItem mntmNewMenuItem_4;
 
 	/**
 	 * Launch the application.
@@ -56,22 +55,7 @@ public class PlantillaPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public PlantillaPrincipal() {
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				FileOutputStream pucmm2;
-				ObjectOutputStream pucmmWrite;
-				try {
-					pucmm2 = new FileOutputStream("pucmm.dat");
-					pucmmWrite = new ObjectOutputStream(pucmm2);
-					pucmmWrite.writeObject(PUCMM.getInstance());
-				}catch(FileNotFoundException e1) {
-					e1.printStackTrace();
-				}catch(IOException e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Starl\\Downloads\\WhatsApp Image 2021-11-25 at 3.50.46 PM.jpeg"));
 		setBackground(new Color(169, 169, 169));
 		dim = getToolkit().getScreenSize();
@@ -83,7 +67,8 @@ public class PlantillaPrincipal extends JFrame {
 		setLocationRelativeTo(null);
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBackground(new Color(0, 153, 153));
+		menuBar.setForeground(new Color(0, 0, 0));
+		menuBar.setBackground(new Color(0, 51, 153));
 		setJMenuBar(menuBar);
 		
 		JMenu mnNewMenu_3 = new JMenu("Inscripciones");
@@ -104,20 +89,15 @@ public class PlantillaPrincipal extends JFrame {
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Inscripci\u00F3n para Jurados");//hacer plantilla jurados, copiar la misma que participantes y arreglar
 		mntmNewMenuItem_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				RegDeJurados jurados = new RegDeJurados();
+				jurados.setModal(true);
+				jurados.setVisible(true);
 				
 			}
 		});
 		
-		JMenuItem mntmNewMenuItem_6 = new JMenuItem("RegParticipantes");
-		mntmNewMenuItem_6.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				RegUsuarios users = new RegUsuarios();
-				users.setModal(true);
-				users.setVisible(true);
-			}
-		});
-		mnNewMenu_3.add(mntmNewMenuItem_6);
-		mnNewMenu_3.add(mntmNewMenuItem_3);
+		
+		
 		
 		JMenu mnNewMenu_1 = new JMenu("Jurados");
 		mnNewMenu_1.setForeground(Color.WHITE);
@@ -136,28 +116,6 @@ public class PlantillaPrincipal extends JFrame {
 		JMenu mnNewMenu_2 = new JMenu("");
 		menuBar.add(mnNewMenu_2);
 		
-		mntmNewMenuItem_4 = new JMenuItem("Registro De Evento");
-		mntmNewMenuItem_4.setForeground(new Color(255, 255, 255));
-		mntmNewMenuItem_4.setBackground(new Color(0, 153, 153));
-		mntmNewMenuItem_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CrearEvento conect = new CrearEvento(null);
-				conect.setVisible(true);
-				conect.setModal(true);		
-			}
-		});
-		
-		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Listado de Eventos");
-		mntmNewMenuItem_5.setForeground(new Color(255, 255, 255));
-		mntmNewMenuItem_5.setBackground(new Color(0, 153, 153));
-		mntmNewMenuItem_5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ListadoDeEventos list = new ListadoDeEventos();
-				list.setVisible(true);
-				list.setModal(true);
-			}
-		});
-		
 		JMenu mnNewMenu = new JMenu("Participantes");
 		mnNewMenu.setForeground(new Color(255, 255, 255));
 		menuBar.add(mnNewMenu);
@@ -174,23 +132,45 @@ public class PlantillaPrincipal extends JFrame {
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem_1);
-		menuBar.add(mntmNewMenuItem_5);
-		menuBar.add(mntmNewMenuItem_4);
+		
+		JMenu mnNewMenu_4 = new JMenu("Eventos");
+		mnNewMenu_4.setForeground(new Color(255, 255, 255));
+		menuBar.add(mnNewMenu_4);
+		
+		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Listado de Eventos");
+		mntmNewMenuItem_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListadoDeEventos list = new ListadoDeEventos();
+				list.setVisible(true);
+				list.setModal(true);
+			}
+		});
+		mnNewMenu_4.add(mntmNewMenuItem_6);
+		
+		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Registrar Eventos");
+		mntmNewMenuItem_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearEvento conect = new CrearEvento(null);
+				conect.setVisible(true);
+				conect.setModal(true);	
+			}
+		});
+		mnNewMenu_4.add(mntmNewMenuItem_7);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(0, 153, 153));
+		contentPane.setBackground(new Color(0, 51, 153));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(0, 153, 153));	
+		panel.setBackground(new Color(0, 51, 153));	
 		panel.setForeground(Color.WHITE);
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(0, 153, 153));
+		panel_1.setBackground(new Color(0, 51, 153));
 		panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(10, 600, 1319, 30);
 		panel.add(panel_1);
@@ -236,7 +216,7 @@ public class PlantillaPrincipal extends JFrame {
 		lblNewLabel_6.setFont(new Font("Times New Roman", Font.PLAIN, 17));
 		lblNewLabel_6.setForeground(new Color(255, 255, 255));
 		lblNewLabel_6.setBounds(599, 370, 149, 14);
-		panel.add(lblNewLabel_6);
+		panel.add(lblNewLabel_6); 
 		
 		JLabel lblNewLabel_7 = new JLabel("Para favor informaci\u00F3n contactarse al (809) 580-1962, Ext. 4265");
 		lblNewLabel_7.setForeground(new Color(255, 255, 255));

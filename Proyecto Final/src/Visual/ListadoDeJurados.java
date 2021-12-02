@@ -23,6 +23,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class ListadoDeJurados extends JDialog {
 
@@ -58,6 +59,7 @@ public class ListadoDeJurados extends JDialog {
 		setBounds(100, 100, 511, 399);
 		dim = getToolkit().getScreenSize();
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(0, 51, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setSize(dim.width, dim.height-40);
 		setLocationRelativeTo(null);
@@ -66,13 +68,15 @@ public class ListadoDeJurados extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			panel = new JPanel();
+			panel.setBackground(new Color(0, 51, 255));
 			panel.setBorder(new TitledBorder(null, "Listado De Jurados:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panel.setBounds(0, 0, 1350, 685);
 			contentPanel.add(panel);
 			panel.setLayout(null);
 
 			panel_1 = new JPanel();
-			panel_1.setBounds(0, 79, 1350, 576);
+			panel_1.setBackground(new Color(0, 51, 255));
+			panel_1.setBounds(10, 79, 1330, 567);
 			panel.add(panel_1);
 			panel_1.setLayout(null);
 
@@ -103,6 +107,7 @@ public class ListadoDeJurados extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(0, 51, 255));
 			buttonPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);

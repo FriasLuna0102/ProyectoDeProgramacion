@@ -36,7 +36,7 @@ public class Login extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				FileInputStream pucmm;
+				FileInputStream pucmm; 
 				FileOutputStream pucmm2;
 				ObjectInputStream pucmmRead;
 				ObjectOutputStream pucmmWrite;
@@ -44,7 +44,7 @@ public class Login extends JFrame {
 					pucmm = new FileInputStream("pucmm.dat");
 					pucmmRead = new ObjectInputStream(pucmm);
 					PUCMM temp = (PUCMM)pucmmRead.readObject();
-					PUCMM.setAlma(temp);
+					PUCMM.setAlma(temp); 
 					pucmm.close();
 					pucmmRead.close();
 										
@@ -119,8 +119,7 @@ public class Login extends JFrame {
 					PlantillaPrincipal frame = new PlantillaPrincipal();
 					dispose();
 					frame.setVisible(true);
-				}
-				
+				}	
 			}
 		});
 		btnLogin.setBounds(181, 192, 97, 25);
