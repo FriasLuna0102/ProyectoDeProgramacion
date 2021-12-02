@@ -29,7 +29,7 @@ public class Login extends JFrame {
 	private JTextField txtUsuarioe;
 	private JTextField txtContrasenaa;
 	private JButton btnLogin;
-
+ 
 	/**
 	 * Launch the application.
 	 */
