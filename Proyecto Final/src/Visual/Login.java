@@ -25,7 +25,7 @@ public class Login extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField textField_1; 
 
 	/**
 	 * Launch the application.

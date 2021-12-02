@@ -204,7 +204,7 @@ public class PlantillaPrincipal extends JFrame {
 		lblNewLabel_6.setFont(new Font("Times New Roman", Font.PLAIN, 17));
 		lblNewLabel_6.setForeground(new Color(255, 255, 255));
 		lblNewLabel_6.setBounds(599, 370, 149, 14);
-		panel.add(lblNewLabel_6);
+		panel.add(lblNewLabel_6); 
 		
 		JLabel lblNewLabel_7 = new JLabel("Para favor informaci\u00F3n contactarse al (809) 580-1962, Ext. 4265");
 		lblNewLabel_7.setForeground(new Color(255, 255, 255));

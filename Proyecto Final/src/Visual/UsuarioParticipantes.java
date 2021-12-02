@@ -28,7 +28,7 @@ public class UsuarioParticipantes extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) { 
 		
 		try {
 			UsuarioParticipantes dialog = new UsuarioParticipantes();

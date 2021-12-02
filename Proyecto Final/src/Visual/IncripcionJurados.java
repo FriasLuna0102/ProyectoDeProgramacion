@@ -289,7 +289,7 @@ public class IncripcionJurados extends JDialog {
 				btnRegistar = new JButton("Registrar");
 				btnRegistar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-							Participantes participantes = null;
+							Participantes participantes = null; 
 								  
 								participantes = new Participantes(txtNombre.getText(), txtDireccion.getText(), txtCedula.getText(), txtApellido.getText(), txtTelefono.getText(), txtCorreo.getText(), null,null,txtLugarProveniente.getText(),										
 										txtCodigoDeJurados.getText(), null,Integer.valueOf(spnEdadDeJurado.getValue().toString()),txtCodigoDelEvento.getText(),cbxGenero.getSelectedItem().toString());
