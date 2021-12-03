@@ -334,18 +334,24 @@ public class InscripcionParticipantes extends JDialog {
 								Eventos evento = PUCMM.getInstance().buscarEvento(txtCodigoDelEvento.getText());
 								
 								if(evento != null && Integer.valueOf(spnEdadDeParticipantes.getValue().toString()) >= 18 && Integer.valueOf(spnEdadDeParticipantes.getValue().toString()) <= 40) {
-									PUCMM.getInstance().addParticipante(txtCodigoDelEvento.getText(),participantes);
-									Trabajos trabajos = new Trabajos(txtMatricula.getText(), txtNombreDeTrabajo.getText(), null);
-									//participantes.getMisTrabajos().add(trabajos);
-									PUCMM.getInstance().addTrabajosAMisTrabajosEnEventos(txtCodigoDelEvento.getText(), trabajos);
-									JOptionPane.showMessageDialog(null, "Registro Satifactorio", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-									clean();
+									if(evento.getLimiteDeParticipantes() > evento.getMisParticipantes().size()) {
+										PUCMM.getInstance().addParticipante(txtCodigoDelEvento.getText(),participantes);
+										Trabajos trabajos = new Trabajos(txtMatricula.getText(), txtNombreDeTrabajo.getText(), null);
+										participantes.getMisTrabajos().add(trabajos);
+										evento.getMisTrabajos().add(trabajos);
+										JOptionPane.showMessageDialog(null, "Registro Satifactorio", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+										clean();
+									}else {
+										JOptionPane.showMessageDialog(null, "Ya no se permiten mas participantes.");
+									}
+									
 								}else if(Integer.valueOf(spnEdadDeParticipantes.getValue().toString()) < 18 || Integer.valueOf(spnEdadDeParticipantes.getValue().toString()) > 40 ) {	
 									JOptionPane.showMessageDialog(null, "Su edad no cumple los requisitos. Debes ser mayor de 18 y menor de 41.");			
 								}else {
 									JOptionPane.showMessageDialog(null, "Es posible que este evento con codigo: "+ txtCodigoDelEvento.getText()+ " no exista, O intenta llenar todos los campos"
 											+ " de manera correspondiente.");
 								}
+								
 																															
 					}
 				});
@@ -381,6 +387,7 @@ public class InscripcionParticipantes extends JDialog {
 		spnEdadDeParticipantes.setValue(Integer.valueOf(0));
 		txtCodigoDelEvento.setText("");
 		cbxGenero.setSelectedIndex(0);
+		txtCodigoDeParticipante.setText("P-"+PUCMM.getInstance().getGeneradorCodigoParticipantes());
 	}
 	
 
