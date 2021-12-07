@@ -90,10 +90,11 @@ public class PlantillaPrincipal extends JFrame {
 		JMenu mnNewMenu_3 = new JMenu("Inscripciones");
 		if(PUCMM.getLoginUser().getTipo().equalsIgnoreCase("Participante")) {
 			mnNewMenu_3.setEnabled(true);
+		}else if (PUCMM.getLoginUser().getTipo().equalsIgnoreCase("Jurado")) {
+			mnNewMenu_3.setEnabled(false);
 		}
 		mnNewMenu_3.setForeground(new Color(255, 255, 255));
-		
-		
+	
 		menuBar.add(mnNewMenu_3);
 		
 		//Se añadio el if...
@@ -177,6 +178,10 @@ public class PlantillaPrincipal extends JFrame {
 		mnNewMenu_4.add(mntmNewMenuItem_6);
 		
 		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Registrar Eventos");
+		if (PUCMM.getLoginUser().getTipo().equalsIgnoreCase("Jurado")) {
+			mntmNewMenuItem_7.setEnabled(false);
+		}
+		mnNewMenu_3.setForeground(new Color(255, 255, 255));
 		mntmNewMenuItem_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CrearEvento conect = new CrearEvento(null);
@@ -187,6 +192,9 @@ public class PlantillaPrincipal extends JFrame {
 		mnNewMenu_4.add(mntmNewMenuItem_7);
 		
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Registrar Usuario");
+		if(PUCMM.getLoginUser().getTipo().equalsIgnoreCase("Jurado")) {
+			mntmNewMenuItem_4.setEnabled(false);
+		}
 		mntmNewMenuItem_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegUsuarios usuario = new RegUsuarios();

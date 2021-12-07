@@ -88,7 +88,7 @@ public class RegUsuarios extends JDialog {
 		panel.add(lblNewLabel_3);
 		
 		JComboBox comboBox = new JComboBox(); 
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"<<Seleccionar>>", "Administrador", "Participante"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"<<Seleccionar>>", "Administrador", "Participante", "Jurado"}));
 		comboBox.setBounds(223, 44, 179, 22);
 		panel.add(comboBox);
 		{
