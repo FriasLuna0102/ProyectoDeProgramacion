@@ -28,6 +28,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.net.Socket;
 
 public class PlantillaPrincipal extends JFrame {
 
@@ -216,6 +217,18 @@ public class PlantillaPrincipal extends JFrame {
 			}
 		});
 		mnNewMenu_5.add(mntmNewMenuItem_8);
+		
+		JMenu mnNewMenu_6 = new JMenu("Respaldo");
+		menuBar.add(mnNewMenu_6);
+		
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Respaldar");
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
+		mnNewMenu_6.add(mntmNewMenuItem_3);
 		menuBar.add(mntmNewMenuItem_4);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 51, 153));
