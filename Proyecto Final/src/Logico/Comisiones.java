@@ -1,8 +1,9 @@
 package Logico;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Comisiones {
+public class Comisiones implements Serializable {
 	private String nombreDeComision;
 	private String jurado;
 	private String presidente;

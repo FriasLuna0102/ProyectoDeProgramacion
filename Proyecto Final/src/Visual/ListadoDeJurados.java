@@ -88,17 +88,15 @@ public class ListadoDeJurados extends JDialog {
 			table.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					int aux =-1;
-					 aux = table.getSelectedRow();
+					int aux = table.getSelectedRow();
 					if(aux != -1) {
 						String jurados = (String) table.getValueAt(aux, 0);
-						selected = PUCMM.getInstance().buscarJurado(jurados);
-						System.out.println(selected.getNombre()+""+selected.getAreaDeConocimiento());
+						selected = PUCMM.getInstance().buscarJurado(jurados,jurados);
 					}
 				}
 			});
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			String[] headers = {"Nombre","Apellido","Labor","Área de Conocimiento","Año de Experiencia","Lugar de Recomendación","Cédula","Teléfono"};			
+			String[] headers = {"Nombre","Apellido","Área de Conocimiento","Edad","Genero","Cédula","Teléfono"};			
 			model = new DefaultTableModel();
 			model.setColumnIdentifiers(headers);	
 			table.setModel(model);
@@ -121,38 +119,35 @@ public class ListadoDeJurados extends JDialog {
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
-			loadJurados(0,  "");
+			for (int i = 0; i<PUCMM.getInstance().getMisEventos().size(); i++) {
+				loadJurados(0,  PUCMM.getInstance().getMisEventos().get(i).getCodigoDeEvento());
+			} 
 		}
 
 	}
 	public static void loadJurados(int select, String codigoEvento) {
-		
-		//if(evento != null) {
-			//model.setRowCount(0);
-			//rows = new Object[model.getColumnCount()];
-			//switch (select) {
-			//case 0:
+
 		model.setRowCount(0);
 		rows = new Object[model.getColumnCount()];
 		Eventos evento = PUCMM.getInstance().buscarEvento(codigoEvento);
 		if(evento != null) {
-				for (int i = 0; i < evento.getMisJurados().size(); i++) {
-					rows[0] = evento.getMisJurados().get(i).getApellido();
-					rows[1] = evento.getMisJurados().get(i).getCedula();
-					rows[2] = evento.getMisJurados().get(i).getNombre();
-					rows[3] = evento.getMisJurados().get(i).getAreaDeConocimiento();
-					rows[4] = evento.getMisJurados().get(i).getAñoDeExperiencia();
-					rows[5] = evento.getMisJurados().get(i).getLugarDeRecomendacion();
-					rows[6] = evento.getMisJurados().get(i).getTelefono();
-					model.addRow(rows);		     
-
-				}
-				
-		}
+			for (int i = 0; i < evento.getMisJurados().size(); i++) {
+				rows[0] = evento.getMisJurados().get(i).getNombre();
+				rows[1] = evento.getMisJurados().get(i).getApellido();
+				rows[2] = evento.getMisJurados().get(i).getDireccion();
+				rows[3] = evento.getMisJurados().get(i).getAñoDeExperiencia();
+				rows[4] = evento.getMisJurados().get(i).getLugarDeRecomendacion();
+				rows[5] = evento.getMisJurados().get(i).getCedula();
+				rows[6] = evento.getMisJurados().get(i).getTelefono();
+				model.addRow(rows);		     
 
 			}
 
-		
+		}
+
 	}
-	
+
+
+}
+
 

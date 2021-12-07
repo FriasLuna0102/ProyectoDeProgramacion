@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import Logico.Eventos;
+import Logico.Jurado;
 import Logico.PUCMM;
 import Logico.Participantes;
 import Logico.Personas;
@@ -35,14 +36,13 @@ public class IncripcionJurados extends JDialog {
 	private JTextField txtNombre;
 	private JTextField txtApellido;
 	private JTextField txtCedula;
-	private JTextField txtDireccion;
 	private JTextField txtTelefono;
 	private JPanel PanelGenero;
 	private JButton btnRegistar;
 	private JTextField txtCorreo;
 	private JLabel lblNewLabel_5;
 	
-	private JTextField txtLugarProveniente;
+	private JTextField txtAreadeConocimiento;
 	private JLabel lblNewLabel_6;
 	private JTextField txtCodigoDeJurados;
 	private JLabel lblNewLabel_8;
@@ -138,72 +138,59 @@ public class IncripcionJurados extends JDialog {
 		txtCedula.setBounds(469, 169, 226, 20);
 		panel.add(txtCedula);
 
-		JLabel lblDireccin = new JLabel("Direcci\u00F3n:");
-		lblDireccin.setForeground(new Color(255, 255, 255));
-		lblDireccin.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblDireccin.setBounds(469, 240, 73, 14);
-		panel.add(lblDireccin);
-
 		JLabel lblTelfono = new JLabel("Tel\u00E9fono:");
 		lblTelfono.setForeground(new Color(255, 255, 255));
 		lblTelfono.setFont(new Font("Dialog", Font.BOLD, 12));
 		lblTelfono.setBounds(469, 200, 73, 14);
 		panel.add(lblTelfono);
 
-		txtDireccion = new JTextField();
-		txtDireccion.setForeground(new Color(0, 0, 0));
-		txtDireccion.setFont(new Font("Dialog", Font.BOLD, 12));
-		txtDireccion.setColumns(10);
-		txtDireccion.setBounds(469, 217, 226, 20);
-		panel.add(txtDireccion);
-
 		txtTelefono = new JTextField();
 		txtTelefono.setForeground(new Color(0, 0, 0));
 		txtTelefono.setFont(new Font("Dialog", Font.BOLD, 12));
 		txtTelefono.setColumns(10);
-		txtTelefono.setBounds(469, 265, 226, 20);
+		txtTelefono.setBounds(469, 217, 226, 20);
 		panel.add(txtTelefono);
 
 		JLabel lblNewLabel_3 = new JLabel("Correo:");
 		lblNewLabel_3.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblNewLabel_3.setBounds(469, 288, 73, 14);
+		lblNewLabel_3.setBounds(469, 250, 73, 14);
 		panel.add(lblNewLabel_3);
 
 		txtCorreo = new JTextField();
 		txtCorreo.setFont(new Font("Dialog", Font.BOLD, 12));
 		txtCorreo.setForeground(new Color(0, 0, 0));
-		txtCorreo.setBounds(469, 313, 226, 20);
+		txtCorreo.setBounds(469, 269, 226, 20);
 		panel.add(txtCorreo);
 		txtCorreo.setColumns(10);
 
 		
 
-		lblNewLabel_5 = new JLabel("Lugar Proveniente:");
+		lblNewLabel_5 = new JLabel("Area de Conocimiento:");
 		lblNewLabel_5.setForeground(new Color(255, 255, 255));
 		lblNewLabel_5.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblNewLabel_5.setBounds(734, 95, 137, 16);
+		lblNewLabel_5.setBounds(729, 47, 156, 16);
 		panel.add(lblNewLabel_5);
 
-		txtLugarProveniente = new JTextField();
-		txtLugarProveniente.setForeground(new Color(0, 0, 0));
-		txtLugarProveniente.setFont(new Font("Dialog", Font.BOLD, 12));
-		txtLugarProveniente.setBounds(734, 120, 137, 20);
-		panel.add(txtLugarProveniente);
-		txtLugarProveniente.setColumns(10);
+		txtAreadeConocimiento = new JTextField();
+		txtAreadeConocimiento.setForeground(new Color(0, 0, 0));
+		txtAreadeConocimiento.setFont(new Font("Dialog", Font.BOLD, 12));
+		txtAreadeConocimiento.setBounds(729, 74, 137, 20);
+		panel.add(txtAreadeConocimiento);
+		txtAreadeConocimiento.setColumns(10);
 
 		lblNewLabel_6 = new JLabel("C\u00F3digo del Jurado:");
 		lblNewLabel_6.setForeground(new Color(255, 255, 255));
 		lblNewLabel_6.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblNewLabel_6.setBounds(734, 266, 137, 16);
+		lblNewLabel_6.setBounds(184, 47, 137, 16);
 		panel.add(lblNewLabel_6);
 
 		txtCodigoDeJurados = new JTextField();
 		txtCodigoDeJurados.setForeground(new Color(0, 0, 0));
 		txtCodigoDeJurados.setFont(new Font("Dialog", Font.BOLD, 12));
 		txtCodigoDeJurados.setEditable(false);
-		txtCodigoDeJurados.setBounds(734, 293, 137, 20);
-		txtCodigoDeJurados.setText("J-"+PUCMM.getInstance().getGeneradorCodigoParticipantes());//incrementar el codigo de participante
+		txtCodigoDeJurados.setBounds(184, 74, 137, 20);
+		txtCodigoDeJurados.setText("J-"+PUCMM.getInstance().getGeneradoCodigoJurado());
 		panel.add(txtCodigoDeJurados);
 		txtCodigoDeJurados.setColumns(10);
 
@@ -212,25 +199,25 @@ public class IncripcionJurados extends JDialog {
 		lblNewLabel_8 = new JLabel("Edad del Jurado:");
 		lblNewLabel_8.setForeground(new Color(255, 255, 255));
 		lblNewLabel_8.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblNewLabel_8.setBounds(734, 143, 133, 16);
+		lblNewLabel_8.setBounds(729, 95, 133, 16);
 		panel.add(lblNewLabel_8);
 		
 		spnEdadDeJurado = new JSpinner();
 		spnEdadDeJurado.setForeground(new Color(0, 0, 0));
 		spnEdadDeJurado.setFont(new Font("Dialog", Font.BOLD, 12));
-		spnEdadDeJurado.setBounds(734, 171, 137, 20);
+		spnEdadDeJurado.setBounds(729, 121, 137, 20);
 		panel.add(spnEdadDeJurado);
 		
 		lblNewLabel_9 = new JLabel("C\u00F3digo del Evento:");
 		lblNewLabel_9.setForeground(new Color(255, 255, 255));
 		lblNewLabel_9.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblNewLabel_9.setBounds(734, 199, 137, 16);
+		lblNewLabel_9.setBounds(729, 143, 137, 16);
 		panel.add(lblNewLabel_9);
 		
 		txtCodigoDelEvento = new JTextField();
 		txtCodigoDelEvento.setForeground(new Color(0, 0, 0));
 		txtCodigoDelEvento.setFont(new Font("Dialog", Font.BOLD, 12));
-		txtCodigoDelEvento.setBounds(734, 226, 137, 20);
+		txtCodigoDelEvento.setBounds(729, 169, 137, 20);
 		panel.add(txtCodigoDelEvento);
 		txtCodigoDelEvento.setColumns(10);
 		
@@ -289,14 +276,13 @@ public class IncripcionJurados extends JDialog {
 				btnRegistar = new JButton("Registrar");
 				btnRegistar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-							Participantes participantes = null; 
 								  
-								participantes = new Participantes(txtNombre.getText(), txtDireccion.getText(), txtCedula.getText(), txtApellido.getText(), txtTelefono.getText(), txtCorreo.getText(), null,null,txtLugarProveniente.getText(),										
-										txtCodigoDeJurados.getText(), null,Integer.valueOf(spnEdadDeJurado.getValue().toString()),txtCodigoDelEvento.getText(),cbxGenero.getSelectedItem().toString());
+								Jurado jurado = new Jurado(txtNombre.getText(), txtAreadeConocimiento.getText(), txtCedula.getText(), txtApellido.getText(), txtTelefono.getText(), txtCorreo.getText(), null,Integer.valueOf(spnEdadDeJurado.getValue().toString()),txtCodigoDelEvento.getText(),cbxGenero.getSelectedItem().toString());
 								Eventos evento = PUCMM.getInstance().buscarEvento(txtCodigoDelEvento.getText());
 								
 								if(evento != null && Integer.valueOf(spnEdadDeJurado.getValue().toString()) >= 25 && Integer.valueOf(spnEdadDeJurado.getValue().toString()) <= 60) {
-									PUCMM.getInstance().addParticipante(txtCodigoDelEvento.getText(),participantes);
+									//evento.getMisJurados().add(jurado);
+									PUCMM.getInstance().addJurado(txtCodigoDelEvento.getText(),jurado);
 									
 									
 									JOptionPane.showMessageDialog(null, "Registro Satifactorio", "Informacion", JOptionPane.INFORMATION_MESSAGE);
@@ -331,14 +317,14 @@ public class IncripcionJurados extends JDialog {
 	
 	private void clean() {
 		txtNombre.setText("");
-		txtDireccion.setText("");
+		txtTelefono.setText("");
 		
 		txtCedula.setText("");
 		txtApellido.setText("");
 		txtTelefono.setText("");
 		txtCorreo.setText("");
-		txtLugarProveniente.setText("");
-	
+		txtAreadeConocimiento.setText("");
+		txtCodigoDeJurados.setText("J-"+PUCMM.getInstance().getGeneradoCodigoJurado());
 		spnEdadDeJurado.setValue(Integer.valueOf(0));
 		txtCodigoDelEvento.setText("");
 		cbxGenero.setSelectedIndex(0);

@@ -13,6 +13,7 @@ import Logico.PUCMM;
 import Logico.User;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -100,6 +101,7 @@ public class RegUsuarios extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						User user = new User(comboBox.getSelectedItem().toString(), txtNombreUsuario.getText(),txtContraseña.getText());
 						PUCMM.getInstance().regUser(user);
+						JOptionPane.showMessageDialog(null, "Usuario: "+txtNombreUsuario.getText()+" se ha registrado con exito.");
 					}
 				}); 
 				btnRegistrar.setActionCommand("OK");
@@ -108,6 +110,11 @@ public class RegUsuarios extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cerrar");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}

@@ -37,7 +37,7 @@ public class PlantillaPrincipal extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -50,12 +50,28 @@ public class PlantillaPrincipal extends JFrame {
 			
 		});
 	}
-
+/*
 	/**
 	 * Create the frame.
 	 */
 	public PlantillaPrincipal() {
-		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				FileOutputStream pucmm2;
+				ObjectOutputStream pucmmWrite;
+				try {
+					pucmm2 = new FileOutputStream("pucmm.dat");
+					pucmmWrite = new ObjectOutputStream(pucmm2);
+					pucmmWrite.writeObject(PUCMM.getInstance());
+				}catch (FileNotFoundException e1) {
+					e1.printStackTrace();
+				}catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Starl\\Downloads\\WhatsApp Image 2021-11-25 at 3.50.46 PM.jpeg"));
 		setBackground(new Color(169, 169, 169));
 		dim = getToolkit().getScreenSize();
@@ -72,19 +88,37 @@ public class PlantillaPrincipal extends JFrame {
 		setJMenuBar(menuBar);
 		
 		JMenu mnNewMenu_3 = new JMenu("Inscripciones");
+		if(PUCMM.getLoginUser().getTipo().equalsIgnoreCase("Participante")) {
+			mnNewMenu_3.setEnabled(true);
+		}
 		mnNewMenu_3.setForeground(new Color(255, 255, 255));
+		
 		
 		menuBar.add(mnNewMenu_3);
 		
+		//Se añadio el if...
 		JMenuItem mntmNewMenuItem = new JMenuItem("Inscripci\u00F3n para Participantes");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				InscripcionParticipantes inscripcion = new  InscripcionParticipantes();
-				inscripcion.setModal(true);
-				inscripcion.setVisible(true);
+			public void actionPerformed(ActionEvent e) {			
+					InscripcionParticipantes inscripcion = new  InscripcionParticipantes();
+					inscripcion.setModal(true);
+					inscripcion.setVisible(true);
+
 			}
 		});
 		mnNewMenu_3.add(mntmNewMenuItem);
+		
+		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Registrar Jurados");
+		if(PUCMM.getLoginUser().getTipo().equalsIgnoreCase("Participante")) {
+			mntmNewMenuItem_5.setEnabled(false);
+		}
+		mntmNewMenuItem_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				IncripcionJurados jurado = new IncripcionJurados();
+				jurado.setVisible(true);
+			}
+		});
+		mnNewMenu_3.add(mntmNewMenuItem_5);
 		
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Inscripci\u00F3n para Jurados");//hacer plantilla jurados, copiar la misma que participantes y arreglar
 		mntmNewMenuItem_3.addActionListener(new ActionListener() {
@@ -100,6 +134,9 @@ public class PlantillaPrincipal extends JFrame {
 		
 		
 		JMenu mnNewMenu_1 = new JMenu("Jurados");
+		if(PUCMM.getLoginUser().getTipo().equalsIgnoreCase("Participante")) {
+			mnNewMenu_1.setEnabled(false);
+		}
 		mnNewMenu_1.setForeground(Color.WHITE);
 		menuBar.add(mnNewMenu_1);
 		
@@ -134,6 +171,9 @@ public class PlantillaPrincipal extends JFrame {
 		mnNewMenu.add(mntmNewMenuItem_1);
 		
 		JMenu mnNewMenu_4 = new JMenu("Eventos");
+		if(PUCMM.getLoginUser().getTipo().equalsIgnoreCase("Participante")) {
+			mnNewMenu_4.setEnabled(false);
+		}
 		mnNewMenu_4.setForeground(new Color(255, 255, 255));
 		menuBar.add(mnNewMenu_4);
 		
@@ -156,6 +196,30 @@ public class PlantillaPrincipal extends JFrame {
 			}
 		});
 		mnNewMenu_4.add(mntmNewMenuItem_7);
+		
+		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Registrar Usuario");
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegUsuarios usuario = new RegUsuarios();
+				usuario.setVisible(true);
+			}
+		});
+		
+		JMenu mnNewMenu_5 = new JMenu("Comisiones");
+		if(PUCMM.getLoginUser().getTipo().equalsIgnoreCase("Participante")) {
+			mnNewMenu_5.setEnabled(false);
+		}
+		menuBar.add(mnNewMenu_5);
+		
+		JMenuItem mntmNewMenuItem_8 = new JMenuItem("Crear Comision");
+		mntmNewMenuItem_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearComision comision = new CrearComision();
+				comision.setVisible(true);
+			}
+		});
+		mnNewMenu_5.add(mntmNewMenuItem_8);
+		menuBar.add(mntmNewMenuItem_4);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 51, 153));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

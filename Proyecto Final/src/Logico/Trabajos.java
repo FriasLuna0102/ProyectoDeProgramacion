@@ -1,6 +1,8 @@
 package Logico;
 
-public class Trabajos {
+import java.io.Serializable;
+
+public class Trabajos implements Serializable {
 	
 	private String codigoDeTrabajo;
 	private String nombre;

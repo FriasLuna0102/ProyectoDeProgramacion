@@ -24,6 +24,8 @@ public class PUCMM implements Serializable {
 	private ArrayList<Comisiones> misComisiones;
 	public static PUCMM alma = null;
 	private int generadorDeCodigo;
+	private int generadorDeCodigoJuece;
+
 	public static int cant = 0;
 
 
@@ -36,6 +38,7 @@ public class PUCMM implements Serializable {
 		misComisiones = new ArrayList<>();
 		misUsers = new ArrayList<>(); 
 		generadorDeCodigo = 1;
+		generadorDeCodigoJuece = 1;
 
 	}
 
@@ -159,7 +162,7 @@ public class PUCMM implements Serializable {
 
 		if(event != null) {
 			event.getMisJurados().add(jurado);
-			//generadorDeCodigo++;
+			generadorDeCodigoJuece++;
 		}
 
 	}
@@ -175,8 +178,13 @@ public class PUCMM implements Serializable {
 		}
 	}
 
-	public int getGeneradorCodigoParticipantes() {//vino?
+	public int getGeneradorCodigoParticipantes() {
 		return generadorDeCodigo;
+	}
+	
+	public int getGeneradoCodigoJurado() {
+	//	generadorDeCodigoJuece++;
+		return generadorDeCodigoJuece;
 	}
 
 	//Funcion para buscar las personas del evento mediante la cedula. Verificada
@@ -319,14 +327,18 @@ public class PUCMM implements Serializable {
 	}
 
 	//Metodo para buscar Jurado. Verificada.
-	public Jurado buscarJurado(	String cedula) {
+	public Jurado buscarJurado(String eventoCodigo	,String cedula) {
+		Eventos evento = buscarEvento(eventoCodigo);
 		Jurado jurado = null;
-		for (Personas aux : misPersonas) {
-			if(aux instanceof Jurado) {
-				if(aux.getCedula().equalsIgnoreCase(cedula)) {
-					jurado = (Jurado) aux;		
+		int i = 0;
+		boolean encontrado = false;
+		if(evento != null) {
+			while(!encontrado && i<evento.getMisJurados().size()) {
+				if(evento.getMisJurados().get(i).getCedula().equalsIgnoreCase(cedula)) {
+					encontrado = true;
+					jurado = evento.getMisJurados().get(i);
 				}
-			}		
+			}
 		}
 		return jurado;
 	}
@@ -345,7 +357,6 @@ public class PUCMM implements Serializable {
 					participante = evento.getMisParticipantes().get(i);
 				}
 			}
-			i++;
 		}
 		return participante;
 	}
@@ -473,6 +484,14 @@ public class PUCMM implements Serializable {
 			}
 		}
 		return login;
+	}
+
+	public int getGeneradorDeCodigoJuece() {
+		return generadorDeCodigoJuece;
+	}
+
+	public void setGeneradorDeCodigoJuece(int generadorDeCodigoJuece) {
+		this.generadorDeCodigoJuece = generadorDeCodigoJuece;
 	}
 		
 }
