@@ -120,17 +120,6 @@ public class PlantillaPrincipal extends JFrame {
 		});
 		mnNewMenu_3.add(mntmNewMenuItem_5);
 		
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Inscripci\u00F3n para Jurados");//hacer plantilla jurados, copiar la misma que participantes y arreglar
-		mntmNewMenuItem_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				RegDeJurados jurados = new RegDeJurados();
-				jurados.setModal(true);
-				jurados.setVisible(true);
-				
-			}
-		});
-		
-		
 		
 		
 		JMenu mnNewMenu_1 = new JMenu("Jurados");
