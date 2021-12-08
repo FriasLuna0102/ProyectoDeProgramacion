@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Vector;
@@ -32,46 +33,27 @@ public class Servidor extends Thread
     }
 
     while (true)
-    {
+    { 
       try
       {
     	  Socket nsfd = sfd.accept();
     		System.out.println("Conexion aceptada de: "+nsfd.getInetAddress());
-    		byte [] recibeDato = new byte [1024];
-    		BufferedInputStream bis = new BufferedInputStream(nsfd.getInputStream());
-    		DataInputStream dis = new DataInputStream(nsfd.getInputStream());
-    		String file = dis.readUTF();
-    		file = file.substring(file.indexOf("/")+1,file.length());
+    		FileInputStream fr = new FileInputStream("C:\\Users\\Starl\\git\\ProyectoDeProgramacion\\Proyecto Final\\pucmm.dat");
+    		byte b[]  = new byte [20002];
+    		fr.read(b, 0 , b.length);
+    		OutputStream os = nsfd.getOutputStream();
+    		os.write(b, 0 , b.length);
     		
-    		BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
-    		while(( in = bis.read(recibeDato))!= -1) {
-    			bos.write(recibeDato,0,in);
-    			
-    		}
-    		bos.close();
-    		dis.close();
-
-    		
-   // 		DataInputStream FlujoLectura = new DataInputStream(new BufferedInputStream(nsfd.getInputStream()));
-    	//	FileInputStream fichero = new FileInputStream("pucmm.dat");
-    		//File myFile = new File("pucmm.dat");
-    	//	byte []
-    		/*String txt = "";
-    		if(!linea.equals ("")) {
-
-    			txt = txt+" "+linea;
-    			System.out.println(txt);
-    		}*/
       }
-      
-      
-      catch(IOException ioe)
-      {
+      	catch(IOException ioe) {
         System.out.println("Error: "+ioe);
       }
     }
   }
 }
+
+
+
 /*
 FileInputStream fichero = new FileInputStream("pucmm.dat");
 BufferedInputStream bis = null;
@@ -88,4 +70,17 @@ os.write(mybytearray, 0 ,mybytearray.length);
 os.flush();
 System.out.println("Correcto");
 
-*/
+
+
+ // 		DataInputStream FlujoLectura = new DataInputStream(new BufferedInputStream(nsfd.getInputStream()));
+    	//	FileInputStream fichero = new FileInputStream("pucmm.dat");
+    		//File myFile = new File("pucmm.dat");
+    	//	byte []
+    		/*String txt = "";
+    		if(!linea.equals ("")) {
+
+    			txt = txt+" "+linea;
+    			System.out.println(txt);
+    		}*/
+
+

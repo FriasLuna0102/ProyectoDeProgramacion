@@ -33,6 +33,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -234,29 +235,21 @@ public class PlantillaPrincipal extends JFrame implements ActionListener {
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Respaldar");
 		mntmNewMenuItem_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				byte[]b = new byte[20002];
 				try {
-					final File localFile = new File("pucmm.dat");
-					Socket client = new Socket("127.0.0.1",7000);
-					bis = new BufferedInputStream(new FileInputStream(localFile));
-					bos = new BufferedOutputStream(client.getOutputStream());
+					Socket sr = new Socket("127.0.0.1",7000);
+					InputStream is = sr.getInputStream();
+					FileOutputStream fr = new FileOutputStream("C:\\Users\\Starl\\git\\ProyectoDeProgramacion\\Proyecto Final\\src\\Respaldo\\pucmm.dat");
+					is.read(b,0,b.length);
+					fr.write(b,0,b.length);
 					
-					DataOutputStream dos = new DataOutputStream(client.getOutputStream());
-					dos.writeUTF(localFile.getName());
-					
-					byteArray = new byte[8192];
-					while ((in = bis.read(byteArray))!= -1){
-						bos.write(byteArray,0,in);
-			
-		}
-					bis.close();
-					bos.close();
-					
-				}catch(Exception e1) {
-					System.err.println(e1);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 				
-			}
-		});
+		}});
 			
 		mnNewMenu_6.add(mntmNewMenuItem_3);
 		
@@ -396,4 +389,32 @@ public class PlantillaPrincipal extends JFrame implements ActionListener {
 					System.exit(1);
 				}
 			}
-		});*/
+		});
+		
+		*
+		*
+		*
+		*try {
+					final File localFile = new File("pucmm.dat");
+					Socket client = new Socket("127.0.0.1",7000);
+					bis = new BufferedInputStream(new FileInputStream(localFile));
+					bos = new BufferedOutputStream(client.getOutputStream());
+					
+					DataOutputStream dos = new DataOutputStream(client.getOutputStream());
+					dos.writeUTF(localFile.getName());
+					
+					byteArray = new byte[8192];
+					while ((in = bis.read(byteArray))!= -1){
+						bos.write(byteArray,0,in);
+			
+		}
+					bis.close();
+					bos.close();
+					
+				}catch(Exception e1) {
+					System.err.println(e1);
+				}
+				
+			}
+		*
+		*/
