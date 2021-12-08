@@ -314,7 +314,7 @@ public class CrearEvento extends JDialog {
 					SimpleDateFormat deee = new SimpleDateFormat("yyyy");
 					String yearrr = deee.format(dateAuxxx);
 					
-					Comisiones comision = PUCMM.getInstance().buscarComisiones(rbtCientifico.getSelectedObjects().toString());
+					Comisiones comision = PUCMM.getInstance().buscarComisiones(rbtCientifico.getText());
 					Recursos recurso = PUCMM.getInstance().buscarRecursos(rdbtnSalones.getText().toString());
 				
 					Eventos evento = new Eventos(txtTituloDelEvento.getText(),comision,recurso , txtCodigoDelEvento.getText(),txtPucmm.getText() ,Integer.valueOf(yearrr) , txtCorreoDelEvento.getText(),Integer.valueOf(spnLimiteDeParticipantes.getValue().toString()),

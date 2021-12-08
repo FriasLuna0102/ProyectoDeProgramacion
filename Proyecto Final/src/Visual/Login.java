@@ -30,8 +30,8 @@ public class Login extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtUsuarioe;
-	private JTextField txtContrasenaa;
 	private JButton btnLogin;
+	private JPasswordField passwordField;
  
 	/**
 	 * Launch the application.
@@ -115,18 +115,14 @@ public class Login extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("Contrase\u00F1a:");
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setBounds(215, 119, 97, 16);
+		lblNewLabel_1.setBounds(221, 119, 97, 16);
 		panel.add(lblNewLabel_1);
-		
-		txtContrasenaa = new JTextField();
-		txtContrasenaa.setBounds(202, 146, 116, 22);
-		panel.add(txtContrasenaa);
-		txtContrasenaa.setColumns(10);
 		
 		btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
-				if(PUCMM.getInstance().confirmarLogin(txtUsuarioe.getText(), txtContrasenaa.getText())) {
+				if(PUCMM.getInstance().confirmarLogin(txtUsuarioe.getText(), passwordField.getText())) {
 					PlantillaPrincipal frame = new PlantillaPrincipal();
 					dispose();
 					frame.setVisible(true);
@@ -136,5 +132,9 @@ public class Login extends JFrame {
 		});
 		btnLogin.setBounds(212, 192, 97, 25);
 		panel.add(btnLogin);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(202, 148, 116, 22);
+		panel.add(passwordField);
 	}
 }

@@ -38,7 +38,7 @@ public class Servidor extends Thread
       {
     	  Socket nsfd = sfd.accept();
     		System.out.println("Conexion aceptada de: "+nsfd.getInetAddress());
-    		FileInputStream fr = new FileInputStream("C:\\Users\\natas\\git\\ProyectoDeProgramacion\\Proyecto Final\\pucmm.dat");
+    		FileInputStream fr = new FileInputStream("C:\\Users\\Star\\git\\ProyectoDeProgramacion\\Proyecto Final\\pucmm.dat");
     		byte b[]  = new byte [20002];
     		fr.read(b, 0 , b.length);
     		OutputStream os = nsfd.getOutputStream();

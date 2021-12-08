@@ -240,7 +240,7 @@ public class PlantillaPrincipal extends JFrame implements ActionListener {
 				try {
 					Socket sr = new Socket("127.0.0.1",7000);
 					InputStream is = sr.getInputStream();
-					FileOutputStream fr = new FileOutputStream("C:\\Users\\natas\\git\\ProyectoDeProgramacion\\Proyecto Final\\src\\Respaldo\\pucmm.dat");
+					FileOutputStream fr = new FileOutputStream("C:\\Users\\Star\\git\\ProyectoDeProgramacion\\Proyecto Final\\src\\Respaldo\\pucmm.dat");
 					is.read(b,0,b.length);
 					fr.write(b,0,b.length);
 					

@@ -134,7 +134,7 @@ public class ListadoDeEventos extends JDialog {
 				}});
 			
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			String[] headers = {"Titulo del Evento","Codigo del Evento","Limite de Participantes","Lugar del Evento","Correo del Evento","Tipo de Evento","Fecha de Inicio","Fecha de Fin","Nombre de Comision"};			
+			String[] headers = {"Titulo del Evento","Codigo del Evento","Limite de Participantes","Lugar del Evento","Correo del Evento","Tipo de Evento","Fecha de Inicio","Fecha de Fin"};			
 			model = new DefaultTableModel();
 			model.setColumnIdentifiers(headers);	
 			table.setModel(model);
@@ -195,7 +195,7 @@ public class ListadoDeEventos extends JDialog {
 				rows[5] = PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento();
 				rows[6] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeInicio();
 				rows[7] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeCierre();
-				rows[8] = PUCMM.getInstance().getMisEventos().get(i).getNombreDeComision();
+
 
 
 				model.addRow(rows);		
@@ -212,7 +212,6 @@ public class ListadoDeEventos extends JDialog {
 					rows[5] = PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento();
 					rows[6] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeInicio();
 					rows[7] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeCierre();
-					rows[8] = PUCMM.getInstance().getMisEventos().get(i).getNombreDeComision();
 					model.addRow(rows);	
 
 				}
@@ -230,7 +229,6 @@ public class ListadoDeEventos extends JDialog {
 					rows[5] = PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento();
 					rows[6] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeInicio();
 					rows[7] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeCierre();
-					rows[8] = PUCMM.getInstance().getMisEventos().get(i).getNombreDeComision();
 					model.addRow(rows);	
 
 				}
@@ -248,7 +246,6 @@ public class ListadoDeEventos extends JDialog {
 					rows[5] = PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento();
 					rows[6] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeInicio();
 					rows[7] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeCierre();
-					rows[8] = PUCMM.getInstance().getMisEventos().get(i).getNombreDeComision();
 					model.addRow(rows);	
 
 				}
@@ -265,7 +262,6 @@ public class ListadoDeEventos extends JDialog {
 					rows[5] = PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento();
 					rows[6] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeInicio();
 					rows[7] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeCierre();
-					rows[8] = PUCMM.getInstance().getMisEventos().get(i).getNombreDeComision();
 					model.addRow(rows);	
 				}
 			}
@@ -281,7 +277,6 @@ public class ListadoDeEventos extends JDialog {
 					rows[5] = PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento();
 					rows[6] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeInicio();
 					rows[7] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeCierre();
-					rows[8] = PUCMM.getInstance().getMisEventos().get(i).getNombreDeComision();
 					model.addRow(rows);	
 				}
 			}
@@ -297,7 +292,6 @@ public class ListadoDeEventos extends JDialog {
 					rows[5] = PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento();
 					rows[6] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeInicio();
 					rows[7] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeCierre();
-					rows[8] = PUCMM.getInstance().getMisEventos().get(i).getNombreDeComision();
 					model.addRow(rows);	}
 			}
 			break;
@@ -312,7 +306,6 @@ public class ListadoDeEventos extends JDialog {
 					rows[5] = PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento();
 					rows[6] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeInicio();
 					rows[7] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeCierre();
-					rows[8] = PUCMM.getInstance().getMisEventos().get(i).getNombreDeComision();
 					model.addRow(rows);
 				}
 			}

@@ -23,15 +23,16 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.UIManager;
+import javax.swing.JPasswordField;
 
 public class RegUsuarios extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private Dimension dim;
 	private JTextField txtNombreUsuario;
-	private JTextField txtContraseña;
-	private JTextField txtConfirmar;
 	private JComboBox cbxSeleccion;
+	private JPasswordField passContra1;
+	private JPasswordField passContra2;
 
 	/**
 	 * Launch the application.
@@ -87,21 +88,11 @@ public class RegUsuarios extends JDialog {
 		lblNewLabel_1.setBounds(611, 299, 116, 16);
 		panel.add(lblNewLabel_1);
 		
-		txtContraseña = new JTextField();
-		txtContraseña.setBounds(541, 326, 256, 22);
-		panel.add(txtContraseña);
-		txtContraseña.setColumns(10);
-		
 		JLabel lblNewLabel_2 = new JLabel("Tipo de Usuario:");
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));
 		lblNewLabel_2.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblNewLabel_2.setBounds(618, 443, 116, 16);
 		panel.add(lblNewLabel_2);
-		
-		txtConfirmar = new JTextField();
-		txtConfirmar.setBounds(541, 397, 256, 22);
-		panel.add(txtConfirmar);
-		txtConfirmar.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Confirmar Contrase\u00F1a:");
 		lblNewLabel_3.setForeground(new Color(255, 255, 255));
@@ -114,6 +105,14 @@ public class RegUsuarios extends JDialog {
 		cbxSeleccion.setModel(new DefaultComboBoxModel(new String[] {"<<Seleccionar>>", "Administrador", "Participante", "Jurado"}));
 		cbxSeleccion.setBounds(541, 470, 256, 22);
 		panel.add(cbxSeleccion);
+		
+		passContra1 = new JPasswordField();
+		passContra1.setBounds(541, 328, 256, 22);
+		panel.add(passContra1);
+		
+		passContra2 = new JPasswordField();
+		passContra2.setBounds(541, 388, 256, 22);
+		panel.add(passContra2);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -123,11 +122,19 @@ public class RegUsuarios extends JDialog {
 			{
 				JButton btnRegistrar = new JButton("Registrarme");
 				btnRegistrar.addActionListener(new ActionListener() {
+					@SuppressWarnings("deprecation")
 					public void actionPerformed(ActionEvent e) {
-						User user = new User(cbxSeleccion.getSelectedItem().toString(), txtNombreUsuario.getText(),txtContraseña.getText());
-						PUCMM.getInstance().regUser(user);
-						JOptionPane.showMessageDialog(null, "Usuario: "+txtNombreUsuario.getText()+" se ha registrado con exito.");
-						clean();
+						User user = new User(cbxSeleccion.getSelectedItem().toString(), passContra1.getText(),passContra2.getText());
+						if(passContra1.getText() != null && passContra2.getText() != null) {
+							if (passContra1.getText().equals(passContra2.getText())){
+								PUCMM.getInstance().regUser(user);
+								JOptionPane.showMessageDialog(null, "Usuario: "+txtNombreUsuario.getText()+" se ha registrado con exito.");
+								clean();
+								
+							}else {
+								JOptionPane.showMessageDialog(null, "La contraseña no coinciden.");
+							}
+						}
 					}
 				}); 
 				btnRegistrar.setActionCommand("OK");
@@ -148,8 +155,8 @@ public class RegUsuarios extends JDialog {
 	}
 	private void clean() {
 		txtNombreUsuario.setText("");
-		txtContraseña.setText("");
-		txtConfirmar.setText("");
+		passContra1.setText("");
+		passContra2.setText("");
 		cbxSeleccion.setSelectedIndex(0);
 		
 	

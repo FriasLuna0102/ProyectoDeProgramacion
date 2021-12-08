@@ -132,6 +132,7 @@ public class ListadoDeParticipantes extends JDialog {
 		model.setRowCount(0);
 		rows = new Object[model.getColumnCount()];
 		Eventos evento = PUCMM.getInstance().buscarEvento(codigoEvento);
+		int j = 0;
 		if(evento != null) {
 			for (int i = 0; i < evento.getMisParticipantes().size(); i++) {
 				rows[0] = evento.getMisParticipantes().get(i).getNombre();
@@ -145,9 +146,8 @@ public class ListadoDeParticipantes extends JDialog {
 				rows[8] = evento.getMisParticipantes().get(i).getCorreo(); 
 				rows[9] = evento.getMisParticipantes().get(i).getCodigoDeEvento();
 				rows[10] = evento.getMisParticipantes().get(i).getSexo();
-				//for(int j = 0; j<evento.getMisParticipantes().size(); j++) {
-				//	rows[11] = evento.getMisParticipantes().get(j).getMisTrabajos().get(j).getNombre();
-			//	}				
+				rows[11] = evento.getMisParticipantes().get(i).getMisTrabajos().get(i).getNombre();
+			
 				model.addRow(rows);		     
 
 			}
