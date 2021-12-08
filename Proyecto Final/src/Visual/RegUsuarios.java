@@ -125,7 +125,7 @@ public class RegUsuarios extends JDialog {
 					@SuppressWarnings("deprecation")
 					public void actionPerformed(ActionEvent e) {
 						User user = new User(cbxSeleccion.getSelectedItem().toString(), passContra1.getText(),passContra2.getText());
-						if(passContra1.getText() != null && passContra2.getText() != null) {
+						
 							if (passContra1.getText().equals(passContra2.getText())){
 								PUCMM.getInstance().regUser(user);
 								JOptionPane.showMessageDialog(null, "Usuario: "+txtNombreUsuario.getText()+" se ha registrado con exito.");
@@ -134,7 +134,6 @@ public class RegUsuarios extends JDialog {
 							}else {
 								JOptionPane.showMessageDialog(null, "La contraseña no coinciden.");
 							}
-						}
 					}
 				}); 
 				btnRegistrar.setActionCommand("OK");
