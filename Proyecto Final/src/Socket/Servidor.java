@@ -54,33 +54,4 @@ public class Servidor extends Thread
 
 
 
-/*
-FileInputStream fichero = new FileInputStream("pucmm.dat");
-BufferedInputStream bis = null;
-OutputStream os = null;
-File myFile = new File("pucmm.dat");
-Socket sock = null;
-byte [] mybytearray = new byte[(int)myFile.length()];
-fichero = new FileInputStream(myFile);
-bis = new BufferedInputStream(fichero);
-bis.read(mybytearray, 0 , mybytearray.length);
-os = sock.getOutputStream();
-System.out.println("Enviando...");
-os.write(mybytearray, 0 ,mybytearray.length);
-os.flush();
-System.out.println("Correcto");
-
-
-
- // 		DataInputStream FlujoLectura = new DataInputStream(new BufferedInputStream(nsfd.getInputStream()));
-    	//	FileInputStream fichero = new FileInputStream("pucmm.dat");
-    		//File myFile = new File("pucmm.dat");
-    	//	byte []
-    		/*String txt = "";
-    		if(!linea.equals ("")) {
-
-    			txt = txt+" "+linea;
-    			System.out.println(txt);
-    		}*/
-
 

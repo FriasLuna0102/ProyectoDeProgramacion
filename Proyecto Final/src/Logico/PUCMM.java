@@ -80,7 +80,7 @@ public class PUCMM implements Serializable {
 		this.misComisiones = misComisiones;
 	}
 	
-	///////////////////////////////////////////////////////////De Logearme
+	///////////////////////////////////////////////////////////
 	
 	public ArrayList<User> getMisUsers() {
 		return misUsers;
