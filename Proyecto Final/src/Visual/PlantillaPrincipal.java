@@ -28,6 +28,8 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -42,6 +44,11 @@ public class PlantillaPrincipal extends JFrame implements ActionListener {
 	static Socket sfd = null;
 	static DataInputStream EntradaSocket;
 	static DataOutputStream SalidaSocket;
+	BufferedInputStream bis;
+	BufferedOutputStream bos;
+	int in;
+	byte[] byteArray;
+	final String filename = "/pucmm.dat";
 
 
 	/**
@@ -234,29 +241,29 @@ public class PlantillaPrincipal extends JFrame implements ActionListener {
 		mntmNewMenuItem_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					sfd = new Socket("127.0.0.1",7000);
-					EntradaSocket = new DataInputStream(new BufferedInputStream(sfd.getInputStream()));
-					SalidaSocket = new DataOutputStream(new BufferedOutputStream(sfd.getOutputStream()));
-					String fichero = new String ("Este es el fichero");
-					try {
-						SalidaSocket.writeUTF(fichero);
-						SalidaSocket.flush();
-						
-					}catch(IOException ioe)	{
-						System.out.println("Error"+ioe);
-					}	
+					final File localFile = new File("pucmm.dat");
+					Socket client = new Socket("127.0.0.1",7000);
+					bis = new BufferedInputStream(new FileInputStream(localFile));
+					bos = new BufferedOutputStream(client.getOutputStream());
+					
+					DataOutputStream dos = new DataOutputStream(client.getOutputStream());
+					dos.writeUTF(localFile.getName());
+					
+					byteArray = new byte[8192];
+					while ((in = bis.read(byteArray))!= -1){
+						bos.write(byteArray,0,in);
+			
+		}
+					bis.close();
+					bos.close();
+					
+				}catch(Exception e1) {
+					System.err.println(e1);
 				}
-				catch (UnknownHostException uhe)
-				{
-					System.out.println("No se puede acceder al servidor.");
-					System.exit(1);
-				}
-				catch(IOException ioe) {
-					System.out.println("Comunicacion rechazada.");
-					System.exit(1);
-				}
+				
 			}
 		});
+			
 		mnNewMenu_6.add(mntmNewMenuItem_3);
 		menuBar.add(mntmNewMenuItem_4);
 		contentPane = new JPanel();
@@ -357,3 +364,28 @@ public class PlantillaPrincipal extends JFrame implements ActionListener {
 		
 	} 
 }
+
+/*try {
+					sfd = new Socket("127.0.0.1",7000);
+					EntradaSocket = new DataInputStream(new BufferedInputStream(sfd.getInputStream()));
+					SalidaSocket = new DataOutputStream(new BufferedOutputStream(sfd.getOutputStream()));
+					String fichero = new String ("Este es el fichero");
+					try {
+						SalidaSocket.writeUTF(fichero);
+						SalidaSocket.flush();
+						
+					}catch(IOException ioe)	{
+						System.out.println("Error"+ioe);
+					}	
+				}
+				catch (UnknownHostException uhe)
+				{
+					System.out.println("No se puede acceder al servidor.");
+					System.exit(1);
+				}
+				catch(IOException ioe) {
+					System.out.println("Comunicacion rechazada.");
+					System.exit(1);
+				}
+			}
+		});*/
