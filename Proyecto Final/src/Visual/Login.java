@@ -128,7 +128,7 @@ public class Login extends JFrame {
 					frame.setVisible(true);
 					
 				}	
-			}
+			} 
 		});
 		btnLogin.setBounds(212, 192, 97, 25);
 		panel.add(btnLogin);
