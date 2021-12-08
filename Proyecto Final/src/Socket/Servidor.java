@@ -1,8 +1,9 @@
 package Socket;
-/*
+
 import java.io.BufferedInputStream;
 import java.io.DataInput;
 import java.io.DataInputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -33,14 +34,20 @@ public class Servidor extends Thread
       {
     	  Socket nsfd = sfd.accept();
     		System.out.println("Conexion aceptada de: "+nsfd.getInetAddress());
-    		DataInputStream FlujoLectura = new DataInputStream(new BufferedInputStream(nsfd.getInputStream()));
+    		//DataInputStream FlujoLectura = new DataInputStream(new BufferedInputStream(nsfd.getInputStream()));
     		FileInputStream fichero = new FileInputStream("pucmm.dat");
-    		String txt = "";
+    		BufferedInputStream bis = null;
+    		File myFile = new File("pucmm.dat");
+    		byte [] mybytearray = new byte[(int)myFile.length()];
+    		fichero = new FileInputStream(myFile);
+    		
+    		
+    		/*String txt = "";
     		if(!linea.equals ("")) {
 
     			txt = txt+" "+linea;
     			System.out.println(txt);
-    		}
+    		}*/
       }
       catch(IOException ioe)
       {
@@ -48,7 +55,7 @@ public class Servidor extends Thread
       }
     }
   }
-}*/
+}
 
 
 

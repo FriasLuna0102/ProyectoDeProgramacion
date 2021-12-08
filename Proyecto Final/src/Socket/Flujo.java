@@ -1,5 +1,5 @@
 package Socket;
-/*
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
@@ -43,17 +43,10 @@ import java.util.Enumeration;
 	       FlujoLectura.read(buffer);
 	       pucmmWrite.write(buffer);
 	       pucmmWrite.close();
-	       if (!linea.equals(""))
-		{
-	         linea = nsfd.getInetAddress() +"> "+ linea;
-		  broadcast(linea);
-		}
+	       System.out.println("Respaldo guardo correctamente.");
 	     }
-	     catch(IOException ioe)
-	     {
-		Servidor.usuarios.removeElement(this);
-		broadcast(nsfd.getInetAddress()+"> se ha desconectado");
-		break;
+	     catch (IOException ioe) {
+	    	 System.out.println("Error"+ioe);
 	     }
 	   }
 	 }
@@ -82,4 +75,4 @@ import java.util.Enumeration;
 	    }
 	  }
 	}
-*/
+

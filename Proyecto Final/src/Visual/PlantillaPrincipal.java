@@ -24,16 +24,25 @@ import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
-public class PlantillaPrincipal extends JFrame {
+public class PlantillaPrincipal extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private Dimension dim;
+	static Socket sfd = null;
+	static DataInputStream EntradaSocket;
+	static DataOutputStream SalidaSocket;
+
 
 	/**
 	 * Launch the application.
@@ -224,8 +233,28 @@ public class PlantillaPrincipal extends JFrame {
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Respaldar");
 		mntmNewMenuItem_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
+				try {
+					sfd = new Socket("127.0.0.1",7000);
+					EntradaSocket = new DataInputStream(new BufferedInputStream(sfd.getInputStream()));
+					SalidaSocket = new DataOutputStream(new BufferedOutputStream(sfd.getOutputStream()));
+					String fichero = new String ("Este es el fichero");
+					try {
+						SalidaSocket.writeUTF(fichero);
+						SalidaSocket.flush();
+						
+					}catch(IOException ioe)	{
+						System.out.println("Error"+ioe);
+					}	
+				}
+				catch (UnknownHostException uhe)
+				{
+					System.out.println("No se puede acceder al servidor.");
+					System.exit(1);
+				}
+				catch(IOException ioe) {
+					System.out.println("Comunicacion rechazada.");
+					System.exit(1);
+				}
 			}
 		});
 		mnNewMenu_6.add(mntmNewMenuItem_3);
@@ -320,5 +349,11 @@ public class PlantillaPrincipal extends JFrame {
 		lblNewLabel_11.setIcon(new ImageIcon("C:\\Users\\Starl\\Downloads\\WhatsApp Image 2021-11-25 at 3.50.46 PM (1).jpeg"));
 		lblNewLabel_11.setBounds(78, 26, 320, 216);
 		panel.add(lblNewLabel_11);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	} 
 }
