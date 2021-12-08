@@ -28,6 +28,7 @@ import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import java.awt.Color;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.UIManager;
 
 public class IncripcionJurados extends JDialog {
 
@@ -93,7 +94,7 @@ public class IncripcionJurados extends JDialog {
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 51, 255));
-		panel.setBorder(new TitledBorder(null, "Inscripción de Jurados para Evento Científico PUCMM:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.setBounds(10, 0, 1330, 370);
 		contentPanel.add(panel);
 		panel.setLayout(null);
@@ -140,7 +141,7 @@ public class IncripcionJurados extends JDialog {
 
 		JLabel lblTelfono = new JLabel("Tel\u00E9fono:");
 		lblTelfono.setForeground(new Color(255, 255, 255));
-		lblTelfono.setFont(new Font("Dialog", Font.BOLD, 12));
+		lblTelfono.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblTelfono.setBounds(469, 200, 73, 14);
 		panel.add(lblTelfono);
 

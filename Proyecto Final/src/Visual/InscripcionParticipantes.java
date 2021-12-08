@@ -27,6 +27,7 @@ import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import java.awt.Color;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.UIManager;
 
 public class InscripcionParticipantes extends JDialog {
 
@@ -96,7 +97,7 @@ public class InscripcionParticipantes extends JDialog {
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 51, 255));
-		panel.setBorder(new TitledBorder(null, "Inscripción para Evento Científico PUCMM:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.setBounds(10, 0, 1330, 370);
 		contentPanel.add(panel);
 		panel.setLayout(null);
@@ -182,7 +183,7 @@ public class InscripcionParticipantes extends JDialog {
 		lblNewLabel_5 = new JLabel("Lugar Proveniente:");
 		lblNewLabel_5.setForeground(new Color(255, 255, 255));
 		lblNewLabel_5.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblNewLabel_5.setBounds(734, 95, 116, 16);
+		lblNewLabel_5.setBounds(734, 95, 137, 16);
 		panel.add(lblNewLabel_5);
 
 		txtLugarProveniente = new JTextField();
@@ -211,7 +212,7 @@ public class InscripcionParticipantes extends JDialog {
 		lblNewLabel_8 = new JLabel("Edad del Participante:");
 		lblNewLabel_8.setForeground(new Color(255, 255, 255));
 		lblNewLabel_8.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblNewLabel_8.setBounds(734, 143, 133, 16);
+		lblNewLabel_8.setBounds(734, 143, 154, 16);
 		panel.add(lblNewLabel_8);
 		
 		spnEdadDeParticipantes = new JSpinner();

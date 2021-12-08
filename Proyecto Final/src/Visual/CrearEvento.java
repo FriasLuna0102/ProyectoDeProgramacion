@@ -32,6 +32,7 @@ import java.util.Date;
 import java.util.Calendar;
 import javax.swing.SpinnerNumberModel;
 import java.awt.Color;
+import javax.swing.UIManager;
 
 public class CrearEvento extends JDialog {
 
@@ -46,7 +47,6 @@ public class CrearEvento extends JDialog {
 	private JSpinner spnFechaDeInscripcion;
 	private JSpinner spnFechaDeFin;
 	private static Eventos updated = null;
-	private JTextField txtNombreComision;
 	private JTextField txtPucmm;
 	private JSpinner spnFechaDeInicio;
 	private JRadioButton rdbtnMicrofonos;
@@ -70,6 +70,7 @@ public class CrearEvento extends JDialog {
 	 * Create the dialog.
 	 */
 	public CrearEvento(Eventos evento) {
+		setTitle("Registro de Eventos");
 		getContentPane().setBackground(new Color(0, 153, 204));
 		updated = evento;
 		setModal(true);
@@ -85,7 +86,7 @@ public class CrearEvento extends JDialog {
 		dim = getToolkit().getScreenSize();
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(0, 51, 255));
-		contentPanel.setBorder(new TitledBorder(null, "Datos para crear Evento.", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		contentPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		setSize(dim.width, dim.height-40);
 		setLocationRelativeTo(null);
@@ -206,23 +207,10 @@ public class CrearEvento extends JDialog {
 		lblNewLabel_7.setBounds(301, 34, 785, 14);
 		panel.add(lblNewLabel_7);
 
-		JLabel lblNewLabel_8 = new JLabel("Nombre de Comisi\u00F3n:");
-		lblNewLabel_8.setForeground(new Color(255, 255, 255));
-		lblNewLabel_8.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblNewLabel_8.setBounds(391, 354, 141, 16);
-		panel.add(lblNewLabel_8);
-
-		txtNombreComision = new JTextField();
-		txtNombreComision.setForeground(new Color(0, 0, 0));
-		txtNombreComision.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		txtNombreComision.setBounds(533, 351, 347, 22);
-		panel.add(txtNombreComision);
-		txtNombreComision.setColumns(10);
-
 		JLabel lblNewLabel_9 = new JLabel("Lugar Del Evento:");
 		lblNewLabel_9.setForeground(new Color(255, 255, 255));
 		lblNewLabel_9.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblNewLabel_9.setBounds(391, 383, 116, 16);
+		lblNewLabel_9.setBounds(391, 361, 116, 16);
 		panel.add(lblNewLabel_9);
 
 		txtPucmm = new JTextField();
@@ -230,58 +218,79 @@ public class CrearEvento extends JDialog {
 		txtPucmm.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		txtPucmm.setEditable(false);
 		txtPucmm.setText("PUCMM");
-		txtPucmm.setBounds(533, 380, 172, 22);
+		txtPucmm.setBounds(533, 358, 172, 22);
 		panel.add(txtPucmm);
 		txtPucmm.setColumns(10);
 
 		JLabel lblNewLabel_10 = new JLabel("Tipo de Recursos a Utilizar:");
 		lblNewLabel_10.setForeground(new Color(255, 255, 255));
 		lblNewLabel_10.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblNewLabel_10.setBounds(391, 434, 172, 16);
+		lblNewLabel_10.setBounds(390, 398, 172, 16);
 		panel.add(lblNewLabel_10);
 
 		rdbtnSalones = new JRadioButton("Salones");
 		rdbtnSalones.setBackground(new Color(0, 51, 255));
 		rdbtnSalones.setForeground(new Color(255, 255, 255));
 		rdbtnSalones.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		/*rdbtnSalones.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				rdbtnSalones.setSelected(true);
-				rdbtnLuces.setSelected(false);
-				rdbtnMicrofonos.setSelected(false);
-			}
-		});*/
+	
 		rdbtnSalones.setSelected(true);
-		rdbtnSalones.setBounds(388, 460, 88, 25);
+		rdbtnSalones.setBounds(391, 446, 88, 25);
 		panel.add(rdbtnSalones);
 
 		rdbtnLuces = new JRadioButton("Luces");
 		rdbtnLuces.setBackground(new Color(0, 51, 255));
 		rdbtnLuces.setForeground(new Color(255, 255, 255));
 		rdbtnLuces.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		/*rdbtnLuces.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				rdbtnLuces.setSelected(true);
-				rdbtnMicrofonos.setSelected(false);
-				rdbtnSalones.setSelected(false);
-			}
-		});*/
-		rdbtnLuces.setBounds(531, 457, 75, 25);
+		
+		rdbtnLuces.setBounds(391, 474, 75, 25);
 		panel.add(rdbtnLuces);
 
 		rdbtnMicrofonos = new JRadioButton("Micr\u00F3fonos");
 		rdbtnMicrofonos.setBackground(new Color(0, 51, 255));
 		rdbtnMicrofonos.setForeground(new Color(255, 255, 255));
 		rdbtnMicrofonos.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		/*rdbtnMicrofonos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				rdbtnMicrofonos.setSelected(true);
-				rdbtnLuces.setSelected(false);
-				rdbtnSalones.setSelected(false);
-			}
-		});*/
-		rdbtnMicrofonos.setBounds(650, 460, 127, 25);
+		
+		rdbtnMicrofonos.setBounds(391, 421, 127, 25);
 		panel.add(rdbtnMicrofonos);
+		
+		JLabel lblNewLabel_5 = new JLabel("Comisiones:");
+		lblNewLabel_5.setForeground(Color.WHITE);
+		lblNewLabel_5.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblNewLabel_5.setBounds(659, 400, 100, 14);
+		panel.add(lblNewLabel_5);
+		
+		JRadioButton rbtCientifico = new JRadioButton("Cient\u00EDfico");
+		
+		rbtCientifico.setBackground(new Color(0, 51, 255));
+		rbtCientifico.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		rbtCientifico.setForeground(Color.WHITE);
+		rbtCientifico.setBounds(659, 434, 109, 23);
+		panel.add(rbtCientifico);
+		
+		JRadioButton rbtPrograma = new JRadioButton("Programaci\u00F3n");
+		
+		rbtPrograma.setSelected(true);
+		rbtPrograma.setBackground(new Color(0, 51, 255));
+		rbtPrograma.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		rbtPrograma.setForeground(Color.WHITE);
+		rbtPrograma.setBounds(659, 464, 124, 23);
+		panel.add(rbtPrograma);
+		
+		JRadioButton rbtSoft = new JRadioButton("Software");
+		
+		rbtSoft.setBackground(new Color(0, 51, 255));
+		rbtSoft.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		rbtSoft.setForeground(Color.WHITE);
+		rbtSoft.setBounds(806, 434, 109, 23);
+		panel.add(rbtSoft);
+		
+		JRadioButton rbtMath = new JRadioButton("Matem\u00E1tico");
+	
+		rbtMath.setBackground(new Color(0, 51, 255));
+		rbtMath.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		rbtMath.setForeground(Color.WHITE);
+		rbtMath.setBounds(806, 464, 109, 23);
+		panel.add(rbtMath);
 		{	if(updated == null) {
 			txtCorreoDelEvento.setText("eventopucmm@ce.pucmm.edu.do ");
 		}
@@ -305,11 +314,11 @@ public class CrearEvento extends JDialog {
 					SimpleDateFormat deee = new SimpleDateFormat("yyyy");
 					String yearrr = deee.format(dateAuxxx);
 					
-					Comisiones comision = PUCMM.getInstance().buscarComisiones(txtNombreComision.getText());
+					Comisiones comision = PUCMM.getInstance().buscarComisiones(rbtCientifico.getSelectedObjects().toString());
 					Recursos recurso = PUCMM.getInstance().buscarRecursos(rdbtnSalones.getText().toString());
-					//	String salones = rdbtnSalones.getText().toString();
-					Eventos evento = new Eventos(txtTituloDelEvento.getText(), comision,recurso , txtCodigoDelEvento.getText(),txtPucmm.getText() ,Integer.valueOf(yearrr) , txtCorreoDelEvento.getText(),Integer.valueOf(spnLimiteDeParticipantes.getValue().toString()),
-							cbxTipoDeEventos.getSelectedItem().toString(),txtNombreComision.getText(),Integer.valueOf(yearr));
+				
+					Eventos evento = new Eventos(txtTituloDelEvento.getText(),comision,recurso , txtCodigoDelEvento.getText(),txtPucmm.getText() ,Integer.valueOf(yearrr) , txtCorreoDelEvento.getText(),Integer.valueOf(spnLimiteDeParticipantes.getValue().toString()),
+							cbxTipoDeEventos.getSelectedItem().toString(),null,Integer.valueOf(yearr));
 					if(evento.getCodigoDeEvento().length() != 0 && evento.getTituloDeEvento().length() != 0 )
 					{
 						PUCMM.getInstance().addEventos(evento);
@@ -318,7 +327,7 @@ public class CrearEvento extends JDialog {
 					}else  {
 						JOptionPane.showMessageDialog(null, "El Evento carece de informacion. Complete todos los campos.", "Informacion", JOptionPane.INFORMATION_MESSAGE);
 
-						//hacer que si esta registrado correctamente que le de un usuario y una contrase;a la cual se va ir incrementando de uno a uno cuando se vayan registrando ese usuario y contrase;a deben de estar conectados a la pantalla de usuario de los don individuos
+						
 					
 
 					}
@@ -339,20 +348,11 @@ public class CrearEvento extends JDialog {
 			buttonPane.add(btnCerrar);
 		}
 	}
-	/*
-	private void loadWine (Eventos evento) {
-		if(evento != null) {
-			txtCodigoDelEvento.setText(evento.getCodigoDeEvento());
-			txtTituloDelEvento.setText(evento.getTituloDeEvento());
-			Calendar auxDate = Calendar.getInstance();
-			auxDate.set(evento.getFechaDeInicio(), 1,1);
-			
-		}
-	}*/
+	
 	
 	private void clean() {
 		txtTituloDelEvento.setText("");
-		txtNombreComision.setText("");
+		
 		txtCodigoDelEvento.setText("");
 		cbxTipoDeEventos.setSelectedItem(0);
 		spnFechaDeInicio.setValue(new Date());

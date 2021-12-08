@@ -82,7 +82,7 @@ public class CrearComision extends JDialog {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 153, 204));
-		panel.setBorder(new TitledBorder(null, "Crear Comision:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.setBounds(10, 11, 1340, 644);
 		contentPanel.add(panel);
 		panel.setLayout(null);
@@ -101,7 +101,7 @@ public class CrearComision extends JDialog {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(0, 153, 204));
-		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Jurados:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_1.setBounds(0, 159, 1340, 423);
 		panel.add(panel_1);
 		panel_1.setLayout(null);

@@ -22,6 +22,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
+import javax.swing.UIManager;
 
 public class RegUsuarios extends JDialog {
 
@@ -30,6 +31,7 @@ public class RegUsuarios extends JDialog {
 	private JTextField txtNombreUsuario;
 	private JTextField txtContraseña;
 	private JTextField txtConfirmar;
+	private JComboBox cbxSeleccion;
 
 	/**
 	 * Launch the application.
@@ -55,7 +57,7 @@ public class RegUsuarios extends JDialog {
 		dim = getToolkit().getScreenSize();
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(0, 153, 204));
-		contentPanel.setBorder(new TitledBorder(null, "Registro de Usuarios ", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		contentPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		setSize(dim.width, dim.height-40);
 		setLocationRelativeTo(null);
@@ -107,11 +109,11 @@ public class RegUsuarios extends JDialog {
 		lblNewLabel_3.setBounds(592, 359, 153, 16);
 		panel.add(lblNewLabel_3);
 		
-		JComboBox comboBox = new JComboBox(); 
-		comboBox.setFont(new Font("Times New Roman", Font.BOLD, 11));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"<<Seleccionar>>", "Administrador", "Participante", "Jurado"}));
-		comboBox.setBounds(541, 470, 256, 22);
-		panel.add(comboBox);
+		cbxSeleccion = new JComboBox(); 
+		cbxSeleccion.setFont(new Font("Times New Roman", Font.BOLD, 11));
+		cbxSeleccion.setModel(new DefaultComboBoxModel(new String[] {"<<Seleccionar>>", "Administrador", "Participante", "Jurado"}));
+		cbxSeleccion.setBounds(541, 470, 256, 22);
+		panel.add(cbxSeleccion);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -122,7 +124,7 @@ public class RegUsuarios extends JDialog {
 				JButton btnRegistrar = new JButton("Registrarme");
 				btnRegistrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						User user = new User(comboBox.getSelectedItem().toString(), txtNombreUsuario.getText(),txtContraseña.getText());
+						User user = new User(cbxSeleccion.getSelectedItem().toString(), txtNombreUsuario.getText(),txtContraseña.getText());
 						PUCMM.getInstance().regUser(user);
 						JOptionPane.showMessageDialog(null, "Usuario: "+txtNombreUsuario.getText()+" se ha registrado con exito.");
 						clean();
@@ -148,6 +150,7 @@ public class RegUsuarios extends JDialog {
 		txtNombreUsuario.setText("");
 		txtContraseña.setText("");
 		txtConfirmar.setText("");
+		cbxSeleccion.setSelectedIndex(0);
 		
 	
 	}
