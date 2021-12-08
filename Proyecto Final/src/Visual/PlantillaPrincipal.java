@@ -205,21 +205,14 @@ public class PlantillaPrincipal extends JFrame implements ActionListener {
 				conect.setVisible(true);
 				conect.setModal(true);	
 			}
-		});
+		}); 
 		mnNewMenu_4.add(mntmNewMenuItem_7);
-		
-		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Registrar Usuario");
 		if(PUCMM.getLoginUser().getTipo().equalsIgnoreCase("Jurado")) {
-			mntmNewMenuItem_4.setEnabled(false);
+			mnNewMenu_4.setEnabled(false);
 		}
-		mntmNewMenuItem_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				RegUsuarios usuario = new RegUsuarios();
-				usuario.setVisible(true);
-			}
-		});
 		
 		JMenu mnNewMenu_5 = new JMenu("Comisiones");
+		mnNewMenu_5.setForeground(new Color(255, 255, 255));
 		if(PUCMM.getLoginUser().getTipo().equalsIgnoreCase("Participante")) {
 			mnNewMenu_5.setEnabled(false);
 		}
@@ -235,6 +228,7 @@ public class PlantillaPrincipal extends JFrame implements ActionListener {
 		mnNewMenu_5.add(mntmNewMenuItem_8);
 		
 		JMenu mnNewMenu_6 = new JMenu("Respaldo");
+		mnNewMenu_6.setForeground(new Color(255, 255, 255));
 		menuBar.add(mnNewMenu_6);
 		
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Respaldar");
@@ -265,7 +259,20 @@ public class PlantillaPrincipal extends JFrame implements ActionListener {
 		});
 			
 		mnNewMenu_6.add(mntmNewMenuItem_3);
-		menuBar.add(mntmNewMenuItem_4);
+		
+		JMenu mnNewMenu_7 = new JMenu(" Registros");
+		mnNewMenu_7.setForeground(new Color(255, 255, 255));
+		menuBar.add(mnNewMenu_7);
+		
+		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Registros de Usuarios");
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				RegUsuarios usuarios= new RegUsuarios();
+				usuarios.setModal(true);
+				usuarios.setVisible(true);
+			}
+		});
+		mnNewMenu_7.add(mntmNewMenuItem_4);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 51, 153));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -295,22 +302,22 @@ public class PlantillaPrincipal extends JFrame implements ActionListener {
 		JLabel lblNewLabel_1 = new JLabel("EVENTO CIENTIFICO PUCMM");
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_1.setFont(new Font("Bodoni MT Condensed", Font.PLAIN, 67));
-		lblNewLabel_1.setBounds(464, 37, 553, 69); 
+		lblNewLabel_1.setBounds(671, 28, 553, 69); 
 		panel.add(lblNewLabel_1);  
 		
 		JLabel lblNewLabel_2 = new JLabel("Campus Santiago");
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));
 		lblNewLabel_2.setFont(new Font("Imprint MT Shadow", Font.ITALIC, 18));
-		lblNewLabel_2.setBounds(804, 134, 149, 30);
+		lblNewLabel_2.setBounds(1034, 147, 149, 30);
 		panel.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("DE LA ESCULA DE CIENCIAS DE INGENIERIA");
 		lblNewLabel_3.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3.setFont(new Font("Bodoni MT Poster Compressed", Font.PLAIN, 37));
-		lblNewLabel_3.setBounds(576, 98, 413, 41);
+		lblNewLabel_3.setBounds(805, 95, 413, 41);
 		panel.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("Se apr\u00F3xima el Evento Cient\u00EDfico PUCMM en el cual estudiantes y exteriores pueden presentar sus proyectos cientificos");
+		JLabel lblNewLabel_4 = new JLabel("Se apr\u00F3xima el Evento Cient\u00EDfico PUCMM en el cual estudiantes y exteriores pueden presentar sus proyectos cient\u00EDficos");
 		lblNewLabel_4.setForeground(new Color(255, 255, 255));
 		lblNewLabel_4.setFont(new Font("Times New Roman", Font.PLAIN, 17));
 		lblNewLabel_4.setBounds(263, 279, 851, 30);
@@ -353,8 +360,9 @@ public class PlantillaPrincipal extends JFrame implements ActionListener {
 		panel.add(lblNewLabel_10);
 		
 		JLabel lblNewLabel_11 = new JLabel("");
-		lblNewLabel_11.setIcon(new ImageIcon("C:\\Users\\Starl\\Downloads\\WhatsApp Image 2021-11-25 at 3.50.46 PM (1).jpeg"));
-		lblNewLabel_11.setBounds(78, 26, 320, 216);
+		lblNewLabel_11.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		lblNewLabel_11.setIcon(new ImageIcon("C:\\Users\\natas\\Desktop\\logo.png"));
+		lblNewLabel_11.setBounds(10, 46, 651, 187);
 		panel.add(lblNewLabel_11);
 	}
 

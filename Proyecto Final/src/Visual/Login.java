@@ -22,6 +22,9 @@ import javax.imageio.stream.FileImageInputStream;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
+import java.awt.Color;
+import java.awt.Font;
 
 public class Login extends JFrame {
 
@@ -85,30 +88,37 @@ public class Login extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 549, 350);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(0, 51, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(12, 25, 507, 265);
+		panel.setBackground(new Color(0, 51, 255));
+		panel.setBounds(12, 25, 521, 265);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Usuario:\r\n");
-		lblNewLabel.setBounds(12, 45, 56, 16);
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setBounds(232, 39, 56, 16);
 		panel.add(lblNewLabel);
 		
 		txtUsuarioe = new JTextField();
-		txtUsuarioe.setBounds(0, 74, 116, 22);
+		txtUsuarioe.setFont(new Font("Times New Roman", Font.BOLD, 11));
+		txtUsuarioe.setBounds(202, 66, 116, 22);
 		panel.add(txtUsuarioe);
 		txtUsuarioe.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Contrase\u00F1a:");
-		lblNewLabel_1.setBounds(12, 130, 56, 16);
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		lblNewLabel_1.setBounds(215, 119, 97, 16);
 		panel.add(lblNewLabel_1);
 		
 		txtContrasenaa = new JTextField();
-		txtContrasenaa.setBounds(12, 166, 116, 22);
+		txtContrasenaa.setBounds(202, 146, 116, 22);
 		panel.add(txtContrasenaa);
 		txtContrasenaa.setColumns(10);
 		
@@ -119,10 +129,11 @@ public class Login extends JFrame {
 					PlantillaPrincipal frame = new PlantillaPrincipal();
 					dispose();
 					frame.setVisible(true);
+					
 				}	
 			}
 		});
-		btnLogin.setBounds(181, 192, 97, 25);
+		btnLogin.setBounds(212, 192, 97, 25);
 		panel.add(btnLogin);
 	}
 }

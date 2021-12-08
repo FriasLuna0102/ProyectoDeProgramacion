@@ -1,6 +1,7 @@
 package Visual;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
@@ -19,13 +20,16 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.Color;
 
 public class RegUsuarios extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	private Dimension dim;
 	private JTextField txtNombreUsuario;
 	private JTextField txtContraseña;
-	private JTextField textField_1;
+	private JTextField txtConfirmar;
 
 	/**
 	 * Launch the application.
@@ -44,55 +48,74 @@ public class RegUsuarios extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegUsuarios() {
+		getContentPane().setBackground(new Color(0, 153, 204));
+		setTitle("Registro de Usuarios");
 		setResizable(false);
 		setBounds(100, 100, 538, 405);
+		dim = getToolkit().getScreenSize();
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(0, 153, 204));
 		contentPanel.setBorder(new TitledBorder(null, "Registro de Usuarios ", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		setSize(dim.width, dim.height-40);
+		setLocationRelativeTo(null);
 		contentPanel.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(12, 67, 477, 243);
+		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBackground(new Color(0, 153, 204));
+		panel.setBounds(10, 21, 1338, 634);
 		contentPanel.add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Nombre de Usuario:");
-		lblNewLabel.setBounds(12, 13, 131, 16);
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblNewLabel.setBounds(603, 225, 131, 16);
 		panel.add(lblNewLabel);
 		
 		txtNombreUsuario = new JTextField();
-		txtNombreUsuario.setBounds(12, 44, 116, 22);
+		txtNombreUsuario.setBounds(541, 252, 256, 22);
 		panel.add(txtNombreUsuario);
 		txtNombreUsuario.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Contrase\u00F1a:");
-		lblNewLabel_1.setBounds(12, 79, 116, 16);
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblNewLabel_1.setBounds(611, 299, 116, 16);
 		panel.add(lblNewLabel_1);
 		
 		txtContraseña = new JTextField();
-		txtContraseña.setBounds(12, 118, 116, 22);
+		txtContraseña.setBounds(541, 326, 256, 22);
 		panel.add(txtContraseña);
 		txtContraseña.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Tipo de Usuario:");
-		lblNewLabel_2.setBounds(223, 13, 116, 16);
+		lblNewLabel_2.setForeground(new Color(255, 255, 255));
+		lblNewLabel_2.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblNewLabel_2.setBounds(618, 443, 116, 16);
 		panel.add(lblNewLabel_2);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(12, 189, 116, 22);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		txtConfirmar = new JTextField();
+		txtConfirmar.setBounds(541, 397, 256, 22);
+		panel.add(txtConfirmar);
+		txtConfirmar.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Confirmar Contrase\u00F1a:");
-		lblNewLabel_3.setBounds(12, 156, 153, 16);
+		lblNewLabel_3.setForeground(new Color(255, 255, 255));
+		lblNewLabel_3.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblNewLabel_3.setBounds(592, 359, 153, 16);
 		panel.add(lblNewLabel_3);
 		
 		JComboBox comboBox = new JComboBox(); 
+		comboBox.setFont(new Font("Times New Roman", Font.BOLD, 11));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"<<Seleccionar>>", "Administrador", "Participante", "Jurado"}));
-		comboBox.setBounds(223, 44, 179, 22);
+		comboBox.setBounds(541, 470, 256, 22);
 		panel.add(comboBox);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			buttonPane.setBackground(new Color(0, 153, 204));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
@@ -102,6 +125,7 @@ public class RegUsuarios extends JDialog {
 						User user = new User(comboBox.getSelectedItem().toString(), txtNombreUsuario.getText(),txtContraseña.getText());
 						PUCMM.getInstance().regUser(user);
 						JOptionPane.showMessageDialog(null, "Usuario: "+txtNombreUsuario.getText()+" se ha registrado con exito.");
+						clean();
 					}
 				}); 
 				btnRegistrar.setActionCommand("OK");
@@ -119,5 +143,12 @@ public class RegUsuarios extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+	private void clean() {
+		txtNombreUsuario.setText("");
+		txtContraseña.setText("");
+		txtConfirmar.setText("");
+		
+	
 	}
 }

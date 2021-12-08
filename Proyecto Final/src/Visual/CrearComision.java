@@ -20,16 +20,20 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class CrearComision extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	private Dimension dim;
 	private JTextField textField;
 	private JScrollPane scrollPane;
 	private ArrayList <String> pasarADerecha;
@@ -64,44 +68,55 @@ public class CrearComision extends JDialog {
 	 * Create the dialog.
 	 */
 	public CrearComision() {
+		setTitle("Creaci\u00F3n de Comisi\u00F3n");
 		setResizable(false);
 		setBounds(100, 100, 657, 598);
+		dim = getToolkit().getScreenSize();
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(0, 153, 204));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setSize(dim.width, dim.height-40);
+		setLocationRelativeTo(null);
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(0, 153, 204));
 		panel.setBorder(new TitledBorder(null, "Crear Comision:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(0, 0, 639, 510);
+		panel.setBounds(10, 11, 1340, 644);
 		contentPanel.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Nombre de Comision:");
-		lblNewLabel.setBounds(12, 56, 142, 16);
+		JLabel lblNewLabel = new JLabel("Nombre de Comisi\u00F3n:");
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblNewLabel.setBounds(556, 56, 142, 16);
 		panel.add(lblNewLabel);
 		
 		textField = new JTextField();
-		textField.setBounds(12, 85, 116, 22);
+		textField.setFont(new Font("Times New Roman", Font.BOLD, 11));
+		textField.setBounds(556, 83, 185, 22);
 		panel.add(textField);
 		textField.setColumns(10);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(0, 153, 204));
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Jurados:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_1.setBounds(12, 159, 615, 349);
+		panel_1.setBounds(0, 159, 1340, 423);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(12, 25, 202, 283);
-		panel_1.add(panel_2);
-		panel_2.setLayout(null);
+		JPanel panelDisponibles = new JPanel();
+		panelDisponibles.setBounds(430, 52, 202, 360);
+		panel_1.add(panelDisponibles);
+		panelDisponibles.setLayout(null);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 0, 202, 283);
-		panel_2.add(scrollPane);
+		scrollPane.setBounds(0, 0, 202, 359);
+		panelDisponibles.add(scrollPane);
 		
 		listJuradosDispo = new JList();
+		listJuradosDispo.setFont(new Font("Times New Roman", Font.BOLD, 11));
 		listJuradosDispo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -122,17 +137,18 @@ public class CrearComision extends JDialog {
 		
 		
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(364, 25, 202, 283);
-		panel_1.add(panel_3);
-		panel_3.setLayout(null);
+		JPanel panelSeleccionados = new JPanel();
+		panelSeleccionados.setBounds(802, 52, 202, 360);
+		panel_1.add(panelSeleccionados);
+		panelSeleccionados.setLayout(null);
 		
 		
 		scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(0, 0, 202, 283);
-		panel_3.add(scrollPane_1);
+		scrollPane_1.setBounds(0, 0, 202, 359);
+		panelSeleccionados.add(scrollPane_1);
 		
 		listJuradosOcupados = new JList();
+		listJuradosOcupados.setFont(new Font("Times New Roman", Font.BOLD, 11));
 		listJuradosOcupados.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -166,36 +182,70 @@ public class CrearComision extends JDialog {
 			}
 			
 		});
-		btnDerecha.setBounds(226, 56, 97, 25);
+		btnDerecha.setBounds(667, 163, 97, 25);
 		panel_1.add(btnDerecha);
 		
 		btnIzquierda = new JButton("<<");
 		btnIzquierda.setEnabled(false);
-		btnIzquierda.setBounds(226, 115, 97, 25);
+		btnIzquierda.setBounds(667, 305, 97, 25);
 		panel_1.add(btnIzquierda);
 		
-		JLabel lblNewLabel_1 = new JLabel("Codigo de Evento:");
-		lblNewLabel_1.setBounds(258, 56, 131, 16);
+		JLabel lblNewLabel_2 = new JLabel("Jurados Disponibles:");
+		lblNewLabel_2.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblNewLabel_2.setForeground(new Color(255, 255, 255));
+		lblNewLabel_2.setBounds(430, 27, 129, 14);
+		panel_1.add(lblNewLabel_2);
+		
+		JLabel lblJuradosSeleccionados = new JLabel("Jurados Seleccionados:");
+		lblJuradosSeleccionados.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblJuradosSeleccionados.setForeground(new Color(255, 255, 255));
+		lblJuradosSeleccionados.setBounds(802, 27, 129, 14);
+		panel_1.add(lblJuradosSeleccionados);
+		
+		JLabel lblNewLabel_1 = new JLabel("C\u00F3digo de Evento:");
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblNewLabel_1.setBounds(758, 56, 131, 16);
 		panel.add(lblNewLabel_1);
 		
 		txtCodigoDelEvento = new JTextField();
-		txtCodigoDelEvento.setBounds(250, 85, 116, 22);
+		txtCodigoDelEvento.setFont(new Font("Times New Roman", Font.BOLD, 11));
+		txtCodigoDelEvento.setBounds(758, 83, 185, 22);
 		panel.add(txtCodigoDelEvento);
 		txtCodigoDelEvento.setColumns(10);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setLayout(null);
+		panel_2.setBorder(new EmptyBorder(0, 0, 0, 0));
+		panel_2.setBackground(new Color(0, 153, 204));
+		panel_2.setBounds(10, 603, 1320, 30);
+		panel.add(panel_2);
+		
+		JLabel label = new JLabel("\u00A9Todos los derechos reservados");
+		label.setForeground(Color.WHITE);
+		label.setFont(new Font("Sylfaen", Font.PLAIN, 10));
+		label.setBackground(Color.LIGHT_GRAY);
+		label.setBounds(655, 11, 162, 14);
+		panel_2.add(label);
 
 
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(0, 153, 204));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
+				JButton okButton = new JButton("Crear");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Cancelar");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
@@ -246,7 +296,6 @@ public class CrearComision extends JDialog {
 			listModelJuecesDisponible.addElement(pasarIzquierda.get(i));
 		}
 	}
-	 
 }
 
 /*
