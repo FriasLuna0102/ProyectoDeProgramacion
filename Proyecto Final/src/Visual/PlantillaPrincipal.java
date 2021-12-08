@@ -108,15 +108,16 @@ public class PlantillaPrincipal extends JFrame implements ActionListener {
 		JMenu mnNewMenu_3 = new JMenu("Inscripciones");
 		if(PUCMM.getLoginUser().getTipo().equalsIgnoreCase("Participante")) {
 			mnNewMenu_3.setEnabled(true);
-		}else if (PUCMM.getLoginUser().getTipo().equalsIgnoreCase("Jurado")) {
-			mnNewMenu_3.setEnabled(false);
 		}
 		mnNewMenu_3.setForeground(new Color(255, 255, 255));
 	
 		menuBar.add(mnNewMenu_3);
 		
-		//Se añadio el if...
+		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Inscripci\u00F3n para Participantes");
+		if(PUCMM.getLoginUser().getTipo().equalsIgnoreCase("Jurado")) {
+			mntmNewMenuItem.setEnabled(false);
+			}
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {			
 					InscripcionParticipantes inscripcion = new  InscripcionParticipantes();
@@ -240,7 +241,7 @@ public class PlantillaPrincipal extends JFrame implements ActionListener {
 				try {
 					Socket sr = new Socket("127.0.0.1",7000);
 					InputStream is = sr.getInputStream();
-					FileOutputStream fr = new FileOutputStream("C:\\Users\\Star\\git\\ProyectoDeProgramacion\\Proyecto Final\\src\\Respaldo\\pucmm.dat");
+					FileOutputStream fr = new FileOutputStream("C:\\Users\\natas\\git\\ProyectoDeProgramacion\\Proyecto Final\\src\\Respaldo\\pucmm.dat");
 					is.read(b,0,b.length);
 					fr.write(b,0,b.length);
 					

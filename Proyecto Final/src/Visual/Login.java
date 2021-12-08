@@ -24,11 +24,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 
 public class Login extends JFrame {
 
 	private JPanel contentPane;
+	private Dimension dim;
 	private JTextField txtUsuarioe;
 	private JButton btnLogin;
 	private JPasswordField passwordField;
@@ -88,34 +90,37 @@ public class Login extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 549, 350);
+		dim = getToolkit().getScreenSize();
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 51, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setSize(dim.width, dim.height-40);
+		setLocationRelativeTo(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 51, 255));
-		panel.setBounds(12, 25, 521, 265);
+		panel.setBounds(12, 25, 1338, 663);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Usuario:\r\n");
-		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setBounds(232, 39, 56, 16);
+		lblNewLabel.setBounds(648, 226, 118, 16);
 		panel.add(lblNewLabel);
 		
 		txtUsuarioe = new JTextField();
 		txtUsuarioe.setFont(new Font("Times New Roman", Font.BOLD, 11));
-		txtUsuarioe.setBounds(202, 66, 116, 22);
+		txtUsuarioe.setBounds(595, 253, 181, 22);
 		panel.add(txtUsuarioe);
 		txtUsuarioe.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Contrase\u00F1a:");
-		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setBounds(221, 119, 97, 16);
+		lblNewLabel_1.setBounds(632, 304, 118, 16);
 		panel.add(lblNewLabel_1);
 		
 		btnLogin = new JButton("Login");
@@ -130,11 +135,11 @@ public class Login extends JFrame {
 				}	
 			} 
 		});
-		btnLogin.setBounds(212, 192, 97, 25);
+		btnLogin.setBounds(632, 383, 97, 25);
 		panel.add(btnLogin);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(202, 148, 116, 22);
+		passwordField.setBounds(595, 335, 181, 22);
 		panel.add(passwordField);
 	}
 } 
