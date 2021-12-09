@@ -15,7 +15,7 @@ public class Eventos implements Serializable {
 	private Recursos recursoUtilizados;
 	private String codigoDeEvento;
 	private int fechaDeInicio;
-	private int fechaDeCierre;
+	
 	private String lugarDeEvento;
 	private Date fechaLimiteDeEntregaDeTrabajos;
 	private int horaDeEvento;
@@ -23,7 +23,7 @@ public class Eventos implements Serializable {
 	private String tipoDeEvento;
 	private String nombreDeComision;
 	public Eventos(String tituloDeEvento, Comisiones comision, Recursos recursoUtilizados, String codigoDeEvento,
-			String lugarDeEvento, int fechaDeInicio, String correoDeEvento, int limiteDeParticipantes,String tipoDeEvento,String nombreDeComision, int fechaDeCierre) {
+			String lugarDeEvento, int fechaDeInicio, String correoDeEvento, int limiteDeParticipantes,String tipoDeEvento,String nombreDeComision) {
 		super();
 		this.tituloDeEvento = tituloDeEvento;
 		this.comision = comision;
@@ -39,7 +39,7 @@ public class Eventos implements Serializable {
 		this.fechaLimiteDeEntregaDeTrabajos = new Date();
 		this.tipoDeEvento = tipoDeEvento;
 		this.nombreDeComision = nombreDeComision;
-		this.fechaDeCierre = fechaDeCierre;
+		
 
 	}
 
@@ -133,13 +133,6 @@ public class Eventos implements Serializable {
 		this.nombreDeComision = nombreDeComision;
 	}
 
-	public int getFechaDeCierre() {
-		return fechaDeCierre;
-	}
-
-	public void setFechaDeCierre(int fechaDeCierre) {
-		this.fechaDeCierre = fechaDeCierre;
-	}
 
 	public int getFechaDeInicio() {
 		return fechaDeInicio;

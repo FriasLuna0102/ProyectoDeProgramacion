@@ -30,6 +30,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
 import java.awt.Color;
+import javax.swing.UIManager;
 
 public class ListadoDeEventos extends JDialog {
 
@@ -44,7 +45,6 @@ public class ListadoDeEventos extends JDialog {
 	private JPanel panel;
 	private JLabel lblNewLabel;
 	private JComboBox cbxTipodeEventos;
-	private static JButton btnSuspender;
 	private JButton btnCerrar;
 
 	/**
@@ -80,7 +80,7 @@ public class ListadoDeEventos extends JDialog {
 		{
 			panel = new JPanel();
 			panel.setBackground(new Color(0, 51, 255));
-			panel.setBorder(new TitledBorder(null, "Listado de Eventos:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			panel.setBounds(0, 0, 1350, 655);
 			contentPanel.add(panel);
 			panel.setLayout(null);
@@ -126,7 +126,7 @@ public class ListadoDeEventos extends JDialog {
 
 					int aux = table.getSelectedRow();
 					if(aux != -1) {
-						btnSuspender.setEnabled(true);
+						
 						String eventos = (String) table.getValueAt(aux, 0);
 						selected = PUCMM.getInstance().buscarEvento(eventos);
 						
@@ -134,7 +134,7 @@ public class ListadoDeEventos extends JDialog {
 				}});
 			
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			String[] headers = {"Titulo del Evento","Codigo del Evento","Limite de Participantes","Lugar del Evento","Correo del Evento","Tipo de Evento","Fecha de Inicio","Fecha de Fin"};			
+			String[] headers = {"Titulo del Evento","Codigo del Evento","Limite de Participantes","Lugar del Evento","Correo del Evento","Tipo de Evento","Fecha de Inicio"};			
 			model = new DefaultTableModel();
 			model.setColumnIdentifiers(headers);	
 			table.setModel(model);
@@ -148,25 +148,6 @@ public class ListadoDeEventos extends JDialog {
 			buttonPane.setBackground(new Color(0, 51, 255));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				btnSuspender = new JButton("Suspender");
-				btnSuspender.setEnabled(false);
-				btnSuspender.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						int select = JOptionPane.showConfirmDialog(null, "Seguro desea eliminar la Publicacion con Codigo"+selected.getCodigoDeEvento(), "Confirmacion", JOptionPane.WARNING_MESSAGE);
-						if (select == JOptionPane.YES_OPTION) {
-
-							PUCMM.getInstance().suspenderEvento(selected.getCodigoDeEvento());
-							loadwines(0);
-							btnSuspender.setEnabled(false);
-							selected = null;
-						}
-					}  
-				});
-				btnSuspender.setActionCommand("OK");
-				buttonPane.add(btnSuspender);
-				getRootPane().setDefaultButton(btnSuspender);
-			}
 			{
 				btnCerrar = new JButton("Cerrar");
 				btnCerrar.addActionListener(new ActionListener() {
@@ -194,7 +175,7 @@ public class ListadoDeEventos extends JDialog {
 				rows[4] = PUCMM.getInstance().getMisEventos().get(i).getCorreoDeEvento();
 				rows[5] = PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento();
 				rows[6] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeInicio();
-				rows[7] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeCierre();
+				
 
 
 
@@ -211,7 +192,7 @@ public class ListadoDeEventos extends JDialog {
 					rows[4] = PUCMM.getInstance().getMisEventos().get(i).getCorreoDeEvento();
 					rows[5] = PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento();
 					rows[6] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeInicio();
-					rows[7] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeCierre();
+					
 					model.addRow(rows);	
 
 				}
@@ -228,7 +209,7 @@ public class ListadoDeEventos extends JDialog {
 					rows[4] = PUCMM.getInstance().getMisEventos().get(i).getCorreoDeEvento();
 					rows[5] = PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento();
 					rows[6] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeInicio();
-					rows[7] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeCierre();
+					
 					model.addRow(rows);	
 
 				}
@@ -245,7 +226,6 @@ public class ListadoDeEventos extends JDialog {
 					rows[4] = PUCMM.getInstance().getMisEventos().get(i).getCorreoDeEvento();
 					rows[5] = PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento();
 					rows[6] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeInicio();
-					rows[7] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeCierre();
 					model.addRow(rows);	
 
 				}
@@ -261,7 +241,7 @@ public class ListadoDeEventos extends JDialog {
 					rows[4] = PUCMM.getInstance().getMisEventos().get(i).getCorreoDeEvento();
 					rows[5] = PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento();
 					rows[6] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeInicio();
-					rows[7] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeCierre();
+					
 					model.addRow(rows);	
 				}
 			}
@@ -276,7 +256,7 @@ public class ListadoDeEventos extends JDialog {
 					rows[4] = PUCMM.getInstance().getMisEventos().get(i).getCorreoDeEvento();
 					rows[5] = PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento();
 					rows[6] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeInicio();
-					rows[7] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeCierre();
+					
 					model.addRow(rows);	
 				}
 			}
@@ -291,7 +271,7 @@ public class ListadoDeEventos extends JDialog {
 					rows[4] = PUCMM.getInstance().getMisEventos().get(i).getCorreoDeEvento();
 					rows[5] = PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento();
 					rows[6] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeInicio();
-					rows[7] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeCierre();
+					
 					model.addRow(rows);	}
 			}
 			break;
@@ -305,13 +285,12 @@ public class ListadoDeEventos extends JDialog {
 					rows[4] = PUCMM.getInstance().getMisEventos().get(i).getCorreoDeEvento();
 					rows[5] = PUCMM.getInstance().getMisEventos().get(i).getTipoDeEvento();
 					rows[6] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeInicio();
-					rows[7] = PUCMM.getInstance().getMisEventos().get(i).getFechaDeCierre();
+				
 					model.addRow(rows);
 				}
 			}
 			break;
 		}
-		btnSuspender.setEnabled(false);
 
 	}
 

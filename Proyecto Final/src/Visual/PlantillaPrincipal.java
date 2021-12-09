@@ -317,10 +317,10 @@ public class PlantillaPrincipal extends JFrame implements ActionListener {
 		lblNewLabel_4.setBounds(263, 279, 851, 30);
 		panel.add(lblNewLabel_4);
 		
-		JLabel lblNewLabel_5 = new JLabel("Desde el jueves 2 de diciembre  hasta el s\u00E1bado 4 de diciembre del 2021");
+		JLabel lblNewLabel_5 = new JLabel("Esperamos verte en el 2022!! ");
 		lblNewLabel_5.setFont(new Font("Times New Roman", Font.PLAIN, 17));
 		lblNewLabel_5.setForeground(new Color(255, 255, 255));
-		lblNewLabel_5.setBounds(451, 345, 510, 14);
+		lblNewLabel_5.setBounds(585, 345, 510, 14);
 		panel.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_6 = new JLabel("9:00 a.m - 3:00 p.m");

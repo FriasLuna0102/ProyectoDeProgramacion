@@ -113,6 +113,12 @@ public class RegUsuarios extends JDialog {
 		passContra2 = new JPasswordField();
 		passContra2.setBounds(541, 388, 256, 22);
 		panel.add(passContra2);
+		
+		JLabel lblNewLabel_4 = new JLabel("Por favor se le pide que llene estos apartados para el registro de su usuario, as\u00ED  participar\u00E1   en el Evento Cient\u00EDfico.");
+		lblNewLabel_4.setForeground(Color.WHITE);
+		lblNewLabel_4.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
+		lblNewLabel_4.setBounds(335, 167, 803, 14);
+		panel.add(lblNewLabel_4);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));

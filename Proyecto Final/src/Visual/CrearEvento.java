@@ -95,7 +95,7 @@ public class CrearEvento extends JDialog {
 		panel = new JPanel();
 		panel.setBackground(new Color(0, 51, 255));
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(10, 43, 1360, 607);
+		panel.setBounds(10, 43, 1324, 588);
 		contentPanel.add(panel);
 		panel.setLayout(null);
 
@@ -125,29 +125,20 @@ public class CrearEvento extends JDialog {
 		panel.add(txtCodigoDelEvento);
 		txtCodigoDelEvento.setColumns(10);
 
-		JLabel lblNewLabel_1 = new JLabel("Fecha de Inicio:");
+		JLabel lblNewLabel_1 = new JLabel("A\u00F1o de Inicio:");
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblNewLabel_1.setBounds(391, 225, 100, 16);
 		panel.add(lblNewLabel_1);
 
-		spnFechaDeFin = new JSpinner();
-		Date datee = new Date();
-		spnFechaDeFin.setForeground(new Color(0, 0, 0));
-		spnFechaDeFin.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		spnFechaDeFin.setModel(new SpinnerDateModel(new Date(1638021128669L), null, null, Calendar.YEAR));
-		JSpinner.DateEditor de= new JSpinner.DateEditor(spnFechaDeFin, "yyyy");
-		spnFechaDeFin.setEditor(de);
-		spnFechaDeFin.setBounds(771, 223, 109, 22);
-		panel.add(spnFechaDeFin);
-
+		
 		
 		
 
 		JLabel lblNewLabel_2 = new JLabel("L\u00EDmite de participantes:");
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));
 		lblNewLabel_2.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblNewLabel_2.setBounds(677, 187, 161, 16);
+		lblNewLabel_2.setBounds(677, 225, 161, 16);
 		panel.add(lblNewLabel_2);
 
 		JLabel lblNewLabel_3 = new JLabel("Correo del Evento:");
@@ -159,7 +150,7 @@ public class CrearEvento extends JDialog {
 		spnLimiteDeParticipantes = new JSpinner();
 		spnLimiteDeParticipantes.setForeground(new Color(0, 0, 0));
 		spnLimiteDeParticipantes.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		spnLimiteDeParticipantes.setBounds(848, 185, 32, 22);
+		spnLimiteDeParticipantes.setBounds(848, 222, 32, 22);
 		panel.add(spnLimiteDeParticipantes);
 
 		txtCorreoDelEvento = new JTextField();
@@ -192,12 +183,6 @@ public class CrearEvento extends JDialog {
 		spnFechaDeInicio.setEditor(di);
 		spnFechaDeInicio.setBounds(533, 223, 109, 22);
 		panel.add(spnFechaDeInicio);
-
-		JLabel lblFechaDeFin = new JLabel("Fecha de Fin:");
-		lblFechaDeFin.setForeground(new Color(255, 255, 255));
-		lblFechaDeFin.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lblFechaDeFin.setBounds(677, 225, 100, 16);
-		panel.add(lblFechaDeFin);
 
 
 
@@ -306,9 +291,7 @@ public class CrearEvento extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 					
 					
-					Date dateAuxx = (Date) spnFechaDeFin.getValue();
-					SimpleDateFormat dee = new SimpleDateFormat("yyyy");
-					String yearr = dee.format(dateAuxx);
+					
 					
 					Date dateAuxxx = (Date) spnFechaDeInicio.getValue();
 					SimpleDateFormat deee = new SimpleDateFormat("yyyy");
@@ -318,7 +301,7 @@ public class CrearEvento extends JDialog {
 					Recursos recurso = PUCMM.getInstance().buscarRecursos(rdbtnSalones.getText().toString());
 				
 					Eventos evento = new Eventos(txtTituloDelEvento.getText(),comision,recurso , txtCodigoDelEvento.getText(),txtPucmm.getText() ,Integer.valueOf(yearrr) , txtCorreoDelEvento.getText(),Integer.valueOf(spnLimiteDeParticipantes.getValue().toString()),
-							cbxTipoDeEventos.getSelectedItem().toString(),null,Integer.valueOf(yearr));
+							cbxTipoDeEventos.getSelectedItem().toString(),null);
 					if(evento.getCodigoDeEvento().length() != 0 && evento.getTituloDeEvento().length() != 0 )
 					{
 						PUCMM.getInstance().addEventos(evento);
@@ -356,7 +339,7 @@ public class CrearEvento extends JDialog {
 		txtCodigoDelEvento.setText("");
 		cbxTipoDeEventos.setSelectedItem(0);
 		spnFechaDeInicio.setValue(new Date());
-		spnFechaDeFin.setValue(new Date());
+		
 		spnLimiteDeParticipantes.setValue(Integer.valueOf(0));
 	
 	}
